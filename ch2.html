@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二章 晶体构造理论 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch2">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第二章</div>
+      <h1>晶体构造理论</h1>
+      <p class="lead">把晶体抽象成"点"来研究：点阵、平移群、晶胞，七大晶系与 14 种布拉菲格子，以及球体密堆积。本章是整门课的骨架。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p>点阵 / 平移群 / 结构基元 / 原胞 / 晶胞；素单位与复单位、<strong>均摊法</strong>算原子数；选平行六面体的<strong>三原则</strong>；<strong>七大晶系</strong>与点阵常数特征；<strong>14 种布拉菲格子</strong>及"为什么有些格子不存在"；球体<strong>密堆积</strong>（hcp / ccp、74.05%、四面体与八面体空隙）；配位数与配位多面体；三种描述方法。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>把晶体里的微粒抽象成<b>点（结点）</b>→ 这些点的规则排列叫<b>点阵</b>→ 描述点阵平移规律的是<b>平移群</b>→ 给结点放上真实微粒（结构基元）就成了晶体。为方便研究，用<b>晶胞</b>这一最小重复单元代表整个晶体；按对称性归类得到 <b>7 晶系、14 种布拉菲格子</b>。</p>
+      </div>
+
+      <h2>2.1 点阵和平移群</h2>
+      <p><em>结点</em>：把微粒抽象成的几何点。<em>点阵</em>：结点在空间的规则排列阵列（分直线点阵=一维、平面点阵=二维、空间点阵=三维）。<em>结构基元</em>：对应于一个结点的若干质点的组合——给点阵放上结构基元，就得到真实晶体结构。</p>
+      <div class="callout key">
+        <div class="callout-title">💡 平移群 \(T_{mnp}\)</div>
+        <p>能使点阵复原的全部平移构成<strong>平移群</strong>。空间点阵的平移群：</p>
+        <div class="formula-box">\[ T_{mnp}=m\,\vec a+n\,\vec b+p\,\vec c,\qquad m,n,p=0,\pm1,\pm2,\dots \]</div>
+        <p>点阵与平移群<strong>一一对应</strong>。重要性质（群的封闭性）：属于某平移群的任意两向量之和或差，仍属于该平移群。</p>
+      </div>
+      <p><strong>素单位 vs 复单位：</strong>平行四边形/六面体内只摊到 <strong>1 个</strong>结点的是<em>素单位</em>（固体物理里叫<strong>原胞</strong>，对应素向量/初基矢量）；摊到 <strong>2 个及以上</strong>的是<em>复单位</em>。</p>
+
+      <details class="concept" open>
+        <summary><span class="ico">🧮</span>均摊法：算一个晶胞里有几个结点/原子<span class="chev">▸</span></summary>
+        <div class="concept-body">
+          <p>一个结点被几个晶胞共有，就只算 \(1/\)几。立方晶胞中：</p>
+          <div class="tbl-wrap"><table class="qm">
+            <tr><th>位置</th><th>被几个晶胞共有</th><th>计入</th></tr>
+            <tr><td>顶角</td><td>8</td><td>\(1/8\)</td></tr>
+            <tr><td>棱上</td><td>4</td><td>\(1/4\)</td></tr>
+            <tr><td>面上</td><td>2</td><td>\(1/2\)</td></tr>
+            <tr><td>体内(中心)</td><td>1（独占）</td><td>\(1\)</td></tr>
+          </table></div>
+        </div>
+      </details>
+
+      <div data-viz="cubic"></div>
+
+      <h2>2.2 七大晶系与 14 种布拉菲格子</h2>
+      <h3>选平行六面体的三原则</h3>
+      <p>同一点阵可有多种划分方式，为使点阵与所选格子一一对应，规定（按优先级）：</p>
+      <ol>
+        <li><strong>对称性高：</strong>所选平行六面体外形应尽量反映点阵的对称性；</li>
+        <li><strong>多直角：</strong>在满足①下，棱间夹角尽量为直角；</li>
+        <li><strong>体积最小：</strong>在满足①②下，体积最小。</li>
+      </ol>
+      <p>这样选出的格子就是<strong>布拉菲格子（布喇菲格子）</strong>。六个参数：三棱长 \(a,b,c\)，三夹角 \(\alpha\)（\(b,c\) 间）、\(\beta\)（\(a,c\) 间）、\(\gamma\)（\(a,b\) 间）。</p>
+
+      <h3>七大晶系（按点阵常数特征）</h3>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>晶系</th><th>点阵常数特征</th><th>含有的格子类型</th></tr>
+        <tr><td>立方(等轴)</td><td>\(a=b=c,\ \alpha=\beta=\gamma=90°\)</td><td>P、I、F</td></tr>
+        <tr><td>四方(正方)</td><td>\(a=b\neq c,\ \alpha=\beta=\gamma=90°\)</td><td>P、I</td></tr>
+        <tr><td>正交(斜方)</td><td>\(a\neq b\neq c,\ \alpha=\beta=\gamma=90°\)</td><td>P、I、F、C</td></tr>
+        <tr><td>三方(菱面)</td><td>\(a=b=c,\ \alpha=\beta=\gamma\neq90°\)</td><td>P(R)</td></tr>
+        <tr><td>六方(六角)</td><td>\(a=b\neq c,\ \alpha=\beta=90°,\ \gamma=120°\)</td><td>P</td></tr>
+        <tr><td>单斜</td><td>\(a\neq b\neq c,\ \alpha=\gamma=90°\neq\beta\)</td><td>P、C</td></tr>
+        <tr><td>三斜</td><td>\(a\neq b\neq c,\ \alpha\neq\beta\neq\gamma\neq90°\)</td><td>P</td></tr>
+      </table></div>
+      <p style="font-size:14px;color:var(--text-soft)">P=简单格子，I=体心格子，F=面心格子，C=底心格子。</p>
+
+      <div class="callout key">
+        <div class="callout-title">⭐ 14 种布拉菲格子（按晶系数：3+2+4+1+1+2+1 = 14）</div>
+        <ul style="margin:6px 0">
+          <li>立方：简单立方 P、体心立方 I、面心立方 F（3）</li>
+          <li>四方：简单四方 P、体心四方 I（2）</li>
+          <li>正交：简单 P、体心 I、面心 F、底心 C（4）</li>
+          <li>三方：简单三方（1）　六方：简单六方（1）</li>
+          <li>单斜：简单 P、底心 C（2）　三斜：简单三斜（1）</li>
+        </ul>
+      </div>
+
+      <details class="concept">
+        <summary><span class="ico">❓</span>为什么有些格子不存在？（高频简答）<span class="chev">▸</span></summary>
+        <div class="concept-body">
+          <p>核心理由：<strong>若某种带心格子能划成一个体积更小、但对称性不变的格子，它就不被单独承认。</strong>例如：</p>
+          <ul>
+            <li><strong>没有底心立方：</strong>底心立方可划成体积仅一半的<strong>简单四方</strong>，对称性不降低 → 不承认。</li>
+            <li><strong>没有面心四方、底心四方：</strong>面心四方可划成体积一半的<strong>体心四方</strong>；底心四方可划成体积一半的<strong>简单四方</strong>。</li>
+            <li><strong>三方只有简单：</strong>底心/体心/面心三方都能化成更小的简单三方（或简单单斜），对称性不变。</li>
+          </ul>
+          <p>判据三件套：<b>体积更小、对称性不变、（尽量多直角）</b>。</p>
+        </div>
+      </details>
+
+      <h3>平面点阵：5 种平面布拉菲格子、4 个平面晶系</h3>
+      <p>平面点阵按三原则选平行四边形，按外形得 <strong>4 个平面晶系</strong>，考虑结点分布共 <strong>5 种平面布拉菲格子</strong>：</p>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>平面晶系</th><th>参数</th><th>格子</th></tr>
+        <tr><td>斜方</td><td>\(a\neq b\)，夹角任意</td><td>斜形格子</td></tr>
+        <tr><td>矩形</td><td>\(a\neq b,\ \gamma=90°\)</td><td>简单矩形 + 有心矩形（2 种）</td></tr>
+        <tr><td>正方</td><td>\(a=b,\ \gamma=90°\)</td><td>简单方形</td></tr>
+        <tr><td>六角(三角)</td><td>\(a=b,\ \gamma=120°\)</td><td>六角形格子</td></tr>
+      </table></div>
+
+      <h2>2.3 晶胞与等同点系</h2>
+      <p><em>晶胞</em>：在真实晶体结构中按三原则选出的最小结构单位（含真实物质内容）。它与抽象空间格子里选的单位平行六面体（布拉菲格子，只有几何意义）选取原则相同。<strong>晶胞种类无限多，而布拉菲格子只有 14 种。</strong></p>
+      <p><em>等同点系</em>：几何环境和物质环境<strong>完全相同</strong>的一类点。例：闪锌矿中所有 Zn 属一类等同点系、所有 S 属另一类，Zn 与 S 不属同一类。许多晶体由多套子格子<strong>套构</strong>而成（如 CsCl = 两套简单立方沿体对角线错开 1/2）。</p>
+
+      <h2>2.4 球体密堆积</h2>
+      <p>把原子看作有效半径的球，按"占空间最小、内能最小"排布。</p>
+      <div class="callout key">
+        <div class="callout-title">⭐ 两种最紧密堆积（空间利用率都是 74.05%）</div>
+        <ul style="margin:6px 0">
+          <li><strong>六方最紧密堆积 hcp：</strong>层序 <strong>ABABAB…</strong>（Frank 记号 △▽△▽）。例：自然锇 Os。</li>
+          <li><strong>立方最紧密堆积 ccp（=面心立方）：</strong>层序 <strong>ABCABC…</strong>（△△△△）。例：自然金 Au。</li>
+        </ul>
+        <p>另有<strong>立方体心密堆积</strong>（按体心立方排），空间利用率 <strong>68.02%</strong>。</p>
+      </div>
+
+      <div data-viz="closepack"></div>
+
+      <div class="callout">
+        <div class="callout-title">🕳️ 两种空隙</div>
+        <p>最紧密堆积中仍有空隙，两种：<strong>四面体空隙</strong>（4 个球围成）和<strong>八面体空隙</strong>（6 个球围成）。ABAB 与 ABCABC 两种堆积的空隙类型和数目都一样。<br>
+        <strong>不等径球堆积：</strong>大球作最紧密堆积，小球按大小填入八面体或四面体空隙。例：NaCl = Cl⁻ 作立方最紧密堆积、Na⁺ 填入<strong>全部八面体空隙</strong>；金红石 TiO₂ = O²⁻ 略变形六方最紧密堆积、Ti⁴⁺ 填入<strong>半数八面体空隙</strong>。</p>
+      </div>
+
+      <h3>配位数与配位多面体</h3>
+      <p><em>配位数</em>：一个原子/离子周围最邻近的原子或异号离子的数目。<em>配位多面体</em>：以某原子为中心、与其配位的原子中心连线所成的多面体。配位多面体之间可<strong>共角顶、共棱、共面</strong>相连——其中<strong>共角顶最常见</strong>，共面最少见（因共棱、共面会使阳离子靠太近、斥力大、稳定性降低）。</p>
+      <p><strong>三种描述晶体的方法：</strong>① 晶胞法　② 球体密堆积法　③ 配位多面体法（离子晶体常用）。</p>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>平移群 \(T_{mnp}=m\vec a+n\vec b+p\vec c\)｜均摊：角1/8 棱1/4 面1/2 体心1｜三原则=对称高·多直角·体积小｜7 晶系、14 布拉菲格子(3+2+4+1+1+2+1)｜hcp=ABAB、ccp=ABCABC，都 74.05%，bcc 68.02%｜空隙=四面体+八面体｜共角顶最常见。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住解答自己算，卡住了再点开。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">均摊法：体心立方、面心立方晶胞含几个原子</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>分别求简单立方(P)、体心立方(I)、面心立方(F)晶胞中所含的原子数。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>简单立方 P</h5><p>只有 8 个顶角原子，每个被 8 个晶胞共有：\(8\times\frac18=1\) 个。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>体心立方 I</h5><p>8 顶角 + 1 个体心（独占）：\(8\times\frac18+1=2\) 个。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>面心立方 F</h5><p>8 顶角 + 6 个面心（每个被 2 个晶胞共有）：\(8\times\frac18+6\times\frac12=1+3=4\) 个。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>P=1，I=2，F=4 个原子/晶胞。（这是最常考的送分题，务必记牢。）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">为什么没有"底心立方"布拉菲格子？</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>14 种布拉菲格子中，立方晶系只有 P、I、F，没有底心立方。请说明原因。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>找更小的等价格子</h5><p>一个底心立方格子，可以重新划分成一个体积仅为原来 \(1/2\) 的<strong>简单四方格子</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>比较对称性</h5><p>这个简单四方格子与原底心立方<strong>具有相同的对称性</strong>，对称性并没有降低。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>按三原则取舍</h5><p>既然能划成体积更小、对称性不变的格子，按"体积最小"原则就应取那个更小的，故"底心立方"不被单独承认。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>底心立方可化为体积一半、对称性相同的简单四方，故不存在独立的底心立方格子。（同理可解释无面心四方、无体心三方等。）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">密堆积的空隙与空间利用率</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>六方最紧密堆积与立方最紧密堆积的层序各是什么？空间利用率多少？有哪两种空隙？NaCl 结构如何用密堆积描述？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>层序</h5><p>六方最紧密堆积 hcp：<strong>ABABAB…</strong>；立方最紧密堆积 ccp（即面心立方）：<strong>ABCABC…</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>空间利用率</h5><p>两种最紧密堆积都是 <strong>74.05%</strong>；立方体心密堆积是 <strong>68.02%</strong>。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>空隙</h5><p>两种空隙：<strong>四面体空隙</strong>（4 球围成）与<strong>八面体空隙</strong>（6 球围成）。</p></div></div>
+            <div class="step"><div class="step-n">4</div><div class="step-c"><h5>NaCl</h5><p>体积大的 Cl⁻ 作立方最紧密堆积，体积小的 Na⁺ 填入<strong>全部八面体空隙</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>见上。记住"74.05% / 68.02%"和"四面体 + 八面体空隙"两组关键数据。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch2">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">空间点阵的平移群可写为</div>
+  <ul class="q-options">
+    <li data-correct>\(T_{mnp}=m\vec a+n\vec b+p\vec c\)（\(m,n,p\) 为整数）</li>
+    <li>\(T=\vec a+\vec b+\vec c\)</li>
+    <li>\(T=mnp\,\vec a\)</li>
+    <li>\(T=h\vec a^*+k\vec b^*+l\vec c^*\)</li>
+  </ul>
+  <div class="q-explain">空间点阵平移群是三个素向量的整数线性组合，与点阵一一对应。\(h\vec a^*+...\) 是倒易点阵（第四章）。<strong>【秒记】平移群=m a + n b + p c。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">对应于一个结点的若干质点的组合，称为</div>
+  <ul class="q-options">
+    <li>原胞</li>
+    <li data-correct>结构基元</li>
+    <li>晶系</li>
+    <li>配位多面体</li>
+  </ul>
+  <div class="q-explain">点阵是抽象的点；给每个结点放上"结构基元"（一组质点）就得到真实晶体结构。同一点阵配不同结构基元可构成无限多种晶体。<strong>【秒记】结点+结构基元=晶体结构。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">面心立方(F)晶胞中含有的原子数为</div>
+  <ul class="q-options">
+    <li>2</li>
+    <li data-correct>4</li>
+    <li>6</li>
+    <li>8</li>
+  </ul>
+  <div class="q-explain">8 顶角×1/8 + 6 面心×1/2 = 1 + 3 = 4。体心立方是 2，简单立方是 1。<strong>【秒记】P=1、I=2、F=4。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">用均摊法，处于立方晶胞顶角的原子对该晶胞的贡献为</div>
+  <ul class="q-options">
+    <li>1</li>
+    <li>1/2</li>
+    <li>1/4</li>
+    <li data-correct>1/8</li>
+  </ul>
+  <div class="q-explain">顶角原子被 8 个晶胞共有，故计 1/8；棱上 1/4，面上 1/2，体心 1。<strong>【秒记】角1/8、棱1/4、面1/2、心1。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">选取单位平行六面体的三原则，按优先级排序是</div>
+  <ul class="q-options">
+    <li data-correct>对称性高 → 多直角 → 体积最小</li>
+    <li>体积最小 → 多直角 → 对称性高</li>
+    <li>多直角 → 体积最小 → 对称性高</li>
+    <li>体积最大 → 对称性高 → 多直角</li>
+  </ul>
+  <div class="q-explain">先保证充分反映点阵对称性，其次尽量多直角，最后体积最小。顺序不能颠倒。<strong>【秒记】对称高 &gt; 多直角 &gt; 体积小。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">布拉菲格子（空间点阵）一共有</div>
+  <ul class="q-options">
+    <li>7 种</li>
+    <li data-correct>14 种</li>
+    <li>32 种</li>
+    <li>230 种</li>
+  </ul>
+  <div class="q-explain">7 个晶系，14 种布拉菲格子，32 个点群，230 个空间群——这组数字要分清。<strong>【秒记】7晶系、14布拉菲、32点群、230空间群。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">立方晶系（\(a=b=c,\ \alpha=\beta=\gamma=90°\)）含有的布拉菲格子是</div>
+  <ul class="q-options">
+    <li>只有简单立方</li>
+    <li data-correct>简单立方 P、体心立方 I、面心立方 F</li>
+    <li>P、I、F、C 四种</li>
+    <li>只有体心和面心</li>
+  </ul>
+  <div class="q-explain">立方晶系有 P、I、F 三种，没有底心立方（可化为更小的简单四方）。正交晶系才有 P、I、F、C 四种。<strong>【秒记】立方=P/I/F，正交=P/I/F/C。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">六方晶系的点阵常数特征是</div>
+  <ul class="q-options">
+    <li>\(a=b=c,\ \alpha=\beta=\gamma=90°\)</li>
+    <li data-correct>\(a=b\neq c,\ \alpha=\beta=90°,\ \gamma=120°\)</li>
+    <li>\(a\neq b\neq c,\ \alpha\neq\beta\neq\gamma\)</li>
+    <li>\(a=b=c,\ \alpha=\beta=\gamma\neq90°\)</li>
+  </ul>
+  <div class="q-explain">六方：两边相等、夹角 120°、第三轴垂直。\(a=b=c,\alpha=\beta=\gamma\neq90°\) 是三方（菱面）。<strong>【秒记】六方：a=b≠c，γ=120°。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">等径球体的最紧密堆积，空间利用率为</div>
+  <ul class="q-options">
+    <li>68.02%</li>
+    <li data-correct>74.05%</li>
+    <li>52.36%</li>
+    <li>100%</li>
+  </ul>
+  <div class="q-explain">六方最紧密(ABAB)和立方最紧密(ABCABC)堆积都是 74.05%；立方体心密堆积是 68.02%。<strong>【秒记】最紧密 74.05%，体心 68.02%。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">层序为 ABCABC… 的最紧密堆积是</div>
+  <ul class="q-options">
+    <li>六方最紧密堆积</li>
+    <li data-correct>立方最紧密堆积（即面心立方）</li>
+    <li>立方体心密堆积</li>
+    <li>简单立方堆积</li>
+  </ul>
+  <div class="q-explain">ABCABC 对应立方最紧密堆积(ccp)=面心立方；ABABAB 对应六方最紧密堆积(hcp)。<strong>【秒记】ABC=立方(面心)，ABAB=六方。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">最紧密堆积中存在的两种空隙是</div>
+  <ul class="q-options">
+    <li>正方空隙和三角空隙</li>
+    <li data-correct>四面体空隙和八面体空隙</li>
+    <li>立方空隙和球形空隙</li>
+    <li>只有八面体空隙</li>
+  </ul>
+  <div class="q-explain">四面体空隙由 4 个球围成，八面体空隙由 6 个球围成；NaCl 中 Na⁺ 填入全部八面体空隙。<strong>【秒记】空隙=四面体(4球)+八面体(6球)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">配位多面体之间最常见的连接方式是</div>
+  <ul class="q-options">
+    <li data-correct>共角顶</li>
+    <li>共棱</li>
+    <li>共面</li>
+    <li>完全分离</li>
+  </ul>
+  <div class="q-explain">共角顶最常见，共棱其次，共面最少见——因为共棱、共面会让阳离子靠太近、斥力增大、稳定性降低。<strong>【秒记】共角顶最常见，共面最少见。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于晶胞与布拉菲格子，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>晶胞含真实物质内容，布拉菲格子只有几何意义</li>
+    <li data-correct>晶胞种类无限多，布拉菲格子只有 14 种</li>
+    <li data-correct>两者选取原则相同（三原则）</li>
+    <li>布拉菲格子有无限多种</li>
+  </ul>
+  <div class="q-explain">晶胞=真实结构里的最小单元，结构基元千差万别故无限多；抽象空间格子只有 14 种。两者都按三原则选取。<strong>【秒记】晶胞无限多，布拉菲只14种。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列关于"某些带心格子不存在"的解释，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>底心立方可化为体积一半的简单四方，对称性不变</li>
+    <li data-correct>面心四方可化为体积一半的体心四方</li>
+    <li data-correct>判据是：能化成体积更小且对称性不变的格子就不单独承认</li>
+    <li>是因为它们对称性太高</li>
+  </ul>
+  <div class="q-explain">取舍依据是"体积更小、对称性不变"。底心立方→简单四方、面心四方→体心四方、底心四方→简单四方等都是例子。<strong>【秒记】能化小且对称不变=不承认。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch1.html"><span>← 上一章</span><b>第一章 晶体的特性</b></a>
+      <a class="next" href="ch3.html"><span>下一章 →</span><b>第三章 晶体的对称性</b></a>
+    </div>
+    <div class="foot-note">第二章 · 晶体构造理论 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

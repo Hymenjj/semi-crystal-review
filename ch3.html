@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第三章 晶体的对称性 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch3">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第三章</div>
+      <h1>晶体的对称性理论</h1>
+      <p class="lead">对称动作与对称要素、晶体里为什么只能有 1/2/3/4/6 次轴、8 种独立宏观对称要素，以及 32 点群与 230 空间群。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p>对称图形 / 对称动作 / 对称要素 / 阶次；<strong>七类对称要素</strong>（旋转轴、反映面、对称中心、点阵、反轴、螺旋轴、滑移面）；点对称动作 vs 空间对称动作；<strong>晶体学限制：轴次只能取 1、2、3、4、6</strong>；<strong>8 种独立宏观对称要素</strong>及反轴恒等式；对称要素组合规则；<strong>32 个点群、230 个空间群</strong>；准晶。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>对称 = "做个动作后图形和原来重合"。<b>动作</b>叫对称动作，动作依据的<b>几何元素</b>（点/线/面）叫对称要素。七类对称要素，受晶体周期性限制只能有某些轴次；把允许的对称要素<b>组合</b>起来，宏观得 32 点群，加上微观平移类要素得 230 空间群。</p>
+      </div>
+
+      <h2>3.1 基本概念</h2>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>概念</th><th>含义</th></tr>
+        <tr><td>等同图形</td><td>对称物体的各等同部分；分相等图形与不相等图形</td></tr>
+        <tr><td>相等图形</td><td>完全叠合的等同图形（如花瓣、雪花的一瓣）</td></tr>
+        <tr><td>不相等图形</td><td>互成镜像的等同图形（如左手和右手）</td></tr>
+        <tr><td>对称动作</td><td>把某部分的点带到等同部分相应点、使新图形与原图形重合的动作（旋转、反映、倒反、平移…）</td></tr>
+        <tr><td>对称要素</td><td>进行对称动作所依据的几何元素（点、线、面）</td></tr>
+        <tr><td>阶次</td><td>对称图形中等同部分的数目，代表对称程度高低</td></tr>
+      </table></div>
+
+      <h2>3.1 七类对称要素与对称动作（核心表）</h2>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>对称要素</th><th>符号</th><th>对称动作</th><th>能重合的图形</th><th>阶次</th></tr>
+        <tr><td>旋转轴</td><td>\(n\)</td><td>旋转 \(L(\alpha)\)</td><td>相等图形</td><td>\(n\)</td></tr>
+        <tr><td>反映面</td><td>\(m\)</td><td>反映 \(M\)</td><td>左右手图形</td><td>2</td></tr>
+        <tr><td>对称中心</td><td>\(i\)</td><td>倒反 \(I\)</td><td>左右手图形</td><td>2</td></tr>
+        <tr><td>点阵</td><td>\(T_{mnp}\)</td><td>平移 \(T\)</td><td>相等图形</td><td>\(\infty\)</td></tr>
+        <tr><td>反轴</td><td>\(\bar n\)</td><td>旋转+倒反 \(L(\alpha)I\)</td><td>左右手图形</td><td>\(n\) 偶→\(n\)；\(n\) 奇→\(2n\)</td></tr>
+        <tr><td>螺旋轴</td><td>\(n_m\)</td><td>旋转+平移 \(L(\alpha)T\)</td><td>相等图形</td><td>\(\infty\)</td></tr>
+        <tr><td>滑移面</td><td>\(MT\)</td><td>反映+平移</td><td>相等 + 左右手</td><td>\(\infty\)</td></tr>
+      </table></div>
+      <div class="callout key">
+        <div class="callout-title">🔑 两组重要分类</div>
+        <ul style="margin:6px 0">
+          <li><strong>简单对称动作（4 种）：</strong>旋转、反映、倒反、平移；<strong>复合对称动作（3 种）：</strong>反轴、螺旋轴、滑移面。</li>
+          <li><strong>点对称动作</strong>（至少有一点不动，有限/无限结构都能存在）：旋转、反映、倒反、反轴；<br>
+          <strong>空间对称动作</strong>（每一点都移动，只能存在于无限结构）：平移、螺旋轴、滑移面。</li>
+          <li>含倒反/反映的动作 → 只能使<strong>左右手</strong>图形重合；不含的 → 只能使<strong>相等</strong>图形重合。</li>
+          <li><strong>对称轴</strong> = 旋转轴 + 螺旋轴 + 反轴；<strong>对称面</strong> = 反映面 + 滑移面。</li>
+        </ul>
+      </div>
+
+      <h2>3.1.4 晶体中对称轴的轴次（必考）</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 晶体学限制：轴次只能是 1、2、3、4、6</div>
+        <p>因为晶体内部是<strong>周期性点阵结构</strong>，对称轴的轴次受到限制：<strong>只能取 \(n=1,2,3,4,6\)，不存在 5 次轴，也不存在 7 次及以上的轴。</strong></p>
+        <p><strong>直观解释：</strong>垂直对称轴一定有面网；绕轴转动形成的多边形必须能<strong>无缝铺满平面</strong>。正三角形、正方形、正六边形能铺满（对应 3、4、6 次轴），加上 2 次——能量上稳定；而正五边形、正七边形、正八边形<strong>铺不满平面、留有空隙</strong>，所以 5 次、≥7 次轴在晶体中不存在。</p>
+      </div>
+
+      <h2>3.2 八种独立宏观对称要素</h2>
+      <p>宏观观察晶体外形（有限图形），只有<strong>点对称动作</strong>对应的要素能存在——即旋转轴 \(n\)、反映面 \(m\)、对称中心 \(i\)、反轴 \(\bar n\)。再因周期性 \(n\) 只能取 1,2,3,4,6。而反轴里有些等价于更简单的要素：</p>
+      <div class="callout key">
+        <div class="callout-title">🔑 反轴恒等式（高频）</div>
+        <div class="formula-box">\[ \bar1=i,\qquad \bar2=m,\qquad \bar3=3+i,\qquad \bar6=3+m \]</div>
+        <p>只有 \(\bar4\) 不能被别的要素代替，是独立的。于是晶体宏观对称性只有 <strong>8 种独立对称要素</strong>：</p>
+        <div class="formula-box">\[ 1,\ 2,\ 3,\ 4,\ 6,\ i,\ m,\ \bar4 \]</div>
+        <p>（描述六方晶系某些晶体时，\(\bar6\) 有时也采用。）</p>
+      </div>
+
+      <h3>对称要素的组合规则</h3>
+      <p>8 种基本要素的组合不是任意的——两个要素组合必产生新要素；组合需满足：参加组合的要素至少<strong>相交于一点</strong>（晶体外形有限封闭），且组合结果不容许产生与点阵不相容的要素（如 5、7 次）。</p>
+      <div class="callout">
+        <div class="callout-title">轴 / 面 / 心 组合的经典结论</div>
+        <p>偶次轴、与之垂直的反映面、对称中心，三者中<strong>任意两个组合都会产生第三个</strong>：</p>
+        <div class="formula-box">\[ 2+i=m,\qquad 2+m=i,\qquad m+i=2 \]</div>
+      </div>
+
+      <h2>3.2 32 个点群</h2>
+      <p>把 8 种独立宏观对称要素按组合规则组合，<strong>一共得到 32 种组合方式，即 32 个点群</strong>。任何晶体外形必属于其中之一，不会有例外，也不会超出 32 个。点群有两种符号：<strong>熊夫利符号</strong>和<strong>国际符号</strong>。32 点群按特征对称要素归入 7 个晶系，再按对称性高低分高、中、低三级。</p>
+      <div class="callout">
+        <div class="callout-title">两个重要高对称点群</div>
+        <ul style="margin:6px 0">
+          <li><strong>\(T_d\) 群（正四面体）：</strong>全部对称要素为 \(3\) 个 \(\bar4\)、\(4\) 个 \(3\)、\(6\) 个 \(m\)。——闪锌矿(GaAs)属此类。</li>
+          <li><strong>\(O_h\) 群（正六面体/正八面体，立方）：</strong>\(3\) 个 \(4\)、\(4\) 个 \(3\)、\(6\) 个 \(2\)、\(9\) 个 \(m\)、\(i\)。——金刚石、NaCl 属此类。</li>
+        </ul>
+      </div>
+
+      <h2>3.3 230 个空间群</h2>
+      <p>微观结构里除 8 种宏观对称要素外，还存在<strong>空间对称动作</strong>对应的<strong>微观对称要素：点阵、螺旋轴、滑移面</strong>。把宏观 + 微观全部对称要素组合，得到 <strong>230 种微观对称类型 = 230 个空间群</strong>。任何晶体结构必属于其中之一。<strong>晶体的宏观对称性正是其微观对称性的宏观表现。</strong></p>
+      <div class="callout">
+        <div class="callout-title">📊 一串关键数字（务必分清）</div>
+        <div class="formula-box">\[ 7\ \text{晶系}\ \to\ 14\ \text{布拉菲格子}\ \to\ 32\ \text{点群}\ \to\ 230\ \text{空间群} \]</div>
+      </div>
+
+      <h2>3.* 准晶（拓展，常作为趣味考点）</h2>
+      <p>晶体中不可能有 5 次对称，但 1982 年 Shechtman 在 Mn-Al 合金中发现了具有 5 次对称的固体——<strong>准晶</strong>。准晶<strong>有长程有序，却没有平移周期性</strong>，因此可以具有晶体所不允许的宏观对称性（如 5 次）。Shechtman 因此获 <strong>2011 年诺贝尔化学奖</strong>。一句话：<em>晶体不能有 5 次对称，准晶可以。</em></p>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>7 类要素=旋转轴/反映面/对称中心/点阵/反轴/螺旋轴/滑移面｜简单4(旋/反映/倒反/平移)+复合3(反轴/螺旋/滑移)｜点动作有不动点(n,m,i,\(\bar n\))，空间动作每点都动(平移/螺旋/滑移)｜轴次只能 1,2,3,4,6｜\(\bar1{=}i,\bar2{=}m,\bar3{=}3{+}i,\bar6{=}3{+}m\)｜8独立要素=1,2,3,4,6,i,m,\(\bar4\)｜32点群、230空间群｜\(T_d\)四面体、\(O_h\)立方。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住解答自己想。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">反轴恒等式与阶次</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>写出反轴 \(\bar1,\bar2,\bar3,\bar6\) 各等价于什么；并说明反轴阶次的规律。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>四个恒等式</h5><p>\(\bar1=i\)（对称中心）、\(\bar2=m\)（反映面）、\(\bar3=3+i\)、\(\bar6=3+m\)。只有 \(\bar4\) 独立、不能被替代。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>阶次规律</h5><p>反轴 \(\bar n\) 的阶次：\(n\) 为偶数时阶次 = \(n\)；\(n\) 为奇数时阶次 = \(2n\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>由此得 8 种独立要素</h5><p>因为 \(\bar1,\bar2,\bar3,\bar6\) 都能用别的表示，独立的只剩 \(1,2,3,4,6,i,m,\bar4\) 共 8 种。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>\(\bar1=i,\ \bar2=m,\ \bar3=3+i,\ \bar6=3+m\)；反轴阶次"偶则 \(n\)、奇则 \(2n\)"；8 种独立宏观对称要素为 \(1,2,3,4,6,i,m,\bar4\)。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">为什么晶体中不存在 5 次对称轴？</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>证明（说明）晶体中对称轴轴次只能取 1、2、3、4、6，不能有 5 次或 7 次及以上。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>根源：周期性</h5><p>晶体内部是周期性点阵结构，垂直于对称轴必有一组平面点阵（面网）。绕该轴旋转形成的正多边形，必须能与面网的网孔吻合，即<strong>无缝铺满平面</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>能铺满的多边形</h5><p>绕 2、3、4、6 次轴形成的图形（对应正三角形、正方形、正六边形等）能毫无间隙地布满平面，符合点阵网孔，能量上稳定。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>不能铺满的</h5><p>正五边形、正七边形、正八边形等<strong>不能无缝铺满平面</strong>（会留空隙），与点阵周期性矛盾，故 5 次、≥7 次轴不存在。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>由点阵周期性 → 绕轴多边形须铺满面网 → 只有 1,2,3,4,6 次满足，故晶体无 5 次轴、无 7 次及以上轴。（准晶不受此限，因为它无平移周期性。）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">正四面体与正方体的对称要素（Td 与 Oh）</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>分别写出正四面体（\(T_d\)）和正六面体/正八面体（\(O_h\)）的全部对称要素。它们各与哪些晶体结构对应？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>\(T_d\) 正四面体</h5><p>全部对称要素：\(3\) 个 \(\bar4\)、\(4\) 个 \(3\)、\(6\) 个 \(m\)。<strong>无对称中心 \(i\)</strong>。对应<strong>闪锌矿结构（GaAs 等）</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>\(O_h\) 立方</h5><p>全部对称要素：\(3\) 个 \(4\)、\(4\) 个 \(3\)、\(6\) 个 \(2\)、\(9\) 个 \(m\)、\(i\)。对称性比 \(T_d\) 高。对应<strong>金刚石型、NaCl 型结构</strong>。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>对称性比较</h5><p>关键区别：\(O_h\) 有对称中心 \(i\)，\(T_d\) 没有。这正是闪锌矿比金刚石对称性低的原因（第五章会再用到）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>\(T_d\)：\(3\bar4+4\cdot3+6m\)（无 \(i\)）→ 闪锌矿；\(O_h\)：\(3\cdot4+4\cdot3+6\cdot2+9m+i\) → 金刚石/NaCl。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch3">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">"左手和右手"属于哪类等同图形？</div>
+  <ul class="q-options">
+    <li>相等图形</li>
+    <li data-correct>不相等图形（互成镜像）</li>
+    <li>对称图形</li>
+    <li>完全无关</li>
+  </ul>
+  <div class="q-explain">完全叠合的是相等图形（如花瓣）；互成镜像、不能直接叠合的是不相等图形（左右手）。含反映/倒反的动作才能让左右手重合。<strong>【秒记】左右手=不相等图形=镜像。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">下列哪一组全部是"复合对称要素"？</div>
+  <ul class="q-options">
+    <li>旋转轴、反映面、对称中心</li>
+    <li data-correct>反轴、螺旋轴、滑移面</li>
+    <li>旋转轴、点阵、反映面</li>
+    <li>对称中心、点阵、旋转轴</li>
+  </ul>
+  <div class="q-explain">简单对称动作 4 种：旋转、反映、倒反、平移；复合对称动作 3 种：反轴(旋转+倒反)、螺旋轴(旋转+平移)、滑移面(反映+平移)。<strong>【秒记】复合三件套=反轴、螺旋轴、滑移面。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">下列对称要素中，对应"空间对称动作"（每一点都移动、只存在于无限结构）的是</div>
+  <ul class="q-options">
+    <li>对称中心 \(i\)</li>
+    <li>反映面 \(m\)</li>
+    <li data-correct>螺旋轴 \(n_m\)</li>
+    <li>反轴 \(\bar4\)</li>
+  </ul>
+  <div class="q-explain">空间对称动作=平移、螺旋轴、滑移面（每点都动，只能存在于无限结构）；点对称动作=旋转、反映、倒反、反轴（有不动点）。<strong>【秒记】空间动作：平移/螺旋/滑移。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体中对称轴的轴次只能取</div>
+  <ul class="q-options">
+    <li>任意整数</li>
+    <li data-correct>1、2、3、4、6</li>
+    <li>1、2、3、4、5、6</li>
+    <li>2、4、6、8</li>
+  </ul>
+  <div class="q-explain">受点阵周期性限制，只有 1,2,3,4,6 次轴；没有 5 次轴，也没有 7 次及以上。因为只有这些轴对应的多边形能无缝铺满平面。<strong>【秒记】轴次只能 1,2,3,4,6（无5无≥7）。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体中为什么不存在 5 次对称轴？</div>
+  <ul class="q-options">
+    <li>5 次轴能量太高</li>
+    <li data-correct>正五边形不能无缝铺满平面，与点阵周期性矛盾</li>
+    <li>5 是奇数</li>
+    <li>没有发现含 5 的元素</li>
+  </ul>
+  <div class="q-explain">垂直对称轴有面网，绕轴多边形须铺满面网；正三角、正方、正六边形可铺满（3/4/6 次轴），正五边形铺不满，故无 5 次轴。<strong>【秒记】五边形铺不满平面→无5次轴。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">反轴 \(\bar1\) 等价于</div>
+  <ul class="q-options">
+    <li>反映面 \(m\)</li>
+    <li data-correct>对称中心 \(i\)</li>
+    <li>2 次轴</li>
+    <li>3 次轴</li>
+  </ul>
+  <div class="q-explain">反轴恒等式：\(\bar1=i\)、\(\bar2=m\)、\(\bar3=3+i\)、\(\bar6=3+m\)，只有 \(\bar4\) 独立。<strong>【秒记】\(\bar1=i\)，\(\bar2=m\)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体宏观对称性中独立的对称要素共有几种？</div>
+  <ul class="q-options">
+    <li>5 种</li>
+    <li>7 种</li>
+    <li data-correct>8 种</li>
+    <li>32 种</li>
+  </ul>
+  <div class="q-explain">8 种独立宏观对称要素：\(1,2,3,4,6,i,m,\bar4\)。它们组合得到 32 个点群。<strong>【秒记】8独立要素=1,2,3,4,6,i,m,\(\bar4\)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">偶次轴、垂直反映面、对称中心的组合关系，正确的是</div>
+  <ul class="q-options">
+    <li data-correct>\(2+i=m\)（任意两者组合产生第三者）</li>
+    <li>\(2+i=4\)</li>
+    <li>\(m+i=3\)</li>
+    <li>三者不能组合</li>
+  </ul>
+  <div class="q-explain">偶次轴、与之垂直的反映面、对称中心，三者中任意两个组合都会产生第三个：\(2+i=m\)、\(2+m=i\)、\(m+i=2\)。<strong>【秒记】2、m、i 三者两两生第三。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体外形（宏观对称性）可分为多少个点群？</div>
+  <ul class="q-options">
+    <li>14 个</li>
+    <li data-correct>32 个</li>
+    <li>230 个</li>
+    <li>7 个</li>
+  </ul>
+  <div class="q-explain">8 种独立宏观对称要素组合得 32 个点群；加上微观平移类要素得 230 个空间群。<strong>【秒记】32点群（宏观）、230空间群（微观）。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">正四面体对应的点群 \(T_d\)，其全部对称要素中不包含</div>
+  <ul class="q-options">
+    <li>\(\bar4\) 反轴</li>
+    <li>3 次轴</li>
+    <li>反映面 \(m\)</li>
+    <li data-correct>对称中心 \(i\)</li>
+  </ul>
+  <div class="q-explain">\(T_d\)：\(3\bar4+4\cdot3+6m\)，没有对称中心 \(i\)；而立方 \(O_h\) 有 \(i\)。闪锌矿(GaAs)属 \(T_d\)，缺对称中心使其对称性低于金刚石。<strong>【秒记】\(T_d\)正四面体无对称中心。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于准晶，下列说法正确的是</div>
+  <ul class="q-options">
+    <li>准晶就是普通晶体</li>
+    <li data-correct>准晶有长程有序但无平移周期性，可具有 5 次对称</li>
+    <li>准晶完全无序</li>
+    <li>准晶不能存在</li>
+  </ul>
+  <div class="q-explain">Shechtman 1982 年发现准晶（2011 诺贝尔化学奖）。准晶有长程有序却无平移周期性，故可有晶体禁止的 5 次对称。<strong>【秒记】晶体禁5次，准晶可有5次。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列属于"点对称动作"（有不动点，有限结构也能存在）的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>旋转</li>
+    <li data-correct>反映</li>
+    <li data-correct>倒反</li>
+    <li data-correct>旋转-倒反（反轴）</li>
+  </ul>
+  <div class="q-explain">点对称动作：旋转、反映、倒反、反轴（至少一点不动）；空间对称动作：平移、螺旋轴、滑移面（每点都动）。<strong>【秒记】点动作有不动点：旋转/反映/倒反/反轴。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列反轴恒等式正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>\(\bar1=i\)</li>
+    <li data-correct>\(\bar2=m\)</li>
+    <li data-correct>\(\bar3=3+i\)</li>
+    <li data-correct>\(\bar6=3+m\)</li>
+  </ul>
+  <div class="q-explain">四个恒等式都对，只有 \(\bar4\) 不能被代替、是独立要素。<strong>【秒记】\(\bar1{=}i,\bar2{=}m,\bar3{=}3{+}i,\bar6{=}3{+}m\)，独缺 \(\bar4\)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于"7 晶系 / 14 布拉菲格子 / 32 点群 / 230 空间群"，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>14 种布拉菲格子描述空间点阵形式</li>
+    <li data-correct>32 个点群描述晶体宏观对称性</li>
+    <li data-correct>230 个空间群描述晶体微观对称性</li>
+    <li data-correct>晶体的宏观对称性是其微观对称性的宏观表现</li>
+  </ul>
+  <div class="q-explain">这组数字与层级关系是本章骨架：7 晶系→14 布拉菲格子→32 点群（宏观）→230 空间群（微观）。<strong>【秒记】7→14→32→230。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch2.html"><span>← 上一章</span><b>第二章 晶体构造理论</b></a>
+      <a class="next" href="ch4.html"><span>下一章 →</span><b>第四章 晶向和晶面</b></a>
+    </div>
+    <div class="foot-note">第三章 · 晶体的对称性理论 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

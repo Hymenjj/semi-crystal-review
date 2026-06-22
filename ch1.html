@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第一章 晶体的特性 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch1">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第一章</div>
+      <h1>晶体的特性</h1>
+      <p class="lead">什么是晶体、它凭什么和玻璃不一样、原子靠什么"粘"在一起。本章名词多但都好记，是后面所有内容的入门。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p>晶体的定义与<strong>远程有序</strong>；晶体四大基本性质（自范性、均匀性与各向异性、对称性、最小内能与固定熔点）；<strong>电负性</strong>概念 \(X=0.18(I+Y)\)；五种典型键型（离子键、共价键、金属键、分子键、氢键）及其判据与特点；<strong>混合键型</strong>典型例子——石墨。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <!-- ================= 讲解 ================= -->
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>晶体 = <b>内部微粒按规则周期排列</b>的固体。这种"周期性"带来一系列特殊性质；而把微粒"粘"成晶体的力，按强弱和性质分成<b>五种键型</b>，键型又决定了材料是绝缘体、半导体还是金属。</p>
+      </div>
+
+      <h2>1.1 晶体和非晶体</h2>
+      <p><em>晶体</em>的定义：内部微粒（原子、分子或离子）<strong>按一定规则周期排列</strong>而构成的固体，也叫"具有格子构造的固体"。1912 年<strong>劳埃（Laue）的 X 射线衍射实验</strong>第一次证明了晶体内部确实有这种周期性的格子构造。</p>
+      <div class="callout key">
+        <div class="callout-title">💡 远程有序 vs 近程有序（最爱考的对比）</div>
+        <p><strong>晶体——远程有序：</strong>内部粒子高度规律，在某方向的直线上规则重复千百万次。<br>
+        <strong>非晶体——近程有序、远程无序：</strong>近似于液态，只在很小范围内有序，又称无定型体（如石英玻璃）。</p>
+      </div>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>概念</th><th>含义</th></tr>
+        <tr><td>单晶</td><td>整个晶体内部微粒都按同一规则周期性排列</td></tr>
+        <tr><td>多晶</td><td>许多小块单晶组成，各小块大小、取向各不相同</td></tr>
+        <tr><td>纳米晶</td><td>晶体尺度在纳米量级；原子数有限、表面原子比例很大 → 特异性质</td></tr>
+        <tr><td>液晶</td><td>固→液之间的中间态，性质介于晶体和液体之间</td></tr>
+      </table></div>
+
+      <h2>1.2 晶体的基本性质（四条，必背）</h2>
+      <details class="concept" open>
+        <summary><span class="ico">1</span>自范性<span class="chev">▸</span></summary>
+        <div class="concept-body"><p>晶体能<strong>自发生长成结晶多面体</strong>，常以平面作为与周围介质的分界面。例：天然矿物的规则外形；拉单晶时放肩部位出现的平整小平面、等径部位的棱线，都是自范性的表现。</p></div>
+      </details>
+      <details class="concept">
+        <summary><span class="ico">2</span>均匀性 与 各向异性<span class="chev">▸</span></summary>
+        <div class="concept-body">
+          <p><strong>均匀性：</strong>晶体各个部位的宏观性质完全相同。<br>
+          <strong>各向异性：</strong>沿不同方向看，性质有差异。</p>
+          <p>例：云母片导热的各向异性；石墨不同方向电导率不同；Si、Ge、GaAs 等半导体的物理、生长、腐蚀特性沿不同方向都不同——这正是各向异性的表现（后面第五章重点）。</p>
+        </div>
+      </details>
+      <details class="concept">
+        <summary><span class="ico">3</span>对称性<span class="chev">▸</span></summary>
+        <div class="concept-body"><p>所有晶体在外形和性质上都或多或少具有对称性（第三章专门讲）。</p></div>
+      </details>
+      <details class="concept">
+        <summary><span class="ico">4</span>最小内能 与 固定熔点<span class="chev">▸</span></summary>
+        <div class="concept-body">
+          <p>气/液/非晶 → 晶体要<strong>放热</strong>，反之要吸热，说明一定 \((T,P)\) 下<strong>晶态内能最小</strong>。</p>
+          <p><strong>晶体有固定熔点</strong>：晶体内各结构单元大小构造完全相同，一个单元被破坏时其他单元在同一温度下也被破坏，于是在某一温度整体完成固→液转变，这个温度就是熔点。<br>
+          <strong>非晶体无固定熔点</strong>：结构单元大小不一，破坏所需能量不同，升温时<strong>逐渐软化</strong>。非晶体可看作"过冷的液体"。</p>
+        </div>
+      </details>
+
+      <h2>1.3 晶体的类型和结合力</h2>
+      <h3>电负性</h3>
+      <p>为比较不同原子<strong>拉电子能力</strong>的强弱，引入<em>电负性</em>。它由原子的电离势能 \(I\)（放弃一个电子耗的能量）和电子亲合能 \(Y\)（得到一个电子放出的能量）组合表示：</p>
+      <div class="formula-box"><span class="formula-tag">电负性</span>\[ X = K(I+Y), \qquad \text{取 } K=0.18\ \text{eV}^{-1}:\quad X=0.18(I+Y) \]</div>
+      <p>（无量纲；规定 Li 的电负性为 1 来定 \(K\)。）电负性差 \(\Delta X\) 是判断键型的关键。</p>
+
+      <div class="callout key">
+        <div class="callout-title">🔑 用 ΔX 判断键型（高频考点）</div>
+        <ul style="margin:6px 0">
+          <li><strong>离子键：</strong>\(\Delta X \gt 1.5\)，价电子几乎全被电负性大的原子占有，形成正负离子。例：NaCl（Cl 的 \(X=3.0\)，Na 的 \(X=0.9\)）。</li>
+          <li><strong>非极性共价键：</strong>\(\Delta X = 0\)（同种原子）。例：金刚石、Si、Ge。</li>
+          <li><strong>极性共价键：</strong>\(0 \lt \Delta X \lt 1.5\)，共用电子对偏向电负性大的原子，含一定离子键成分。例：GaAs \(\Delta X=0.4\)、InSb \(\Delta X=0.2\)、GaP \(\Delta X=0.5\)。</li>
+        </ul>
+      </div>
+
+      <h3>五种典型键型</h3>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>键型</th><th>判据 / 机制</th><th>特点</th><th>例子</th></tr>
+        <tr><td>离子键</td><td>\(\Delta X \gt 1.5\)，正负离子静电吸引</td><td><strong>无方向性、无饱和性</strong>；硬度大、熔点高、熔融后能导电；常溶于极性溶剂</td><td>NaCl</td></tr>
+        <tr><td>共价键</td><td>\(\Delta X \lt 1.5\)，共用电子对</td><td><strong>有方向性、有饱和性</strong>；硬度和熔点一般较高；常温纯净时不导电</td><td>金刚石、Si、Ge、GaAs</td></tr>
+        <tr><td>金属键</td><td>电负性小，价电子公有化成"电子气"</td><td>良好导电性和延展性；趋向最紧密堆积</td><td>金属单质（Au、Cu…）</td></tr>
+        <tr><td>分子键</td><td>分子间范德华力</td><td><strong>作用力弱</strong>；硬度小、熔点低</td><td>CO₂、I₂、干冰等</td></tr>
+        <tr><td>氢键</td><td>含 –OH、–NH 或 HF，H 与 O/N/F 间静电吸引</td><td>有方向性、有饱和性，作用力较弱；配位数低、密度小、熔点低</td><td>冰、草酸、硼酸</td></tr>
+      </table></div>
+
+      <div class="callout analogy">
+        <div class="callout-title">🪙 打比方：方向性 / 饱和性</div>
+        <p><strong>离子键</strong>像磁铁吸铁屑——四面八方都能吸，吸多少看空间（无方向、无饱和）。<strong>共价键</strong>像插头插插座——只能朝特定方向、插满就不能再插（有方向、有饱和）。所以共价晶体（Si）才有确定的四面体几何。</p>
+      </div>
+
+      <h3>分子键的三种范德华力</h3>
+      <ul>
+        <li><strong>静电力（葛生力）：</strong>极性分子之间的相互作用。</li>
+        <li><strong>诱导力（德拜力）：</strong>极性分子与非极性分子之间。</li>
+        <li><strong>色散力（伦敦力）：</strong>非极性分子之间（电子云瞬间分布不均 → 瞬时偶极矩）。</li>
+      </ul>
+
+      <h3>杂化轨道与 Si 的四面体结构</h3>
+      <p>成键时，同一原子能量相近的不同轨道可<strong>线性组合成数目相等的新轨道</strong>，叫<em>杂化轨道</em>，成键能力更强。Si 外层 \(3s^2 3p^2\) 的 4 个电子形成 4 个等同的 <strong>sp³ 杂化轨道</strong>，电子云指向正四面体四个顶角，键角 <strong>\(109°28'\)</strong>，沿四面体键共价结合 → 金刚石型结构（第五章细讲）。</p>
+
+      <h2>1.3.6 混合价键型晶体：石墨</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 石墨——三种键并存（经典考点）</div>
+        <p>同一种晶体里同时有多种键型，就叫<strong>混合键型晶体</strong>。石墨是典型：</p>
+        <ul style="margin:6px 0">
+          <li><strong>层内：</strong>C 原子 <strong>sp² 杂化</strong>，每个 C 与相邻 3 个 C 以共价键（σ 键）连成六角蜂巢平面 → 这部分是<strong>共价（原子）晶体</strong>，键长 142 pm。</li>
+          <li><strong>层内还有 p 电子：</strong>剩下一个 p 轨道相互重叠，电子较自由（类似金属自由电子）→ 石墨能导电导热，这是<strong>金属晶体</strong>特征。</li>
+          <li><strong>层与层之间：</strong>相距 340 pm，靠<strong>范德华力</strong>结合 → 这部分是<strong>分子晶体</strong>，所以石墨易滑移（做润滑剂）。</li>
+        </ul>
+      </div>
+      <p>正因为这种结构，石墨有金属光泽、层平面方向导电好、易滑移、耐高温，是优良的固体润滑剂和高温电极。从石墨剥离出的单原子层就是<strong>石墨烯</strong>（二维晶体）。</p>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>晶体=周期排列=远程有序｜四性质=自范性·均匀/各向异性·对称性·最小内能与固定熔点｜电负性 \(X=0.18(I+Y)\)｜\(\Delta X\gt1.5\)离子、\(=0\)非极性共价、中间极性共价｜离子键无方向无饱和、共价键有方向有饱和｜石墨=共价+金属+分子 混合键。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住解答自己想，卡住了再点开看。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">用电负性判断键型</span><span class="tag calc">判断</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>已知 Cl 的电负性 \(X=3.0\)、Na 的 \(X=0.9\)、Ga 的 \(X=1.6\)、As 的 \(X=2.0\)。判断 NaCl 与 GaAs 各属于什么键型。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>NaCl</h5><p>\(\Delta X=3.0-0.9=2.1\gt1.5\)，价电子几乎完全转移给 Cl → <strong>离子键</strong>，NaCl 是典型离子晶体。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>GaAs</h5><p>\(\Delta X=2.0-1.6=0.4\)，满足 \(0\lt\Delta X\lt1.5\) → <strong>极性共价键</strong>（共用电子对偏向 As，含一定离子键成分）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>NaCl 离子键；GaAs 极性共价键。判据口诀：<b>大于 1.5 离子，等于 0 纯共价，中间极性共价</b>。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">晶体为什么有固定熔点，非晶体没有？</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>从内部结构解释：为什么晶体有固定熔点，而非晶体（如玻璃）只是逐渐软化？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>晶体</h5><p>晶体内部各结构单元<strong>大小、构造完全相同</strong>，破坏一个单元所需能量与其他单元相同。升温到某温度时，所有单元在<strong>同一温度</strong>同时被破坏，整体完成固→液转变 → 有<strong>固定熔点</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>非晶体</h5><p>非晶体没有规则格子，各结构单元大小、结构<strong>不尽相同</strong>，破坏所需能量不同。升温时一些单元先被破坏、另一些要更高温度，于是<strong>没有固定熔点，只是逐渐软化</strong>。可看作过冷液体。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>根源在于晶体结构单元的<strong>一致性</strong>（周期性），使破坏集中在同一温度发生。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">石墨为什么是混合键型晶体</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>说明石墨晶体中存在哪几种键，并解释它"既能导电、又易滑移、又耐高温"。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>层内 σ 键（共价）</h5><p>C 原子 sp² 杂化，每个与 3 个相邻 C 形成共价键，连成六角蜂巢平面，结合牢固 → 耐高温、强度高。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>层内 p 电子（金属性）</h5><p>每个 C 还剩一个 p 轨道，p 电子相互重叠、比较自由，像金属自由电子 → 沿层平面<strong>导电导热</strong>。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>层间范德华力（分子键）</h5><p>层与层相距 340 pm，靠弱的范德华力结合 → 层间<strong>易滑移</strong>，做固体润滑剂。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>石墨同时含<strong>共价键 + 金属键 + 分子键</strong>，故为混合键型晶体；三种键各自决定了它的不同性质。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分并给解析，进度自动保存。多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch1">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体最本质的特征是</div>
+  <ul class="q-options">
+    <li>有固定的几何外形</li>
+    <li data-correct>内部微粒按一定规则周期性排列（远程有序）</li>
+    <li>一定是透明的</li>
+    <li>硬度很大</li>
+  </ul>
+  <div class="q-explain">晶体的定义就是内部微粒周期性排列、具有格子构造，即远程有序。外形、硬度等都是周期性带来的表现，不是本质。<strong>【秒记】晶体=周期排列=远程有序。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">非晶体（如石英玻璃）的结构特征是</div>
+  <ul class="q-options">
+    <li>远程有序</li>
+    <li data-correct>近程有序、远程无序</li>
+    <li>完全无序，无任何规律</li>
+    <li>比晶体更有序</li>
+  </ul>
+  <div class="q-explain">非晶体近似于液态，只在很小范围内有序，又称无定型体，可看作过冷的液体。<strong>【秒记】非晶体=近程有序、远程无序。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">第一次用实验证明晶体内部具有周期性格子构造的是</div>
+  <ul class="q-options">
+    <li>伦琴发现 X 射线</li>
+    <li data-correct>劳埃的 X 射线衍射实验（1912）</li>
+    <li>戴维逊-革末实验</li>
+    <li>康普顿散射</li>
+  </ul>
+  <div class="q-explain">1912 年劳埃用 X 射线照射晶体得到规则衍射斑点，证明了晶体的周期性格子构造（同时也证明 X 射线是电磁波）。<strong>【秒记】劳埃 X 射线衍射=证明格子构造。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体"能自发生长成规则多面体外形"的性质称为</div>
+  <ul class="q-options">
+    <li data-correct>自范性</li>
+    <li>各向异性</li>
+    <li>对称性</li>
+    <li>均匀性</li>
+  </ul>
+  <div class="q-explain">自范性指晶体自发生长成结晶多面体、常以平面为分界面，如天然矿物外形、拉单晶时的小平面和棱线。<strong>【秒记】自范=自己长成多面体。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">"云母沿不同方向导热不同、石墨不同方向电导率不同"，体现晶体的</div>
+  <ul class="q-options">
+    <li>均匀性</li>
+    <li data-correct>各向异性</li>
+    <li>自范性</li>
+    <li>最小内能</li>
+  </ul>
+  <div class="q-explain">各向异性指沿不同方向性质有差异；均匀性指各部位性质相同。两者不矛盾：同一方向处处相同（均匀），不同方向可不同（各向异性）。<strong>【秒记】各向异性=换个方向就不一样。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于晶体的熔点，正确的是</div>
+  <ul class="q-options">
+    <li data-correct>晶体有固定熔点，非晶体逐渐软化无固定熔点</li>
+    <li>晶体和非晶体都有固定熔点</li>
+    <li>非晶体有固定熔点，晶体没有</li>
+    <li>都没有固定熔点</li>
+  </ul>
+  <div class="q-explain">晶体结构单元相同，在同一温度同时被破坏 → 固定熔点；非晶体单元大小不一，逐渐软化。<strong>【秒记】晶体有固定熔点（结构单元一致）。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">电负性的表达式（课程取法）为</div>
+  <ul class="q-options">
+    <li data-correct>\(X=0.18(I+Y)\)，\(I\) 为电离势能、\(Y\) 为电子亲合能</li>
+    <li>\(X=0.18(I-Y)\)</li>
+    <li>\(X=I\cdot Y\)</li>
+    <li>\(X=h\nu\)</li>
+  </ul>
+  <div class="q-explain">电负性反映原子拉电子的能力，用电离势能与电子亲合能之和表示，取 \(K=0.18\) 使 Li 的电负性为 1。<strong>【秒记】电负性=0.18×(电离势+亲合能)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">两元素电负性差 \(\Delta X \gt 1.5\) 时，倾向形成</div>
+  <ul class="q-options">
+    <li data-correct>离子键</li>
+    <li>非极性共价键</li>
+    <li>金属键</li>
+    <li>氢键</li>
+  </ul>
+  <div class="q-explain">\(\Delta X\gt1.5\) 时价电子几乎完全转移给电负性大的原子，形成正负离子和离子键，如 NaCl。<strong>【秒记】ΔX&gt;1.5 → 离子键。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">下列关于离子键的描述，正确的是</div>
+  <ul class="q-options">
+    <li>有方向性和饱和性</li>
+    <li data-correct>没有方向性和饱和性</li>
+    <li>熔融后不导电</li>
+    <li>硬度小、熔点低</li>
+  </ul>
+  <div class="q-explain">离子键靠静电吸引、四面八方等同，故无方向性无饱和性；离子晶体硬度大、熔点高、熔融后能导电。共价键才有方向性和饱和性。<strong>【秒记】离子键：无方向、无饱和；共价键：有方向、有饱和。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">Si 晶体中每个硅原子通过哪种杂化与周围 4 个原子成键，键角多少？</div>
+  <ul class="q-options">
+    <li>sp²，120°</li>
+    <li data-correct>sp³，109°28′</li>
+    <li>sp，180°</li>
+    <li>不杂化，90°</li>
+  </ul>
+  <div class="q-explain">Si 外层 \(3s^23p^2\) 形成 4 个等同 sp³ 杂化轨道，指向正四面体顶角，键角 109°28′，构成金刚石型结构。<strong>【秒记】Si=sp³=正四面体=109°28′。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">石墨晶体中，层与层之间靠什么结合？</div>
+  <ul class="q-options">
+    <li>共价键</li>
+    <li>离子键</li>
+    <li data-correct>范德华力（分子键）</li>
+    <li>金属键</li>
+  </ul>
+  <div class="q-explain">石墨层内是 sp² 共价键 + 自由 p 电子（金属性），层间相距 340 pm 靠较弱的范德华力，所以易滑移、可做润滑剂。<strong>【秒记】石墨层间=范德华力=易滑移。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">晶体的基本性质包括（多选）</div>
+  <ul class="q-options">
+    <li data-correct>自范性</li>
+    <li data-correct>均匀性与各向异性</li>
+    <li data-correct>对称性</li>
+    <li data-correct>最小内能与固定熔点</li>
+  </ul>
+  <div class="q-explain">课程归纳的晶体四大基本性质就是这四条。<strong>【秒记】四性质：自范、均匀/各向异、对称、最小内能固定熔点。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于石墨是"混合键型晶体"，下列正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>层内 C 原子以 sp² 共价键连成六角平面</li>
+    <li data-correct>层内自由 p 电子使其能导电导热（金属性）</li>
+    <li data-correct>层间靠范德华力结合（分子键）</li>
+    <li>层间靠离子键结合</li>
+  </ul>
+  <div class="q-explain">石墨同时存在共价键、金属键、分子键三种键，因此叫混合键型晶体；层间是范德华力而非离子键。<strong>【秒记】石墨=共价+金属+分子三键并存。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列属于极性共价键化合物的有（多选，参考课程数据）</div>
+  <ul class="q-options">
+    <li data-correct>GaAs（\(\Delta X=0.4\)）</li>
+    <li data-correct>InSb（\(\Delta X=0.2\)）</li>
+    <li data-correct>GaP（\(\Delta X=0.5\)）</li>
+    <li>金刚石（\(\Delta X=0\)）</li>
+  </ul>
+  <div class="q-explain">\(0\lt\Delta X\lt1.5\) 为极性共价键，GaAs、InSb、GaP 都满足；金刚石 \(\Delta X=0\) 是非极性（典型）共价键。<strong>【秒记】化合物半导体多是极性共价键。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev disabled" href="#"></a>
+      <a class="next" href="ch2.html"><span>下一章 →</span><b>第二章 晶体构造理论</b></a>
+    </div>
+    <div class="foot-note">第一章 · 晶体的特性 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

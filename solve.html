@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>计算题套路速成 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="solve">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">🆘 考前急救</div>
+      <h1>计算题套路速成：认出类型，照步骤做</h1>
+      <p class="lead">本课程的计算题翻来覆去就这几类。先认出"这是第几类"，再套固定步骤，公式不用真懂也能算对。</p>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-title">🧭 第一步永远先问：这是哪类题？</div>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>题目里出现…</th><th>用套路</th></tr>
+        <tr><td>"晶胞含几个原子 / 几个结点"</td><td><a href="#t1">套路 1</a> 均摊法</td></tr>
+        <tr><td>"写晶面指数 / 已知截距"</td><td><a href="#t2">套路 2</a> 晶面指数</td></tr>
+        <tr><td>"写晶向指数"</td><td><a href="#t3">套路 3</a> 晶向指数</td></tr>
+        <tr><td>"求晶面间距 d"</td><td><a href="#t4">套路 4</a> 晶面间距</td></tr>
+        <tr><td>"求两晶向/晶面夹角"</td><td><a href="#t5">套路 5</a> 夹角</td></tr>
+        <tr><td>"晶带轴 / 公共晶面 / 是否同一晶带"</td><td><a href="#t6">套路 6</a> 晶带定律</td></tr>
+        <tr><td>"缺陷浓度 / 固溶体晶格常数"</td><td><a href="#t7">套路 7</a> 浓度与韦伽</td></tr>
+        <tr><td>"位错应变能 / 柏氏矢量分解"</td><td><a href="#t8">套路 8</a> 应变能</td></tr>
+        <tr><td>"小角晶界 / 失配位错间距"</td><td><a href="#t9">套路 9</a> 晶界/失配</td></tr>
+      </table></div>
+    </div>
+
+    <h2 id="t1">套路 1 · 均摊法算原子数 <span style="font-size:14px;color:var(--success)">（送分）</span></h2>
+    <div class="card">
+      <h4>📋 固定步骤</h4>
+      <ol>
+        <li>分清原子所在位置：顶角、棱、面、体心。</li>
+        <li>乘上共享系数：<strong>顶角 1/8、棱 1/4、面 1/2、体心 1</strong>，相加。</li>
+      </ol>
+      <h4>💡 直接背结论</h4>
+      <p>简单立方 P = <strong>1</strong>；体心立方 I = <strong>2</strong>；面心立方 F = <strong>4</strong>。</p>
+    </div>
+
+    <h2 id="t2">套路 2 · 晶面指数（密勒指数）</h2>
+    <div class="card">
+      <h4>📋 固定步骤（口诀：截距→倒数→通分→取分子）</h4>
+      <ol>
+        <li>读三轴<strong>截距</strong> \(r,s,t\)（以点阵常数为单位）；平行某轴则截距 \(\infty\)。</li>
+        <li>取<strong>倒数</strong> \(\tfrac1r,\tfrac1s,\tfrac1t\)（\(\infty\) 的倒数 = 0）。</li>
+        <li><strong>通分</strong>，取三个分子 → \((h\,k\,l)\)；负方向加负号。</li>
+      </ol>
+      <h4>💡 例</h4>
+      <p>截距 \(2,3,1\) → 倒数 \(\tfrac12,\tfrac13,1\) → 通分 \(\tfrac36,\tfrac26,\tfrac66\) → \((3\,2\,6)\)。</p>
+    </div>
+
+    <h2 id="t3">套路 3 · 晶向指数</h2>
+    <div class="card">
+      <h4>📋 固定步骤</h4>
+      <ol>
+        <li>过原点作<strong>平行于该晶向</strong>的直线；</li>
+        <li>取线上一点的<strong>原子坐标</strong>；</li>
+        <li>化为<strong>最简整数比</strong> → \([u\,v\,w]\)（注意：晶向<strong>不取倒数</strong>）。</li>
+      </ol>
+      <div class="callout warn" style="margin-top:10px"><p><strong>易混：</strong>晶面取倒数、晶向不取倒数。立方晶系中 \((hkl)\perp[hkl]\)，其他晶系不一定。</p></div>
+    </div>
+
+    <h2 id="t4">套路 4 · 晶面间距 <span style="font-size:14px;color:var(--danger)">（高频）</span></h2>
+    <div class="card">
+      <h4>💡 立方晶系直接套</h4>
+      <div class="formula-box">\[ d_{hkl}=\frac{a}{\sqrt{h^2+k^2+l^2}} \]</div>
+      <h4>📋 步骤</h4>
+      <ol>
+        <li>代入 \(h,k,l\) 算 \(\sqrt{h^2+k^2+l^2}\)；</li>
+        <li>\(d=a\) 除以它。</li>
+      </ol>
+      <p>例：\(d_{100}=a,\ d_{110}=a/\sqrt2\approx0.707a,\ d_{111}=a/\sqrt3\approx0.577a\)。规律：<strong>低指数面间距大</strong>，\(d_{n00}=D/n\)。</p>
+    </div>
+
+    <h2 id="t5">套路 5 · 晶向 / 晶面夹角（立方）</h2>
+    <div class="card">
+      <h4>💡 立方晶系套公式</h4>
+      <div class="formula-box">\[ \cos\varphi=\frac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{h_1^2+k_1^2+l_1^2}\,\sqrt{h_2^2+k_2^2+l_2^2}} \]</div>
+      <h4>📋 步骤</h4>
+      <ol>
+        <li>分子 = 两组指数对应相乘再相加；</li>
+        <li>分母 = 各自平方和开根、相乘；</li>
+        <li>\(\varphi=\arccos(\cdots)\)。</li>
+      </ol>
+      <p>例：\([100]\) 与 \([111]\)：\(\cos\varphi=\tfrac{1}{\sqrt3}\approx0.577\)，\(\varphi\approx54.7°\)。</p>
+    </div>
+
+    <h2 id="t6">套路 6 · 晶带定律 <span style="font-size:14px;color:var(--danger)">（高频）</span></h2>
+    <div class="card">
+      <h4>💡 核心判据</h4>
+      <div class="formula-box">\[ hu+kv+lw=0\quad(\text{晶面 }(hkl)\text{ 属于晶带轴 }[uvw]) \]</div>
+      <h4>📋 求公共项用叉乘</h4>
+      <p>由两晶面求公共晶带轴（或两晶带轴求公共晶面）：</p>
+      <div class="formula-box">\[ u=k_1l_2-k_2l_1,\quad v=l_1h_2-l_2h_1,\quad w=h_1k_2-h_2k_1 \]</div>
+      <p>例：\((100)\) 与 \((110)\) → 晶带轴 \([001]\)；验证 \(hu+kv+lw=0\)。</p>
+    </div>
+
+    <h2 id="t7">套路 7 · 缺陷浓度 与 韦伽定律</h2>
+    <div class="card">
+      <h4>💡 热缺陷平衡浓度（定性/半定量）</h4>
+      <div class="formula-box">\[ n=N\,e^{-u/kT}\quad(\text{肖特基});\qquad n=\sqrt{NN^*}\,e^{-E_F/2kT}\quad(\text{弗兰克}) \]</div>
+      <p>结论方向：<strong>形成能 \(u\) 越大浓度越小；温度 \(T\) 越高浓度越大。</strong></p>
+      <h4>💡 固溶体晶格常数（韦伽定律）</h4>
+      <div class="formula-box">\[ a=(1-x)\,a_1+x\,a_2 \]</div>
+      <p>就是按成分 \(x\) 对两端晶格常数做<strong>线性内插</strong>。</p>
+    </div>
+
+    <h2 id="t8">套路 8 · 位错应变能与柏氏矢量</h2>
+    <div class="card">
+      <h4>💡 核心关系</h4>
+      <div class="formula-box">\[ W\propto b^2,\qquad |\vec b|=\frac{a}{n}\sqrt{u^2+v^2+w^2}\ \big(\text{符号 }\tfrac{a}{n}[uvw]\big) \]</div>
+      <h4>📋 判断分解</h4>
+      <ol>
+        <li>比较分解前后的 \(\sum b^2\)：分解后更小就会分解。</li>
+        <li>例：\(\frac{a}{2}\langle110\rangle\)（\(\propto\) 大）→ 两个 \(\frac{a}{6}\langle112\rangle\) 不全位错，能量降为 <strong>2/3</strong>，中间夹层错 = 扩展位错。</li>
+      </ol>
+    </div>
+
+    <h2 id="t9">套路 9 · 小角晶界 / 失配位错间距</h2>
+    <div class="card">
+      <h4>💡 两个孪生公式</h4>
+      <div class="formula-box">\[ \text{小角晶界：}\ D=\frac{b}{\theta}\qquad\qquad \text{失配位错：}\ D=\frac{b}{\delta} \]</div>
+      <h4>📋 步骤</h4>
+      <ol>
+        <li>小角晶界：\(\theta\) 用<strong>弧度</strong>，\(D=b/\theta\)。</li>
+        <li>失配位错：先算失配度 \(\delta=\dfrac{a_1-a_2}{a_1}\)，再 \(D=b/\delta\)；换成"每隔几个晶胞" = \(1/\delta\)。</li>
+      </ol>
+      <p>例：GaAs / GaAs₀.₆P₀.₄，\(\delta\approx1.5\%\) → 约每隔 <strong>66</strong> 个晶胞一条失配位错。</p>
+    </div>
+
+    <div class="callout tip" style="margin-top:30px">
+      <div class="callout-title">🌙 考前怎么练这页</div>
+      <ol>
+        <li>把 9 个套路过一遍，每个去对应章节「例题解析」看 1 道完整解答。</li>
+        <li>重点练<strong>套路 2（晶面指数）、套路 4（晶面间距）、套路 6（晶带定律）</strong>——最常出大题。</li>
+        <li>再刷各章「学生自测」的计算类题目，练"看到题认类型"的手感。</li>
+      </ol>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="cram.html"><span>← 也看看</span><b>💊 人话速记</b></a>
+      <a class="next" href="sprint.html"><span>也看看 →</span><b>★ 考前冲刺速查</b></a>
+    </div>
+    <div class="foot-note">计算题套路速成 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+</body>
+</html>

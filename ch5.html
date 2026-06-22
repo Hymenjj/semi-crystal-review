@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第五章 半导体材料结构 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch5">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第五章</div>
+      <h1>半导体材料及电子材料晶体结构特点及性质</h1>
+      <p class="lead">这是最有"半导体味"的一章：四大晶体结构、Si/Ge/GaAs 的结构参数，以及由结构决定的解理、腐蚀、生长特性。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p><strong>四大结构</strong>：金刚石型、闪锌矿型、纤锌矿型、NaCl 型（及对应晶系、点群、代表材料）；金刚石与闪锌矿的区别、闪锌矿与纤锌矿的区别；<strong>结构参数表</strong>（面密度 / 价键密度 / 面间距）；<strong>解理</strong>（Si/Ge 在 \(\{111\}\)、GaAs 在 \(\{110\}\)）、<strong>腐蚀</strong>（蚀坑形状、Ga 面/As 面）、<strong>生长</strong>特性；固溶体与韦伽定律；液晶、纳米晶（了解）。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>半导体大多是 <b>金刚石型</b>（Si、Ge）或 <b>闪锌矿型</b>（GaAs 等 III-V）。<b>结构决定性质</b>：哪个晶面面间距大、价键密度低，就在那里<b>解理</b>、<b>生长慢却最终露面</b>、<b>腐蚀慢</b>。把这条主线抓住，本章就通了。</p>
+      </div>
+
+      <h2>5.1 典型半导体材料的晶体结构</h2>
+      <h3>三代半导体（概览）</h3>
+      <ul>
+        <li><strong>第一代 · 单质半导体：</strong>Ge、Si、Se、B（硅、锗为主）。</li>
+        <li><strong>第二代 · 化合物半导体：</strong>GaAs、InSb 等 III-V；三元化合物、固溶体、非晶（玻璃）半导体、有机半导体。</li>
+        <li><strong>第三代 · 宽禁带半导体：</strong>ZnO、SiC、GaN、金刚石、AlN（\(E_g \gt 2.2\,\text{eV}\)）。</li>
+      </ul>
+      <div class="callout">
+        <div class="callout-title">能带基础（铺垫）</div>
+        <p>大量原子轨道组合成准连续的<strong>能带</strong>。<em>允带</em>=允许电子存在的带；<em>禁带</em>=允带之间禁止占据的能量范围；<em>价带</em>=0 K 时被填满的最高带；<em>导带</em>=0 K 时未填满的最低带。全充满的带中电子不能自由运动。</p>
+      </div>
+
+      <div class="callout key">
+        <div class="callout-title">⭐ 四大晶体结构（必背表）</div>
+        <div class="tbl-wrap"><table class="qm">
+          <tr><th>结构</th><th>晶系 / 点群</th><th>配位数</th><th>代表材料</th></tr>
+          <tr><td>金刚石型</td><td>立方 / \(O_h\)（m3m）</td><td>4</td><td>C、Si、Ge、灰 Sn</td></tr>
+          <tr><td>闪锌矿型(立方 ZnS)</td><td>立方 / \(T_d\)（\(\bar4 3m\)）</td><td>4</td><td>GaAs、InSb、GaP、InP、ZnS、ZnSe、CdTe、SiC…</td></tr>
+          <tr><td>纤锌矿型(六方 ZnS)</td><td>六方 / \(C_{6v}\)（6mm）</td><td>4</td><td>ZnO、GaN、AlN、CdS、CdSe、InN</td></tr>
+          <tr><td>氯化钠型</td><td>立方 / \(O_h\)</td><td>6</td><td>PbS、PbSe、PbTe</td></tr>
+        </table></div>
+      </div>
+
+      <h3>金刚石型结构</h3>
+      <p>Si（\(1s^22s^22p^63s^23p^2\)）、Ge 同种原子相互作用，选<strong>共价键</strong>结合。每个原子 <strong>sp³ 杂化</strong>、与周围 4 个原子成 4 个共价键、指向正四面体顶角，键角 \(109°28'\)。整体可看作<strong>两套面心立方子格子沿体对角线错开 1/4</strong> 套构而成。</p>
+
+      <h3>闪锌矿 vs 金刚石（高频对比）</h3>
+      <div class="callout">
+        <p>骨架完全相同，区别只在原子种类：</p>
+        <ul style="margin:6px 0">
+          <li>闪锌矿含<strong>一定离子键成分</strong>，共用电子对偏向电负性大的原子（如 As）；</li>
+          <li>闪锌矿<strong>对称性比金刚石低</strong>，原因是<strong>缺少对称中心 \(i\)</strong>（金刚石 \(O_h\) 有 \(i\)，闪锌矿 \(T_d\) 无 \(i\)）。</li>
+        </ul>
+      </div>
+
+      <h3>闪锌矿 vs 纤锌矿（都是 ZnS，配位数都是 4）</h3>
+      <p>共同点：每个原子都处于异种原子构成的<strong>正四面体中心，配位数 4</strong>。区别在堆垛：</p>
+      <ul>
+        <li><strong>闪锌矿（立方）：</strong>次近邻的 A、B 层上下<strong>错开 60°</strong>（对应 ABCABC… 立方密堆）。</li>
+        <li><strong>纤锌矿（六方）：</strong>上下层<strong>相对（对齐）</strong>（对应 ABAB… 六方密堆），更有利于提高离子键成分的作用。</li>
+      </ul>
+
+      <div data-viz="closepack"></div>
+
+      <h2>5.2 结构与性能的关系</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 金刚石型 / 闪锌矿型结构参数表（重点中的重点）</div>
+        <div class="tbl-wrap"><table class="qm">
+          <tr><th>晶面</th><th>原子面密度</th><th>晶面间价键密度</th><th>晶面间距</th></tr>
+          <tr><td>\(\{100\}\)</td><td>\(2/a^2\)</td><td>\(4/a^2\)</td><td>\(0.25a\)</td></tr>
+          <tr><td>\(\{110\}\)</td><td>\(2.8/a^2\)</td><td>\(2.8/a^2\)</td><td>\(0.35a\)</td></tr>
+          <tr><td>\(\{111\}\)</td><td>\(2.3/a^2\)</td><td>\(6.9/a^2\) 或 \(2.3/a^2\)</td><td>\(0.14a\) 或 \(0.43a\)</td></tr>
+          <tr><td>复合\(\{111\}\)</td><td>\(4.6/a^2\)</td><td>\(2.3/a^2\)</td><td>\(0.43a\)</td></tr>
+        </table></div>
+        <p>关键点：相邻两层 \((111)\) 面键密度大、结合牢，常合并当作一个原子面 → <strong>复合 \((111)\) 面</strong>，其面间距 \(0.43a\) 最大、价键密度 \(2.3/a^2\) 最低。</p>
+      </div>
+
+      <h3>5.2.2 解理性</h3>
+      <p><em>解理</em>：晶体受机械力时沿特定晶面破裂；破裂面叫<strong>解理面</strong>。规律：解理总沿<strong>低指数晶面</strong>发生（面间距大、面密度大、面间结合力小、最易拉断键）。</p>
+      <div class="callout key">
+        <div class="callout-title">⭐ 两种结构解理面不同（经典考点）</div>
+        <ul style="margin:6px 0">
+          <li><strong>金刚石型（Si、Ge）：解理面是 \(\{111\}\)。</strong>复合 \((111)\) 面间距 \(0.43a\) 最大、价键密度 \(2.3/a^2\) 最低，最易解理。</li>
+          <li><strong>闪锌矿型（GaAs、InSb）：解理面是 \(\{110\}\)。</strong>因为 \((111)\) 面是 III、V 原子交替带电的层，静电吸引使其结合加强、不易断；而 \(\{110\}\) 面由等量 III、V 原子组成、面间无静电引力，故沿 \(\{110\}\) 解理。</li>
+        </ul>
+      </div>
+
+      <h3>5.2.3 腐蚀特性</h3>
+      <p>晶体受化学腐蚀呈明显<strong>各向异性</strong>：<strong>低指数晶面腐蚀慢</strong>（面密度大、内聚力强、外露不饱和键少、化学稳定）。硅腐蚀最慢的是 \(\{111\}\)。位错处晶格畸变、能量高、易被腐蚀 → 出现<strong>蚀坑</strong>。</p>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>受腐蚀晶面</th><th>蚀坑形状</th><th>取向反射对称</th></tr>
+        <tr><td>\(\{111\}\)</td><td>三角形锥蚀坑</td><td>\(\langle111\rangle\) 取向 → 3 重对称</td></tr>
+        <tr><td>\(\{100\}\)</td><td>方形锥蚀坑</td><td>\(\langle100\rangle\) 取向 → 4 重对称</td></tr>
+        <tr><td>\(\{110\}\)</td><td>长方形 / 菱形蚀坑</td><td>\(\langle110\rangle\) 取向 → 2 重对称</td></tr>
+      </table></div>
+      <p>腐蚀剂分<strong>择优腐蚀剂</strong>（对取向敏感，用于显示位错、光学定向）和<strong>非择优腐蚀剂</strong>（对取向不敏感，用于抛光）。</p>
+
+      <div class="callout key">
+        <div class="callout-title">⭐ GaAs 的 (111) Ga 面 与 \((\bar1\bar1\bar1)\) As 面</div>
+        <p>金刚石型（Si、Ge）由同种原子组成，\((111)\) 与 \((\bar1\bar1\bar1)\) 完全等同；但闪锌矿<strong>缺对称中心</strong>，GaAs 的两个面不同：</p>
+        <ul style="margin:6px 0">
+          <li><strong>(111) = Ga 面（A 面）：</strong>Ga 原子价电子全部成键，外露只有空轨道，化学<strong>稳定</strong>。</li>
+          <li><strong>\((\bar1\bar1\bar1)\) = As 面（B 面）：</strong>As 表面有未成键电子对（悬挂键），化学<strong>活泼，腐蚀速度明显更快</strong>。</li>
+          <li><strong>判别方法：</strong>先用非择优腐蚀剂抛光，再用择优腐蚀剂腐蚀——仍光亮的是 (111) Ga 面，变暗变模糊的是 \((\bar1\bar1\bar1)\) As 面。</li>
+        </ul>
+      </div>
+
+      <h3>5.2.4 生长特性</h3>
+      <p>晶体优先在<strong>原子排列最密的晶面</strong>上横向扩展（横向生长快、垂直生长慢）；最终暴露在外表面的，是那些<strong>面密度大、生长速度慢</strong>的晶面——这正是自范性的内在原因。Si、Ge（金刚石结构）原子面密度最大的是 \(\{111\}\)，理想自发外形是 <strong>8 个 \(\{111\}\) 面围成的正八面体</strong>。</p>
+      <p>常用生长技术：<strong>直拉法（Czochralski）</strong>（大部分单晶，硅熔点 \(1410\,°\text{C}\)，能拉低位错大直径硅单晶，缺点是石英坩埚污染）、区熔法等。外延：LPE / VPE / MBE / MOCVD / LPCVD / PECVD。晶圆主流直径 150/200/300 mm（6/8/12 英寸）。</p>
+
+      <h2>5.3 其他典型结构（了解）</h2>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>结构</th><th>类型</th><th>要点</th></tr>
+        <tr><td>NiAs 型</td><td>AB</td><td>六方晶胞；Ni 配位八面体、As 配位三方柱</td></tr>
+        <tr><td>金红石 TiO₂</td><td>AB₂</td><td>四方晶系；Ti⁴⁺ 处于 6 个 O²⁻ 略变形八面体中心</td></tr>
+        <tr><td>钙钛矿 CaTiO₃</td><td>ABO₃</td><td>立方晶系；可看作 5 套简单立方沿不同方向套构</td></tr>
+        <tr><td>尖晶石 MgAl₂O₄</td><td>AB₂O₄</td><td>立方；O 面心立方密堆，每晶胞 32 个 O、16 个 B、8 个 A</td></tr>
+      </table></div>
+
+      <h2>5.4 固溶体</h2>
+      <p><em>固溶体</em>：固态下一种组分"溶解"了其它组分形成的单一均匀结晶相（原子尺度互溶，单相），区别于机械混合物。</p>
+      <ul>
+        <li><strong>替代式（置换式）固溶体：</strong>溶质替代溶剂占据点阵位置。分无序、有序、缺位、连续、有限固溶体。</li>
+        <li><strong>间隙式（填隙式）固溶体：</strong>溶质占据空隙位置，一般是 H、O、N、C、B 等小原子。</li>
+      </ul>
+      <div class="callout">
+        <div class="callout-title">韦伽（Vegard）定律</div>
+        <p>替代式固溶体 \(A_{1-x}B_x\) 的晶格常数随成分<strong>线性变化</strong>：</p>
+        <div class="formula-box">\[ a=(1-x)\,a_1+x\,a_2 \]</div>
+        <p>（\(a_1,a_2\) 为纯组元 A、B 的晶格常数。）替位式杂质引起的晶格畸变也可近似用此式。</p>
+      </div>
+
+      <h2>5.5 / 5.6 液晶与纳米晶（了解）</h2>
+      <p><strong>液晶：</strong>加热到<em>熔点</em>变浑浊液体，再升到<em>清亮点</em>变透明各向同性液体；两点之间是<strong>液晶态</strong>（既有各向异性又能流动）。三类：近晶型（Smectic，用于显示器）、向列型（Nematic）、胆甾型（Cholesteric）。<br>
+      <strong>纳米晶：</strong>尺寸 1–100 nm；表面原子比例大，产生四大效应：<strong>量子尺寸效应、小尺寸效应、表面与界面效应、宏观量子隧道效应</strong>。</p>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>四结构=金刚石(Oh)/闪锌矿(Td,无对称中心)/纤锌矿(C6v六方)/NaCl(Oh,配位6)；前三配位4｜参数表:复合{111}面间距0.43a最大、键密度2.3最低｜解理:Si,Ge→{111}；GaAs,InSb→{110}｜蚀坑:{111}三角/{100}方/{110}长方；反射:⟨111⟩3重/⟨100⟩4重/⟨110⟩2重｜GaAs:(111)Ga稳定、(1̄1̄1̄)As活泼｜生长理想外形=8个{111}正八面体｜韦伽 \(a=(1-x)a_1+xa_2\)。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住自己想，卡住了再点开。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">金刚石与闪锌矿结构的异同</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>比较金刚石结构与闪锌矿结构的相同点和不同点。为什么闪锌矿对称性比金刚石低？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>相同</h5><p>骨架相同：都可看作两套面心立方错开 1/4 体对角线套构；每个原子都 sp³ 杂化、配位数 4、正四面体配位。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>不同①：原子种类</h5><p>金刚石由同种原子（如 Si）组成，纯共价键；闪锌矿由两种原子（如 Ga、As）组成，含<strong>离子键成分</strong>，电子对偏向电负性大的原子。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>不同②：对称性</h5><p>金刚石属 \(O_h\)（有对称中心 \(i\)）；闪锌矿属 \(T_d\)（<strong>无对称中心</strong>）。<strong>缺少对称中心</strong>使闪锌矿对称性低于金刚石。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>骨架同、配位同；闪锌矿因两种原子、含离子键成分且<strong>缺对称中心</strong>，对称性更低。这也是 GaAs 的 (111)/( \(\bar1\bar1\bar1\) ) 两面不等同的根源。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">为什么 Si 解理在 {111}，GaAs 解理在 {110}？</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>解释金刚石型与闪锌矿型晶体解理面不同的原因。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>解理的一般规律</h5><p>解理沿<strong>低指数面</strong>：面间距大、原子面密度大（面本身内聚力大）、面间价键密度低（面间结合力小）→ 最易拉断键。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>金刚石型 Si、Ge</h5><p>复合 \((111)\) 面：面间距 \(0.43a\) 最大、价键密度 \(2.3/a^2\) 最低、面密度大 → 最易解理。故解理面 \(\{111\}\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>闪锌矿型 GaAs</h5><p>\((111)\) 面是 III、V 原子交替带电层，<strong>静电吸引使结合加强、不易断</strong>；除 \((111)\) 外，价键密度最低、面间距最远的是 \(\{110\}\)，且 \(\{110\}\) 由等量 III、V 原子组成、面间无静电引力 → 解理面 \(\{110\}\)。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>Si、Ge → \(\{111\}\)；GaAs、InSb → \(\{110\}\)。差别根源是闪锌矿 \((111)\) 面的<strong>离子键静电吸引</strong>把它"焊牢"了。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">蚀坑形状与晶面取向判断</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>硅片表面腐蚀后出现三角形蚀坑，判断该面取向；又：如何判断 GaAs 某面是 Ga 面还是 As 面？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>蚀坑形状 → 取向</h5><p>三角形锥蚀坑 → \(\{111\}\) 面；方形 → \(\{100\}\)；长方/菱形 → \(\{110\}\)。故三角形蚀坑对应 \(\{111\}\) 面。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>Ga 面 vs As 面</h5><p>先用<strong>非择优腐蚀剂抛光</strong>，再用<strong>择优腐蚀剂腐蚀</strong>：仍光亮→(111) Ga 面（稳定）；变暗变模糊→\((\bar1\bar1\bar1)\) As 面（活泼，腐蚀快）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>三角形蚀坑 = \(\{111\}\) 面；GaAs 用"抛光+择优腐蚀"，亮者 Ga 面、暗者 As 面。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 4</span><span class="ex-title">韦伽定律算固溶体晶格常数</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>设 Si 晶格常数 \(a_1=5.43\,\text{Å}\)、Ge 为 \(a_2=5.66\,\text{Å}\)。按韦伽定律估算固溶体 \(\text{Si}_{0.5}\text{Ge}_{0.5}\) 的晶格常数。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>套韦伽定律</h5><p>\(a=(1-x)a_1+x\,a_2\)，这里 \(x=0.5\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>代入</h5><p>\(a=0.5\times5.43+0.5\times5.66=2.715+2.83=5.545\,\text{Å}\)。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>约 \(5.55\,\text{Å}\)。韦伽定律就是按成分对两端晶格常数做<strong>线性内插</strong>。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch5">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">Si、Ge 晶体属于哪种晶体结构？</div>
+  <ul class="q-options">
+    <li data-correct>金刚石型结构</li>
+    <li>闪锌矿型结构</li>
+    <li>纤锌矿型结构</li>
+    <li>NaCl 型结构</li>
+  </ul>
+  <div class="q-explain">C、Si、Ge、灰 Sn 都是金刚石型（立方，\(O_h\)，配位数 4）。GaAs 等 III-V 是闪锌矿型。<strong>【秒记】Si/Ge=金刚石型。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">GaAs 属于哪种结构，点群是什么？</div>
+  <ul class="q-options">
+    <li>金刚石型，\(O_h\)</li>
+    <li data-correct>闪锌矿型（立方 ZnS），\(T_d\)</li>
+    <li>纤锌矿型，\(C_{6v}\)</li>
+    <li>NaCl 型，\(O_h\)</li>
+  </ul>
+  <div class="q-explain">GaAs、InSb、GaP 等 III-V 化合物是闪锌矿型，立方晶系，点群 \(T_d\)（\(\bar43m\)），配位数 4。<strong>【秒记】GaAs=闪锌矿=Td。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">闪锌矿结构对称性比金刚石结构低，根本原因是</div>
+  <ul class="q-options">
+    <li>配位数不同</li>
+    <li data-correct>闪锌矿缺少对称中心 \(i\)</li>
+    <li>闪锌矿是六方晶系</li>
+    <li>闪锌矿键长更短</li>
+  </ul>
+  <div class="q-explain">金刚石属 \(O_h\)（有对称中心），闪锌矿属 \(T_d\)（无对称中心），缺对称中心使其对称性更低，也导致 (111) 与 (1̄1̄1̄) 不等同。<strong>【秒记】闪锌矿无对称中心→对称性低。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">闪锌矿型与纤锌矿型结构的共同点是</div>
+  <ul class="q-options">
+    <li>都是六方晶系</li>
+    <li data-correct>每个原子都处于异种原子四面体中心，配位数都是 4</li>
+    <li>都含对称中心</li>
+    <li>配位数都是 6</li>
+  </ul>
+  <div class="q-explain">两者都是 ZnS 结构、配位数 4、正四面体配位；区别在堆垛：闪锌矿次近邻层错开 60°(ABCABC)，纤锌矿上下相对(ABAB)。<strong>【秒记】闪锌矿/纤锌矿都配位4，差在堆垛。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">金刚石型/闪锌矿型结构中，晶面间距最大的是</div>
+  <ul class="q-options">
+    <li>\(\{100\}\)（0.25a）</li>
+    <li>\(\{110\}\)（0.35a）</li>
+    <li data-correct>复合 \(\{111\}\)（0.43a）</li>
+    <li>都相等</li>
+  </ul>
+  <div class="q-explain">参数表：{100} 0.25a、{110} 0.35a、复合{111} 0.43a 最大、价键密度 2.3/a² 最低，所以 Si/Ge 沿 {111} 最易解理。<strong>【秒记】复合{111}面间距0.43a最大。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">Si、Ge（金刚石型）晶体受力后最易解理的晶面是</div>
+  <ul class="q-options">
+    <li>\(\{100\}\)</li>
+    <li>\(\{110\}\)</li>
+    <li data-correct>\(\{111\}\)</li>
+    <li>\(\{210\}\)</li>
+  </ul>
+  <div class="q-explain">金刚石型解理面是 {111}（复合(111)面间距最大、价键密度最低）。注意 GaAs 等闪锌矿型解理面是 {110}。<strong>【秒记】Si/Ge解理{111}，GaAs解理{110}。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">GaAs、InSb（闪锌矿型）的解理面是</div>
+  <ul class="q-options">
+    <li>\(\{111\}\)</li>
+    <li data-correct>\(\{110\}\)</li>
+    <li>\(\{100\}\)</li>
+    <li>\(\{211\}\)</li>
+  </ul>
+  <div class="q-explain">闪锌矿 (111) 面是 III/V 交替带电层，静电吸引使其结合加强不易断；{110} 由等量 III、V 原子组成、面间无静电引力，故解理在 {110}。<strong>【秒记】闪锌矿解理{110}（因(111)被静电焊牢）。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">硅片腐蚀后出现三角形锥蚀坑，该表面取向是</div>
+  <ul class="q-options">
+    <li data-correct>\(\{111\}\)</li>
+    <li>\(\{100\}\)</li>
+    <li>\(\{110\}\)</li>
+    <li>无规律</li>
+  </ul>
+  <div class="q-explain">蚀坑形状：{111}→三角形，{100}→方形，{110}→长方/菱形。反射对称：⟨111⟩3重、⟨100⟩4重、⟨110⟩2重。<strong>【秒记】三角=111、方形=100、长方=110。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于 GaAs 的 (111) Ga 面与 \((\bar1\bar1\bar1)\) As 面，正确的是</div>
+  <ul class="q-options">
+    <li>两面完全等同</li>
+    <li data-correct>As 面有未成键电子对、化学活泼、腐蚀快；Ga 面较稳定</li>
+    <li>Ga 面腐蚀更快</li>
+    <li>只有金刚石型才有此区别</li>
+  </ul>
+  <div class="q-explain">闪锌矿缺对称中心使两面不等同：As 面悬挂键有电子对、活泼、腐蚀快；Ga 面只有空轨道、稳定。判别：抛光后择优腐蚀，亮者 Ga 面、暗者 As 面。<strong>【秒记】As面活泼腐蚀快，Ga面稳定。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶体腐蚀的各向异性中，腐蚀速度最慢的一般是</div>
+  <ul class="q-options">
+    <li>高指数晶面</li>
+    <li data-correct>低指数晶面（如硅的 {111}）</li>
+    <li>所有面一样快</li>
+    <li>随机</li>
+  </ul>
+  <div class="q-explain">低指数晶面原子面密度大、内聚力强、外露不饱和键少、化学稳定，所以腐蚀慢；硅腐蚀最慢的是 {111}。<strong>【秒记】低指数面腐蚀慢（Si最慢{111}）。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">Si、Ge 晶体不受外界影响时自发生长的理想外形是</div>
+  <ul class="q-options">
+    <li>立方体（6 个 {100} 面）</li>
+    <li data-correct>正八面体（8 个 {111} 面）</li>
+    <li>球形</li>
+    <li>十二面体</li>
+  </ul>
+  <div class="q-explain">最终暴露的是面密度大、生长慢的晶面。金刚石结构面密度最大的是 {111}，8 个等同 {111} 围成正八面体，就是理想自发外形。<strong>【秒记】Si/Ge理想外形=8个{111}正八面体。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">替代式固溶体 \(A_{1-x}B_x\) 的晶格常数随成分变化遵循</div>
+  <ul class="q-options">
+    <li data-correct>韦伽定律 \(a=(1-x)a_1+x a_2\)（线性）</li>
+    <li>平方关系</li>
+    <li>指数关系</li>
+    <li>与成分无关</li>
+  </ul>
+  <div class="q-explain">韦伽定律：晶格常数随成分线性内插。替位式杂质引起的畸变也可近似用它。<strong>【秒记】韦伽定律=晶格常数线性内插。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列属于第三代宽禁带半导体的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>GaN</li>
+    <li data-correct>SiC</li>
+    <li data-correct>ZnO</li>
+    <li>Si</li>
+  </ul>
+  <div class="q-explain">第三代宽禁带（\(E_g\gt2.2\,\text{eV}\)）：ZnO、SiC、GaN、金刚石、AlN。Si 是第一代单质半导体。<strong>【秒记】宽禁带：GaN/SiC/ZnO/金刚石/AlN。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于金刚石型/闪锌矿型结构参数表，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>\(\{100\}\) 面间距 0.25a</li>
+    <li data-correct>\(\{110\}\) 面间距 0.35a</li>
+    <li data-correct>复合 \(\{111\}\) 面间距 0.43a（最大）</li>
+    <li data-correct>复合 \(\{111\}\) 价键密度 2.3/a²（最低）</li>
+  </ul>
+  <div class="q-explain">参数表四项都对。复合{111}面间距最大、价键密度最低，是解理与生长分析的关键。<strong>【秒记】间距 100→0.25a，110→0.35a，复合111→0.43a。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">纳米晶体表现出的特异效应包括（多选）</div>
+  <ul class="q-options">
+    <li data-correct>量子尺寸效应</li>
+    <li data-correct>小尺寸效应</li>
+    <li data-correct>表面与界面效应</li>
+    <li data-correct>宏观量子隧道效应</li>
+  </ul>
+  <div class="q-explain">纳米晶（1–100 nm）表面原子比例大，产生这四大效应。<strong>【秒记】纳米四效应：量子尺寸、小尺寸、表面界面、宏观量子隧道。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch4.html"><span>← 上一章</span><b>第四章 晶向和晶面</b></a>
+      <a class="next" href="ch6.html"><span>下一章 →</span><b>第六章 点缺陷</b></a>
+    </div>
+    <div class="foot-note">第五章 · 半导体材料及电子材料晶体结构特点及性质 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

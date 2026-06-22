@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>考前冲刺速查 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="sprint">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">★ 考前冲刺</div>
+      <h1>公式 & 结论 速查表</h1>
+      <p class="lead">把全 8 章最常考的公式、数字、结论压缩成一页。考前过两遍，进考场前再扫一眼。</p>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-title">🔢 必背数字串</div>
+      <p><strong>对称层级：</strong>\(7\) 晶系 → \(14\) 布拉菲格子 → \(32\) 点群 → \(230\) 空间群<br>
+      <strong>晶胞原子数：</strong>简单立方 P=1、体心 I=2、面心 F=4<br>
+      <strong>空间利用率：</strong>最紧密堆积 74.05%、立方体心 68.02%<br>
+      <strong>对称轴次：</strong>只能 1、2、3、4、6（无 5、无 ≥7）<br>
+      <strong>晶面族(立方)：</strong>{100}=6、{110}=12、{111}=8</p>
+    </div>
+
+    <h2>第一章 · 晶体特性</h2>
+    <ul>
+      <li>晶体=周期排列=远程有序；非晶体=近程有序、远程无序。劳埃 X 射线衍射(1912)证明格子构造。</li>
+      <li>四大性质：自范性、均匀/各向异性、对称性、最小内能与固定熔点。</li>
+      <li>电负性 \(X=0.18(I+Y)\)。\(\Delta X\gt1.5\) 离子键、\(=0\) 非极性共价、\(0\lt\Delta X\lt1.5\) 极性共价。</li>
+      <li>离子键：无方向无饱和；共价键：有方向有饱和。Si=sp³、109°28′。石墨=共价+金属+分子 混合键。</li>
+    </ul>
+
+    <h2>第二章 · 晶体构造</h2>
+    <ul>
+      <li>平移群 \(T_{mnp}=m\vec a+n\vec b+p\vec c\)。均摊：角1/8、棱1/4、面1/2、体心1。</li>
+      <li>选格子三原则：对称性高 → 多直角 → 体积最小。</li>
+      <li>七晶系点阵常数：立方 \(a{=}b{=}c,\alpha{=}\beta{=}\gamma{=}90°\)；六方 \(a{=}b{\neq}c,\gamma{=}120°\) 等。</li>
+      <li>密堆积：hcp ABAB、ccp ABCABC(=面心立方)；空隙=四面体+八面体；配位多面体共角顶最常见。</li>
+    </ul>
+
+    <h2>第三章 · 对称性</h2>
+    <ul>
+      <li>7 类对称要素 = 旋转轴/反映面/对称中心/点阵/反轴/螺旋轴/滑移面（简单4+复合3）。</li>
+      <li>点对称动作(有不动点)：旋转/反映/倒反/反轴；空间对称动作(每点动)：平移/螺旋/滑移。</li>
+      <li>反轴恒等式：\(\bar1=i,\ \bar2=m,\ \bar3=3+i,\ \bar6=3+m\)；独立要素 8 种 \(1,2,3,4,6,i,m,\bar4\)。</li>
+      <li>\(T_d\)(正四面体,无对称中心)=闪锌矿；\(O_h\)(立方)=金刚石/NaCl。准晶可有 5 次对称。</li>
+    </ul>
+
+    <h2>第四章 · 晶向晶面（计算重点）</h2>
+    <div class="formula-box">\[ \text{晶面间距(立方)}\ d_{hkl}=\frac{a}{\sqrt{h^2+k^2+l^2}} \]</div>
+    <div class="formula-box">\[ \text{晶向夹角(立方)}\ \cos\varphi=\frac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{h_1^2+k_1^2+l_1^2}\sqrt{h_2^2+k_2^2+l_2^2}} \]</div>
+    <div class="formula-box">\[ \text{晶带定律}\ hu+kv+lw=0;\quad \text{倒易矢量}\ |\vec G_{hkl}|=1/d_{hkl} \]</div>
+    <ul>
+      <li>晶面指数=截距→倒数→通分→取分子；晶向指数=坐标化最简整数比。</li>
+      <li>立方晶系 \((hkl)\perp[hkl]\)（仅立方）；六方 \(h+k+i=0\)。</li>
+    </ul>
+
+    <h2>第五章 · 半导体材料结构（核心）</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>结构</th><th>晶系/点群</th><th>配位数</th><th>代表</th></tr>
+      <tr><td>金刚石型</td><td>立方 \(O_h\)</td><td>4</td><td>C、Si、Ge</td></tr>
+      <tr><td>闪锌矿型</td><td>立方 \(T_d\)（无对称中心）</td><td>4</td><td>GaAs、InSb</td></tr>
+      <tr><td>纤锌矿型</td><td>六方 \(C_{6v}\)</td><td>4</td><td>ZnO、GaN、AlN</td></tr>
+      <tr><td>NaCl 型</td><td>立方 \(O_h\)</td><td>6</td><td>PbS、PbSe、PbTe</td></tr>
+    </table></div>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>晶面</th><th>原子面密度</th><th>价键密度</th><th>面间距</th></tr>
+      <tr><td>{100}</td><td>\(2/a^2\)</td><td>\(4/a^2\)</td><td>0.25a</td></tr>
+      <tr><td>{110}</td><td>\(2.8/a^2\)</td><td>\(2.8/a^2\)</td><td>0.35a</td></tr>
+      <tr><td>{111}</td><td>\(2.3/a^2\)</td><td>\(6.9/a^2\) 或 \(2.3/a^2\)</td><td>0.14a 或 0.43a</td></tr>
+      <tr><td>复合{111}</td><td>\(4.6/a^2\)</td><td>\(2.3/a^2\)</td><td>0.43a</td></tr>
+    </table></div>
+    <ul>
+      <li><strong>解理：</strong>Si/Ge → {111}；GaAs/InSb → {110}（(111)被离子静电焊牢）。</li>
+      <li><strong>蚀坑：</strong>{111}三角、{100}方形、{110}长方；反射 ⟨111⟩3重、⟨100⟩4重、⟨110⟩2重。</li>
+      <li><strong>GaAs：</strong>(111)Ga 面稳定、\((\bar1\bar1\bar1)\) As 面活泼腐蚀快。理想生长外形=8 个{111}正八面体。</li>
+      <li>韦伽定律 \(a=(1-x)a_1+xa_2\)；宽禁带(三代)：GaN/SiC/ZnO/金刚石/AlN（\(E_g\gt2.2\) eV）。</li>
+    </ul>
+
+    <h2>第六章 · 点缺陷</h2>
+    <ul>
+      <li>克文符号：\(V_M\)空位、\(M_i\)间隙、\(F_M\)替位杂质、\(F_i\)间隙杂质、\(X_M/M_X\)反结构。</li>
+      <li>弗兰克 \(M_M\rightleftharpoons M_i+V_M\)（成对）；肖特基 \(M_M\rightleftharpoons M_s+V_M\)（只空位，生成能低占主导）；第三种 \(M_s\rightleftharpoons M_i\)（只间隙）。</li>
+      <li>浓度 \(n=Ne^{-u/kT}\)：能量大浓度小、温度高浓度大。</li>
+      <li><strong>施主：</strong>\(V_X、M_i、X_M\)；<strong>受主：</strong>\(V_M、X_i、M_X\)。金属过量→N 型、非金属过量→P 型。离子键晶体易偏离化学计量比。</li>
+    </ul>
+
+    <h2>第七章 · 线缺陷（位错）</h2>
+    <ul>
+      <li>三类：刃型(\(\vec b\perp\)线,有半面⊥)、螺型(\(\vec b\parallel\)线)、混合型。位错不能止于晶体内部。</li>
+      <li>柏氏矢量 \(\frac{a}{n}[uvw]\)、守恒；点缺陷 \(\vec b=0\)。</li>
+      <li>滑移(面内,快) vs 攀移(吸空位跨面,慢)。Frank-Read 源=增殖。</li>
+      <li>应力场：刃型有正+切应力(上压下张)，螺型只切应力、体积不变。<strong>\(W\propto b^2\)</strong>，小 b 稳定。</li>
+      <li>科垂尔气团(杂质聚位错)→钉扎→变硬脆；螺位错无正应力、不吸杂质。</li>
+      <li>Si/Ge：\(\vec b=\frac{a}{2}\langle110\rangle\)、滑移面{111}、60°/90°位错。刃位错悬挂键：n型受主、p型施主；螺型无。</li>
+    </ul>
+
+    <h2>第八章 · 面缺陷</h2>
+    <ul>
+      <li>层错：本征=抽一层、非本征=插一层；层错能高→层错少；畸变 层错&lt;不全位错&lt;全位错。</li>
+      <li>不全位错：肖克莱 \(\frac{a}{6}\langle112\rangle\)（可滑不可攀）；弗兰克 \(\frac{a}{3}\langle111\rangle\)（只刃型，可攀不可滑）。</li>
+      <li>扩展位错=\(\frac{a}{2}\langle110\rangle\) 分解为两不全位错+中间层错，能量降 2/3。</li>
+      <li>小角晶界 \(D=b/\theta\)；层错能≈2×共格孪生界能；相界失配位错 \(D=b/\delta\)（GaAs/GaAsP 约 66 晶胞一条）。</li>
+    </ul>
+
+    <div class="callout tip" style="margin-top:24px">
+      <div class="callout-title">💙 最后一句</div>
+      <p>把这页的<strong>数字串、五张表、几个公式</strong>记牢，配合「💊 人话速记」认结论、「🆘 套路速成」套步骤，概念题和计算题都能拿下。后天考试沉住气，从有把握的题先做。你已经准备得很充分了，加油！🍀</p>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="solve.html"><span>← 也看看</span><b>🆘 计算题套路</b></a>
+      <a class="next" href="index.html"><span>返回 →</span><b>学习首页</b></a>
+    </div>
+    <div class="foot-note">考前冲刺速查 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+</body>
+</html>

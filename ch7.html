@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第七章 线缺陷（位错） · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch7">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第七章</div>
+      <h1>半导体中的线缺陷（位错）</h1>
+      <p class="lead">位错是一维缺陷。本章讲它的三种类型、柏氏矢量、运动与增殖、应力场与应变能，以及对半导体性能的影响。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p>滑移与<strong>临界切应力</strong>；位错模型的提出（理论强度 vs 实测差 3–4 数量级）；<strong>三类位错</strong>（刃型、螺型、混合型）；<strong>柏氏矢量</strong>与柏氏回路、守恒性；位错产生、<strong>滑移与攀移</strong>、增殖（Frank-Read 源）；<strong>应力场与应变能</strong> \(W\propto b^2\)；位错与杂质（<strong>科垂尔气团</strong>、钉扎）；Si/Ge 中的特征位错；位错对半导体性能的影响。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>晶体滑移其实不是整面一起滑（那需要的力太大、和实验差 3–4 个数量级），而是靠<b>位错</b>这条"线缺陷"逐步移动完成的，省力得多。位错分三类，用<b>柏氏矢量</b> \(\vec b\) 刻画；它周围有应力场、储存应变能（\(W\propto b^2\)），会和杂质、其它位错相互作用，并显著影响半导体性能。</p>
+      </div>
+
+      <h2>7.1 滑移机构与位错模型</h2>
+      <p><em>应力</em> = 单位面积上的作用力，可分解为垂直面的<strong>正应力 \(\sigma\)</strong> 和沿面的<strong>切应力 \(\tau\)</strong>。开始滑移所需切应力的临界值叫<strong>临界切应力 \(\tau_c\)</strong>（即屈服强度）。切应力小于屈服强度 → <strong>弹性形变</strong>（可恢复）；大于 → <strong>范性形变</strong>（不可恢复，即滑移）。</p>
+      <p><strong>滑移面</strong>总是原子面密度大的晶面，<strong>滑移方向</strong>总是原子线密度大的方向，一般滑移一个原子间距。例：面心立方滑移沿 \(\{111\}\) 面的 \(\langle110\rangle\) 方向。</p>
+      <div class="callout key">
+        <div class="callout-title">💡 为什么要引入位错？（理论 vs 实测）</div>
+        <p>1926 年刚性模型假设滑移面两侧原子<strong>整体同步平移</strong>，估算理论屈服强度 \(\tau_m\approx Gb/2\pi a\)。但实测值比它<strong>小 3–4 个数量级</strong>！1934 年 Taylor 等提出：滑移只在<strong>位错线附近</strong>逐步进行，位错像"地毯下的褶皱"一样移动，所需应力远小于整面同时滑动——这就解释了实测强度为何这么低。</p>
+      </div>
+      <div class="callout warn">
+        <div class="callout-title">⚠️ 位错的重要特征</div>
+        <p>位错线必然在晶体中构成<strong>闭合环线</strong>，或<strong>终止于晶体表面</strong>，<strong>绝不能终止于晶体内部</strong>。</p>
+      </div>
+
+      <h2>7.1.3 位错的三种基本类型（核心）</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 刃型 / 螺型 / 混合型（按 \(\vec b\) 与位错线的夹角分）</div>
+        <div class="tbl-wrap"><table class="qm">
+          <tr><th>类型</th><th>柏氏矢量 \(\vec b\) 与位错线</th><th>特征</th></tr>
+          <tr><td>刃型位错（棱位错）</td><td><strong>垂直 ⊥</strong></td><td>有多余<strong>半原子面</strong>，符号"⊥"；半面在上=正刃型，在下=负刃型</td></tr>
+          <tr><td>螺型位错</td><td><strong>平行 ∥</strong></td><td>原子呈螺旋排列；分左螺、右螺；无多余半面，运动自由</td></tr>
+          <tr><td>混合型位错</td><td>既不平行也不垂直</td><td>环形位错线上不同部位是不同类型的组合</td></tr>
+        </table></div>
+      </div>
+
+      <div data-viz="edge"></div>
+
+      <h2>7.2 柏氏矢量</h2>
+      <p>用<strong>柏氏回路</strong>定义位错：在晶体好区域里绕位错走一圈（按右手定则、逆时针），若回路<strong>不能闭合</strong>，则从终点到起点的矢量就是<strong>柏氏矢量 \(\vec b\)</strong>。</p>
+      <div class="callout">
+        <div class="callout-title">柏氏矢量的性质与意义</div>
+        <ul style="margin:6px 0">
+          <li><strong>物理意义：</strong>把位错周围分散的畸变叠加起来，总结果由 \(\vec b\) 表达；畸变越严重 \(\vec b\) 越大。点缺陷因对称、正负抵消，\(\vec b=0\)；线缺陷不对称，\(\vec b\) 为原子间距的整数倍。</li>
+          <li><strong>守恒性：</strong>一条位错的 \(\vec b\) 处处相同（与回路大小、路径无关）。结点处：指向结点的 \(\vec b\) 之和 = 离开结点的 \(\vec b\) 之和。</li>
+          <li><strong>符号表示：</strong>立方晶系记作 \(\frac{a}{n}[uvw]\)，长度 \(|\vec b|=\frac{a}{n}\sqrt{u^2+v^2+w^2}\)。例如 \(\frac{a}{2}[110]\)。</li>
+          <li>\(\vec b\) 与滑移矢量大小相等，方向不一定相同。</li>
+        </ul>
+      </div>
+
+      <h2>7.3 位错的产生、运动与增殖</h2>
+      <p><strong>产生：</strong>机械应力（挤压、拉伸、切割、研磨）和热应力（温度梯度热胀冷缩）超过屈服强度时产生位错。实验：Ge 在 \(T\lt500\,°\text{C}\)、Si 在 \(T\lt650\,°\text{C}\) 热处理一般不产生位错。</p>
+      <div class="callout key">
+        <div class="callout-title">⭐ 滑移 vs 攀移（务必区分）</div>
+        <ul style="margin:6px 0">
+          <li><strong>滑移（glide）：</strong>位错在<strong>滑移面内</strong>移动，靠切应力推动，较快，不涉及物质迁移。</li>
+          <li><strong>攀移（climb）：</strong>位错<strong>吸收/发射扩散来的空位或间隙原子</strong>，从一个滑移面移到邻近滑移面（垂直于滑移面方向），依赖扩散，<strong>较慢</strong>。</li>
+        </ul>
+      </div>
+      <p><strong>空位团崩塌：</strong>过饱和空位凝聚成片状空位团，崩塌后形成<strong>棱柱位错环</strong>（一种刃型位错环，只能攀移）。<strong>增殖：</strong>Frank-Read 源——一端或两端固定的位错线在应力下不断"吹泡"生成新位错环（位错源使屈服强度降低）。</p>
+
+      <h2>7.4 位错的应力场与应变能</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 刃型 vs 螺型应力场（高频对比）</div>
+        <ul style="margin:6px 0">
+          <li><strong>刃型位错：</strong>既有<strong>正应力</strong>又有切应力；多余半原子面一侧受<strong>压应力</strong>（\(y\gt0\) 上方），另一侧受<strong>张应力</strong>（\(y\lt0\) 下方）；应力 \(\propto 1/r\)，离位错越远越弱。</li>
+          <li><strong>螺型位错：</strong><strong>只有切应力、没有正应力</strong>，因此没有拉伸/压缩、<strong>晶体体积不变</strong>；应力沿轴对称、随 \(r\) 增大而减弱。</li>
+        </ul>
+      </div>
+      <div class="callout key">
+        <div class="callout-title">⭐ 应变能 \(W\propto b^2\)（决定位错稳定性）</div>
+        <p>单位长度位错的应变能正比于柏氏矢量的平方：</p>
+        <div class="formula-box">\[ W\propto b^2 \]</div>
+        <p>推论：<strong>柏氏矢量越小，应变能越低，越稳定</strong>。一个强度 \(2b\) 的位错（\(\propto4b^2\)）不如两个强度 \(b\) 的位错（\(\propto2b^2\)）稳定，故大 \(\vec b\) 的位错倾向分解为小 \(\vec b\) 的位错。这也解释了为什么<strong>柏氏矢量通常沿原子线密度最大的方向、且大小为一个原子间距</strong>。（注：连续介质模型在位错中心 \(r\to0\) 不适用。）</p>
+      </div>
+
+      <h2>7.5 位错与其它缺陷的相互作用</h2>
+      <div class="callout">
+        <div class="callout-title">位错与杂质：科垂尔气团</div>
+        <p>正刃型位错上方受压、下方受张。<strong>半径大的替位杂质</strong>倾向跑到位错<strong>下方张应力区</strong>（缓解畸变、降低能量）；<strong>半径小的</strong>倾向跑到<strong>上方压应力区</strong>。大量杂质聚集在位错附近、按玻尔兹曼分布，称<strong>科垂尔（Cottrell）气团</strong>。间隙杂质形成的类似气团叫<strong>斯诺克气团</strong>。气团使位错运动困难，称<strong>钉扎效应</strong>，材料变硬变脆。<strong>螺型位错无正应力</strong>，与杂质几乎无弹性交互作用。</p>
+      </div>
+      <p><strong>位错与点缺陷：</strong>位错可作点缺陷的"<strong>黑洞</strong>"（吸收空位/间隙使其消失或引起攀移），也可作点缺陷的"<strong>源泉</strong>"（发射空位/间隙）。<strong>位错交割</strong>产生<strong>割阶</strong>。</p>
+      <div class="callout">
+        <div class="callout-title">位错间弹性作用</div>
+        <p>切应力对单位长度位错的作用力 \(F=\tau b\)。刃型位错受力方向与 \(\tau\) 一致，螺型位错受力方向与 \(\tau\) 垂直。两平行刃型位错：同号相互排斥、倾向沿 Y 轴方向排成一列（这是<strong>小角晶界、多边形化、位错排</strong>的来源）；异号相吸。两平行螺型位错：同号相斥、异号相吸（接近时复合湮灭）。</p>
+      </div>
+
+      <h2>7.6 锗、硅单晶中的位错</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ Si/Ge 的特征位错</div>
+        <p>金刚石结构中原子线密度最大的方向是 \(\langle110\rangle\)，最短柏氏矢量 \(\vec b=\frac{a}{2}\langle110\rangle\)（共 12 个特征柏氏矢量）；特征滑移面是 \(\{111\}\)（复合面，面间距最大、结合最弱）。在 \((111)\) 面沿 \([110]\) 滑移产生的位错环上，不同部位是 <strong>90°（刃型）、60°、30°、0°（螺型）</strong> 等特征位错。</p>
+      </div>
+      <div class="callout">
+        <div class="callout-title">位错对半导体性能的影响</div>
+        <ul style="margin:6px 0">
+          <li><strong>载流子浓度：</strong>刃型位错的<strong>悬挂键</strong>在 n 型材料中接受电子起<strong>受主</strong>作用、在 p 型中释放电子起<strong>施主</strong>作用；<strong>螺型位错无此作用</strong>。</li>
+          <li><strong>迁移率：</strong>位错周围的电荷对载流子有<strong>散射作用，降低迁移率</strong>。</li>
+          <li><strong>少子寿命：</strong>位错密度高时，少子寿命 \(\tau\) 与位错密度<strong>成反比</strong>（位错作复合中心、使禁带宽度变化促进复合）。</li>
+          <li><strong>扩散与腐蚀：</strong>杂质沿位错扩散更快（致结不平整、漏电）；位错部位化学活泼，腐蚀时易出蚀坑。</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>临界切应力=屈服强度｜理论强度比实测大3-4数量级→位错｜位错不能终止于晶体内部｜三类:刃型(b⊥,有半面⊥)/螺型(b∥,无半面)/混合｜\(\vec b\) 守恒、\(\frac{a}{n}[uvw]\)、点缺陷b=0｜滑移(面内,快)vs攀移(吸空位,跨面,慢)｜刃型有正+切应力(上压下张)，螺型只切应力体积不变｜\(W\propto b^2\)→小b稳定｜科垂尔气团+钉扎→变硬脆，螺位错无｜\(F=\tau b\)｜Si/Ge:b=\(\frac{a}{2}\langle110\rangle\)，滑移面{111}，60°/90°位错｜刃位错悬挂键影响载流子，螺位错不影响。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住自己想。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">刃型、螺型、混合型位错的区别</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>按柏氏矢量与位错线的关系，说明三类位错的区别。位错线能否终止在晶体内部？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>刃型位错</h5><p>\(\vec b\) <strong>垂直</strong>于位错线；有多余半原子面（符号 ⊥）；半面在滑移面上方为正刃型、下方为负刃型。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>螺型位错</h5><p>\(\vec b\) <strong>平行</strong>于位错线；原子呈螺旋排列；分左螺、右螺；无多余半面、运动较自由。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>混合型</h5><p>\(\vec b\) 与位错线<strong>既不平行也不垂直</strong>；环形位错线上不同部位是刃型、螺型的组合。</p></div></div>
+            <div class="step"><div class="step-n">4</div><div class="step-c"><h5>位错线的走向</h5><p>位错线必构成<strong>闭合环</strong>或<strong>终止于表面</strong>，<strong>不能终止于晶体内部</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>刃型 \(\vec b\perp\) 线、螺型 \(\vec b\parallel\) 线、混合型介于两者；位错线不能止于晶体内部。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">应变能 W∝b² 与位错分解</span><span class="tag proof">分析</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>为什么位错的柏氏矢量通常是一个原子间距、且沿原子线密度最大的方向？为什么大柏氏矢量的位错倾向分解？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>关键关系</h5><p>单位长度位错应变能 \(W\propto b^2\)。应变能越低越稳定。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>沿最密方向、取最短 b</h5><p>沿原子线密度最大的方向，原子间距最小，对应的 \(b\) 最短 → \(W\propto b^2\) 最小 → 最稳定。故 \(\vec b\) 通常是该方向的一个原子间距。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>分解判据</h5><p>一个 \(2b\) 的位错应变能 \(\propto(2b)^2=4b^2\)；分成两个 \(b\) 的位错 \(\propto2b^2\)，能量更低。故大 \(\vec b\) 位错倾向<strong>分解为多个小 \(\vec b\) 位错</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>因 \(W\propto b^2\)，小 \(b\)（最密方向、一个原子间距）最稳定；大 \(b\) 位错为降能量而分解。例：Si/Ge 中 \(\vec b=\frac{a}{2}\langle110\rangle\)。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">刃型与螺型位错应力场的区别</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>比较刃型位错与螺型位错的应力场，并说明为什么螺型位错与替位杂质几乎无弹性交互作用。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>刃型位错应力场</h5><p>既有正应力又有切应力；多余半面一侧受压（上方）、另一侧受张（下方）；应力 \(\propto1/r\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>螺型位错应力场</h5><p><strong>只有切应力、无正应力</strong>，无拉伸/压缩、晶体体积不变；沿轴对称、随 \(r\) 减弱。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>为什么螺位错不吸杂质</h5><p>替位杂质引起的畸变近似<strong>球对称</strong>，主要与<strong>正应力（静水压）</strong>作用；螺型位错无正应力，故与替位杂质几乎无弹性交互作用，不形成明显气团。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>刃型=正应力+切应力（上压下张）；螺型=只切应力、体积不变。螺型无正应力，故不与（球对称畸变的）替位杂质发生明显弹性作用。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 4</span><span class="ex-title">位错对半导体载流子的影响</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>刃型位错的悬挂键在 n 型、p 型半导体中各起什么作用？螺型位错呢？位错对少子寿命有何影响？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>刃型位错的悬挂键</h5><p>n 型中：悬挂键<strong>接受电子</strong>成满壳层 → 起<strong>受主</strong>作用；p 型中：<strong>释放电子</strong> → 起<strong>施主</strong>作用。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>螺型位错</h5><p>螺型位错<strong>没有</strong>这种悬挂键作用（无多余半面）。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>对迁移率与寿命</h5><p>位错周围电荷<strong>散射</strong>载流子 → 降低迁移率；位错密度高时少子寿命 \(\tau\) 与位错密度<strong>成反比</strong>（位错作复合中心）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>刃位错悬挂键：n 型受主、p 型施主；螺位错无此作用；位错降低迁移率，高密度下少子寿命∝1/位错密度。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch7">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">位错属于哪一维的缺陷？</div>
+  <ul class="q-options">
+    <li>零维</li>
+    <li data-correct>一维（线缺陷）</li>
+    <li>二维</li>
+    <li>三维</li>
+  </ul>
+  <div class="q-explain">位错是一维线缺陷（偏离点阵的部位呈线状）。点缺陷零维、面缺陷二维。<strong>【秒记】位错=线缺陷=1维。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">刃型位错的柏氏矢量与位错线的关系是</div>
+  <ul class="q-options">
+    <li data-correct>互相垂直</li>
+    <li>互相平行</li>
+    <li>成 45°</li>
+    <li>无固定关系</li>
+  </ul>
+  <div class="q-explain">刃型位错 \(\vec b\perp\) 位错线（有多余半原子面，符号⊥）；螺型位错 \(\vec b\parallel\) 位错线；混合型介于两者。<strong>【秒记】刃垂直、螺平行。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">螺型位错的柏氏矢量与位错线</div>
+  <ul class="q-options">
+    <li>垂直</li>
+    <li data-correct>平行</li>
+    <li>成任意角</li>
+    <li>无关</li>
+  </ul>
+  <div class="q-explain">螺型位错 \(\vec b\parallel\) 位错线，原子呈螺旋排列，分左螺右螺，无多余半面。<strong>【秒记】螺型：b平行位错线。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于位错线，正确的是</div>
+  <ul class="q-options">
+    <li>可以终止在晶体内部任意位置</li>
+    <li data-correct>必构成闭合环或终止于晶体表面，不能终止于晶体内部</li>
+    <li>只能是直线</li>
+    <li>长度无限</li>
+  </ul>
+  <div class="q-explain">位错线必构成闭合环或止于表面，绝不能终止于晶体内部。<strong>【秒记】位错不能止于晶体内部。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">引入位错概念的主要原因是</div>
+  <ul class="q-options">
+    <li>晶体太硬</li>
+    <li data-correct>整面同步滑移的理论强度比实测值大 3–4 个数量级</li>
+    <li>为了好看</li>
+    <li>晶体不导电</li>
+  </ul>
+  <div class="q-explain">刚性模型估算的理论屈服强度远高于实测（差 3–4 数量级），说明滑移不是整面同步，而是靠位错逐步移动，省力得多。<strong>【秒记】理论强度太大→位错逐步滑移省力。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">柏氏矢量 \(\vec b\) 的物理意义和性质，错误的是</div>
+  <ul class="q-options">
+    <li>表征位错周围畸变的总和</li>
+    <li>一条位错处处相同（守恒）</li>
+    <li>点缺陷的柏氏矢量为零</li>
+    <li data-correct>柏氏矢量随柏氏回路大小改变</li>
+  </ul>
+  <div class="q-explain">柏氏矢量与回路大小、路径无关（守恒）；点缺陷对称、\(\vec b=0\)；线缺陷 \(\vec b\) 为原子间距整数倍。"随回路改变"是错的。<strong>【秒记】b 守恒、与回路无关；点缺陷b=0。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">位错的"攀移"运动是指</div>
+  <ul class="q-options">
+    <li>位错在滑移面内移动</li>
+    <li data-correct>位错吸收/发射空位或间隙原子，移到邻近滑移面（依赖扩散，较慢）</li>
+    <li>位错绕轴旋转</li>
+    <li>位错消失</li>
+  </ul>
+  <div class="q-explain">滑移=在滑移面内移动（切应力推动，快）；攀移=靠吸收/发射空位间隙、跨到邻近滑移面（依赖扩散，慢）。<strong>【秒记】滑移面内=滑移；跨面靠空位=攀移。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于螺型位错的应力场，正确的是</div>
+  <ul class="q-options">
+    <li>既有正应力又有切应力</li>
+    <li data-correct>只有切应力、没有正应力，晶体体积不变</li>
+    <li>只有正应力</li>
+    <li>没有任何应力</li>
+  </ul>
+  <div class="q-explain">螺型位错只有切应力、无正应力，无拉压、体积不变；刃型位错既有正应力又有切应力（上压下张）。<strong>【秒记】螺型只切应力、体积不变；刃型有正有切。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">单位长度位错的应变能与柏氏矢量的关系是</div>
+  <ul class="q-options">
+    <li>\(W\propto b\)</li>
+    <li data-correct>\(W\propto b^2\)</li>
+    <li>\(W\propto 1/b\)</li>
+    <li>与 b 无关</li>
+  </ul>
+  <div class="q-explain">\(W\propto b^2\)，所以柏氏矢量越小越稳定，大 b 位错倾向分解为小 b 位错；b 通常取最密方向的一个原子间距。<strong>【秒记】W∝b²，小b稳定。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">大量杂质原子聚集在位错附近形成的气团称为</div>
+  <ul class="q-options">
+    <li data-correct>科垂尔（Cottrell）气团</li>
+    <li>电子气</li>
+    <li>等离子体</li>
+    <li>德拜云</li>
+  </ul>
+  <div class="q-explain">替位杂质按玻尔兹曼分布聚集在位错周围形成科垂尔气团（间隙杂质的叫斯诺克气团），使位错运动困难（钉扎效应），材料变硬变脆。<strong>【秒记】杂质聚位错=科垂尔气团→钉扎。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">金刚石结构 Si、Ge 中的特征柏氏矢量（最短）是</div>
+  <ul class="q-options">
+    <li>\(a[100]\)</li>
+    <li data-correct>\(\frac{a}{2}\langle110\rangle\)</li>
+    <li>\(\frac{a}{3}\langle111\rangle\)</li>
+    <li>\(a\langle111\rangle\)</li>
+  </ul>
+  <div class="q-explain">原子线密度最大方向是 \(\langle110\rangle\)，最短柏氏矢量 \(\frac{a}{2}\langle110\rangle\)（共12个）；特征滑移面是 {111}。<strong>【秒记】Si/Ge：b=½a⟨110⟩，滑移面{111}。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">在 n 型半导体中，刃型位错的悬挂键起</div>
+  <ul class="q-options">
+    <li data-correct>受主作用（接受电子）</li>
+    <li>施主作用</li>
+    <li>无作用</li>
+    <li>使禁带消失</li>
+  </ul>
+  <div class="q-explain">n 型中刃位错悬挂键接受电子成满壳层→受主；p 型中释放电子→施主；螺型位错无此作用。<strong>【秒记】刃位错悬挂键：n型受主、p型施主；螺型无。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于滑移面与滑移方向，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>滑移面是原子面密度大的晶面</li>
+    <li data-correct>滑移方向是原子线密度大的方向</li>
+    <li data-correct>面心立方沿 {111} 面 ⟨110⟩ 方向滑移</li>
+    <li data-correct>一般滑移一个原子间距</li>
+  </ul>
+  <div class="q-explain">滑移总沿最密面、最密方向，滑移一个原子间距。fcc 是 {111}⟨110⟩。<strong>【秒记】滑移=最密面+最密方向+一个原子间距。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">位错对半导体性能的影响，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>刃型位错悬挂键影响载流子浓度，螺型位错不影响</li>
+    <li data-correct>位错散射载流子，降低迁移率</li>
+    <li data-correct>位错密度高时，少子寿命与位错密度成反比</li>
+    <li data-correct>杂质沿位错扩散更快，腐蚀时易出蚀坑</li>
+  </ul>
+  <div class="q-explain">刃位错悬挂键影响载流子、螺位错不影响；位错降低迁移率、缩短少子寿命、加快沿位错扩散与腐蚀。<strong>【秒记】刃位错最活泼：影响浓度/迁移率/寿命/扩散腐蚀。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于滑移与攀移，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>滑移在滑移面内进行，靠切应力推动</li>
+    <li data-correct>攀移靠吸收/发射空位或间隙原子，跨到邻近滑移面</li>
+    <li data-correct>攀移依赖扩散，速度较慢</li>
+    <li>滑移和攀移是同一种运动</li>
+  </ul>
+  <div class="q-explain">滑移=面内、快；攀移=跨面、靠空位扩散、慢。两者是不同运动。<strong>【秒记】滑移面内快，攀移跨面慢（靠空位）。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch6.html"><span>← 上一章</span><b>第六章 点缺陷</b></a>
+      <a class="next" href="ch8.html"><span>下一章 →</span><b>第八章 面缺陷</b></a>
+    </div>
+    <div class="foot-note">第七章 · 半导体中的线缺陷（位错） · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

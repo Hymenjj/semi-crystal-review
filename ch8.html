@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第八章 面缺陷 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch8">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第八章</div>
+      <h1>面缺陷</h1>
+      <p class="lead">二维缺陷：堆垛层错、不全位错、扩展位错、晶界、相界。核心思路是——面缺陷都可以化成一系列位错来处理。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p><strong>堆垛层错</strong>（本征型/非本征型、Frank 记号、层错能）；<strong>不全位错</strong>（肖克莱位错、正/负弗兰克位错）与全位错的区别；<strong>扩展位错</strong>；<strong>晶界</strong>（小角晶界 \(D=b/\theta\)、孪生晶界、亚晶界）；<strong>相界</strong>与失配位错 \(D=b/\delta\)。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>密堆积的层序排错了 → <b>堆垛层错</b>；层错只占一部分区域，它的<b>边界</b>就是<b>不全位错</b>；一个全位错可分解成两个不全位错夹一片层错 → <b>扩展位错</b>。晶粒之间、相之间的界面（<b>晶界、相界</b>）也都能看成一系列位错排列而成。所以本章="用位错理解各种面"。</p>
+      </div>
+
+      <h2>8.1 堆垛层错</h2>
+      <p>密堆积有两种正常层序：六方 hcp 是 <strong>ABABAB…</strong>（Frank 记号 △▽△▽），立方面心 ccp 是 <strong>ABCABC…</strong>（△△△△）。Frank 记号约定：△ 表示 AB、BC、CA；▽ 表示 BA、CB、AC。<strong>层序排错了就是堆垛层错（层错）</strong>。</p>
+      <div class="callout key">
+        <div class="callout-title">⭐ 面心立方的两种层错</div>
+        <ul style="margin:6px 0">
+          <li><strong>抽出型（本征型）：</strong>正常层序中<strong>抽出一层</strong>，如 △△▽△△△。抽出一层(A) = 插入两层(BC)。</li>
+          <li><strong>插入型（非本征型）：</strong>正常层序中<strong>插入一层</strong>，如 △△▽▽△△。</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <div class="callout-title">层错能</div>
+        <p>层错出现几率由<strong>层错能</strong>决定：<strong>层错能高 → 层错少</strong>（铝几乎观察不到），<strong>层错能低 → 层错多</strong>（不锈钢、α-黄铜）；Au、Ag、Cu 等贵金属居中。堆垛层错<strong>几乎不产生弹性畸变</strong>，层错能主要来源于<strong>电子能</strong>，数量级 \(n\times10^{-6}\,\text{J/cm}^2\)。</p>
+      </div>
+
+      <h2>8.1.2 不全位错</h2>
+      <p>若层错只存在于晶体的一部分区域，<strong>层错区与完整区的交界就是不全位错</strong>（即"层错的周界就是不全位错"）。面心立方中三种不全位错：</p>
+      <div class="callout key">
+        <div class="callout-title">⭐ 三种不全位错（肖克莱 / 弗兰克）</div>
+        <div class="tbl-wrap"><table class="qm">
+          <tr><th>不全位错</th><th>柏氏矢量</th><th>位错类型</th><th>运动</th></tr>
+          <tr><td>肖克莱位错</td><td>\(\frac{a}{6}\langle112\rangle\)（层内部分滑移）</td><td>可纯刃、纯螺、混合</td><td><strong>可滑移、不可攀移</strong></td></tr>
+          <tr><td>负弗兰克位错</td><td>\(\frac{a}{3}\langle111\rangle\)（抽出 B）</td><td>只刃型</td><td><strong>可攀移、不可滑移</strong></td></tr>
+          <tr><td>正弗兰克位错</td><td>\(\frac{a}{3}\langle111\rangle\)（插入 C）</td><td>只刃型</td><td><strong>可攀移、不可滑移</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="callout">
+        <div class="callout-title">全位错 vs 不全位错</div>
+        <ul style="margin:6px 0">
+          <li><strong>全位错：</strong>滑移矢量长度<strong>等于</strong>一个原子间距。</li>
+          <li><strong>不全位错：</strong>滑移矢量长度<strong>小于</strong>一个原子间距。</li>
+          <li><strong>晶格畸变程度：</strong>层错 \(\lt\) 不全位错 \(\lt\) 全位错（层错只改变次近邻关系，几乎不产生弹性形变）。</li>
+        </ul>
+      </div>
+
+      <h2>8.1.3 扩展位错</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 扩展位错（高频）</div>
+        <p>因 \(W\propto b^2\)，大柏氏矢量位错倾向分解。面心立方 \(\{111\}\) 面上的 \(\frac{a}{2}\langle110\rangle\) 全位错可分解为<strong>两个不全位错</strong>，分解后位错能降为原来的 <strong>2/3</strong>：</p>
+        <div class="formula-box">\[ \tfrac{a}{2}\langle110\rangle \;\longrightarrow\; \tfrac{a}{6}\langle112\rangle + \tfrac{a}{6}\langle112\rangle \]</div>
+        <p>两个不全位错相斥、倾向分开，中间夹出一片<strong>层错</strong>；平衡时层错的<strong>表面张力</strong>与不全位错间的<strong>斥力</strong>相等。这种"两条不全位错 + 中间层错"的组态就是<strong>扩展位错</strong>。</p>
+      </div>
+      <p><strong>金刚石结构的层错：</strong>金刚石可看作两套面心立方套构，正常堆垛 AA′BB′CC′…。其片状空位团有 AB 型（较易，相当于抽去复合 \(\{111\}\) 面）和 BB 型（较难，出现大量悬挂键）；Si 中通过空位团崩塌产生层错的几率很小，空位团更倾向与杂质缔合。</p>
+
+      <h2>8.2 晶界</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 小角晶界（位错模型）</div>
+        <p>同号刃型位错沿 Y 方向排成一列，使两侧晶格取向相差一个小角度 \(\theta\)（通常 \(\theta\lt10°\)），就是<strong>小角晶界</strong>。位错间距与取向差的关系：</p>
+        <div class="formula-box">\[ D=\frac{b}{\theta}\qquad(D\text{ 为位错间距},\ b\text{ 为柏氏矢量},\ \theta\text{ 为取向差}) \]</div>
+        <p>对称倾斜晶界（两侧对称）、非对称倾斜晶界（两组刃位错 \(b_1=[100]\)、\(b_2=[010]\)）、扭转晶界（两组正交螺型位错）都满足类似关系。</p>
+      </div>
+      <div class="callout">
+        <div class="callout-title">孪生晶界 / 亚晶界</div>
+        <p><strong>共格孪生晶界：</strong>晶面两侧晶体位向满足反映对称，反映面即孪生面，晶界能很低。面心立方 \(\{111\}\) 正常 ABCABC…，若从某层起颠倒为 ABCACBA…，上下就成孪晶关系。<strong>层错能 ≈ 共格孪生晶界能的两倍</strong>。孪晶来源：机械孪生、生长孪生、退火孪生（Si、Ge、GaAs 等生长时常出现孪晶）。<br>
+        <strong>亚晶界：</strong>晶体内取向有微小偏差的小区域称<strong>亚晶（镶嵌结构）</strong>（线度约 \(10^{-4}\,\text{cm}\)），亚晶之间的边界叫亚晶界。</p>
+      </div>
+
+      <h2>8.3 相界</h2>
+      <p>不同结构的相之间的界面叫<strong>相界</strong>，分<strong>非共格相界</strong>（两相无固定位相关系）和<strong>共格（准共格）相界</strong>（界面两侧晶向保持一定位相关系）。两相晶格常数相对偏差 \(\delta\) 时，相界面上位错间距：</p>
+      <div class="formula-box">\[ D=\frac{b}{\delta}\qquad(\delta\text{ 为晶格失配度}) \]</div>
+      <div class="callout">
+        <div class="callout-title">失配位错（外延中重要）</div>
+        <p>异质外延（如在 GaAs 衬底上生长 GaAs₁₋ₓPₓ）时，因衬底与外延层晶格常数不同，界面附近产生<strong>失配位错</strong>。例：GaAs（\(a=0.56532\,\text{nm}\)）上生长 GaAs₀.₆P₀.₄（\(a=0.55677\,\text{nm}\)），近似按简立方估算，约每隔 <strong>66 个晶胞</strong>产生一条刃型位错。同质外延中衬底与外延层杂质浓度不同引起的晶格差异，也会产生失配位错。</p>
+      </div>
+
+      <div class="callout key">
+        <div class="callout-title">🎯 本章总思路</div>
+        <p>晶界、相界、堆垛层错等二维缺陷，<strong>常化为一系列位错来处理</strong>——因为人们对位错了解透彻，且小角晶界等经观测确实由位错排列而成。</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>层序 hcp=ABAB(△▽)、ccp=ABCABC(△△)｜层错:本征=抽一层、非本征=插一层；抽一层=插两层｜层错能高→层错少(Al)，低→多｜不全位错:肖克莱 \(\frac{a}{6}\langle112\rangle\)(可滑不可攀)、弗兰克 \(\frac{a}{3}\langle111\rangle\)(可攀不可滑)｜全位错b=一个原子间距，不全位错b&lt;一个；畸变 层错&lt;不全&lt;全｜扩展位错=\(\frac{a}{2}\langle110\rangle\)分解为两不全+层错，能量降2/3｜小角晶界 \(D=b/\theta\)｜层错能=2×共格孪生界能｜相界失配位错 \(D=b/\delta\)。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">先盖住自己想。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">本征型与非本征型层错</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>面心立方晶体的两种堆垛层错是什么？各如何产生？层错与全位错、不全位错的晶格畸变程度如何比较？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>抽出型（本征型）</h5><p>正常 ABCABC… 中<strong>抽出一层</strong>（如 △△▽△△△）。抽出一层(A) 等效于插入两层(BC)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>插入型（非本征型）</h5><p>正常层序中<strong>插入一层</strong>（如 △△▽▽△△）。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>畸变比较</h5><p>层错只改变次近邻关系、几乎无弹性畸变，故：<strong>层错 \(\lt\) 不全位错 \(\lt\) 全位错</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>本征型=抽一层、非本征型=插一层；畸变程度 层错最小、全位错最大。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">肖克莱位错 vs 弗兰克位错</span><span class="tag proof">简答</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>比较面心立方中肖克莱不全位错与弗兰克不全位错的柏氏矢量、位错类型和运动方式。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>肖克莱位错</h5><p>柏氏矢量 \(\frac{a}{6}\langle112\rangle\)（层内部分滑移产生）；可以是纯刃、纯螺或混合型；<strong>可滑移、不可攀移</strong>。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>弗兰克位错</h5><p>柏氏矢量 \(\frac{a}{3}\langle111\rangle\)（抽出 B = 负弗兰克、插入 C = 正弗兰克）；只能是<strong>刃型</strong>；<strong>可攀移、不可滑移</strong>。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>对照记忆</h5><p>肖克莱"<strong>能滑不能攀</strong>"（\(\frac{a}{6}\langle112\rangle\)）；弗兰克"<strong>能攀不能滑</strong>"（\(\frac{a}{3}\langle111\rangle\)，只刃型）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>肖克莱 \(\frac{a}{6}\langle112\rangle\)、可滑不可攀；弗兰克 \(\frac{a}{3}\langle111\rangle\)、只刃型、可攀不可滑。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">小角晶界位错间距</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>对称倾斜小角晶界，取向差 \(\theta=1°\)（\(\approx0.0175\,\text{rad}\)），柏氏矢量 \(b=0.3\,\text{nm}\)，求位错间距 \(D\)。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>套小角晶界公式</h5><p>\(D=\dfrac{b}{\theta}\)（\(\theta\) 用弧度）。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>代入</h5><p>\(D=\dfrac{0.3\,\text{nm}}{0.0175}\approx17\,\text{nm}\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>理解</h5><p>取向差 \(\theta\) 越大，位错排得越密（\(D\) 越小）。小角晶界就是一列等间距刃型位错。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>\(D\approx17\,\text{nm}\)。记住 \(D=b/\theta\)：角度越大、位错越密。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 4</span><span class="ex-title">异质外延的失配位错间距</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>在 GaAs（\(a_1=0.56532\,\text{nm}\)）上外延 GaAs₀.₆P₀.₄（\(a_2=0.55677\,\text{nm}\)），近似按简立方估算界面失配位错的间距（每隔多少个晶胞一条位错）。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>求失配度 δ</h5><p>\(\delta=\dfrac{a_1-a_2}{a_1}=\dfrac{0.56532-0.55677}{0.56532}\approx0.0151\)（约 1.5%）。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>套失配位错公式</h5><p>\(D=\dfrac{b}{\delta}\approx\dfrac{a}{\delta}\)（简立方取 \(b\approx a\)）。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>换算成晶胞数</h5><p>\(\dfrac{D}{a}=\dfrac{1}{\delta}\approx\dfrac{1}{0.0151}\approx66\)。即<strong>约每隔 66 个晶胞产生一条刃型位错</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>失配度约 1.5%，约每隔 66 个晶胞一条失配位错。失配越大、位错越密——这是异质外延要控制晶格匹配的原因。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch8">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">面缺陷属于几维缺陷？</div>
+  <ul class="q-options">
+    <li>零维</li>
+    <li>一维</li>
+    <li data-correct>二维</li>
+    <li>三维</li>
+  </ul>
+  <div class="q-explain">面缺陷=二维（偏离点阵的部位呈面状），包括堆垛层错、晶界、相界。<strong>【秒记】点0维、线1维、面2维。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">面心立方（ccp）的正常堆垛层序是</div>
+  <ul class="q-options">
+    <li>ABABAB…</li>
+    <li data-correct>ABCABC…</li>
+    <li>AAAA…</li>
+    <li>ABCBABC…</li>
+  </ul>
+  <div class="q-explain">立方面心 ccp 是 ABCABC…（Frank 记号 △△△△）；六方 hcp 是 ABABAB…（△▽△▽）。<strong>【秒记】ccp=ABCABC，hcp=ABAB。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">在正常层序中"抽出一层"形成的层错称为</div>
+  <ul class="q-options">
+    <li data-correct>抽出型（本征型）层错</li>
+    <li>插入型（非本征型）层错</li>
+    <li>孪晶</li>
+    <li>相界</li>
+  </ul>
+  <div class="q-explain">抽出一层=本征型层错（△△▽△△△）；插入一层=非本征型（△△▽▽△△）。抽出一层等效于插入两层。<strong>【秒记】抽=本征，插=非本征。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于层错能，正确的是</div>
+  <ul class="q-options">
+    <li>层错能越高，层错越多</li>
+    <li data-correct>层错能越高，层错越少（如铝几乎无层错）</li>
+    <li>层错会产生很大的弹性畸变</li>
+    <li>层错能与材料无关</li>
+  </ul>
+  <div class="q-explain">层错能高→层错少（Al几乎观察不到）；低→多（不锈钢、α-黄铜）。层错几乎不产生弹性畸变，层错能主要来源于电子能。<strong>【秒记】层错能高=层错少。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">层错区与完整区的交界处是</div>
+  <ul class="q-options">
+    <li>全位错</li>
+    <li data-correct>不全位错</li>
+    <li>晶界</li>
+    <li>空位</li>
+  </ul>
+  <div class="q-explain">层错的周界就是不全位错。不全位错的滑移矢量小于一个原子间距。<strong>【秒记】层错周界=不全位错。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">肖克莱不全位错的特点是</div>
+  <ul class="q-options">
+    <li data-correct>柏氏矢量 \(\frac{a}{6}\langle112\rangle\)，可滑移、不可攀移</li>
+    <li>柏氏矢量 \(\frac{a}{3}\langle111\rangle\)，可攀移、不可滑移</li>
+    <li>柏氏矢量 \(a\langle100\rangle\)</li>
+    <li>只能是螺型</li>
+  </ul>
+  <div class="q-explain">肖克莱 \(\frac{a}{6}\langle112\rangle\)、可纯刃/纯螺/混合、可滑不可攀；弗兰克 \(\frac{a}{3}\langle111\rangle\)、只刃型、可攀不可滑。<strong>【秒记】肖克莱能滑不能攀(a/6⟨112⟩)，弗兰克能攀不能滑(a/3⟨111⟩)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">弗兰克不全位错</div>
+  <ul class="q-options">
+    <li>可滑移、不可攀移</li>
+    <li data-correct>只能是刃型，可攀移、不可滑移</li>
+    <li>柏氏矢量是 \(\frac{a}{6}\langle112\rangle\)</li>
+    <li>可纯螺型</li>
+  </ul>
+  <div class="q-explain">弗兰克位错（抽B=负、插C=正）柏氏矢量 \(\frac{a}{3}\langle111\rangle\)，只刃型，可攀移不可滑移。<strong>【秒记】弗兰克：只刃型、能攀不能滑。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">全位错与不全位错的区别是</div>
+  <ul class="q-options">
+    <li data-correct>全位错滑移矢量等于一个原子间距，不全位错小于一个原子间距</li>
+    <li>全位错小于一个原子间距</li>
+    <li>两者滑移矢量相同</li>
+    <li>全位错不能运动</li>
+  </ul>
+  <div class="q-explain">全位错 b=一个原子间距；不全位错 b&lt;一个原子间距。畸变程度：层错&lt;不全位错&lt;全位错。<strong>【秒记】全位错b=1个间距，不全位错b&lt;1个。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">扩展位错是指</div>
+  <ul class="q-options">
+    <li>一条很长的全位错</li>
+    <li data-correct>一个全位错分解为两个不全位错、中间夹一片层错的组态</li>
+    <li>两条平行的全位错</li>
+    <li>位错环</li>
+  </ul>
+  <div class="q-explain">因 \(W\propto b^2\)，\(\frac{a}{2}\langle110\rangle\) 全位错分解为两个 \(\frac{a}{6}\langle112\rangle\) 不全位错+中间层错，能量降为 2/3。平衡时层错表面张力与不全位错斥力相等。<strong>【秒记】扩展位错=两不全位错+中间层错。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">小角晶界中位错间距 \(D\)、柏氏矢量 \(b\)、取向差 \(\theta\) 的关系是</div>
+  <ul class="q-options">
+    <li>\(D=b\theta\)</li>
+    <li data-correct>\(D=b/\theta\)</li>
+    <li>\(D=\theta/b\)</li>
+    <li>\(D=b^2/\theta\)</li>
+  </ul>
+  <div class="q-explain">小角晶界 \(D=b/\theta\)：取向差越大，位错排得越密。小角晶界就是一列同号刃型位错。<strong>【秒记】小角晶界 D=b/θ。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">层错能与共格孪生晶界能的关系约为</div>
+  <ul class="q-options">
+    <li>相等</li>
+    <li data-correct>层错能 ≈ 共格孪生晶界能的 2 倍</li>
+    <li>层错能 = 孪生界能的一半</li>
+    <li>无关</li>
+  </ul>
+  <div class="q-explain">堆垛层错相当于有相邻两个共格孪生晶界，故层错能约为共格孪生晶界能的两倍。<strong>【秒记】层错能=2×共格孪生界能。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">异质外延中因衬底与外延层晶格常数不同，界面附近产生的位错称为</div>
+  <ul class="q-options">
+    <li>螺型位错</li>
+    <li data-correct>失配位错</li>
+    <li>棱柱位错环</li>
+    <li>肖克莱位错</li>
+  </ul>
+  <div class="q-explain">失配位错间距 \(D=b/\delta\)（\(\delta\) 为晶格失配度）。如 GaAs 上外延 GaAs₀.₆P₀.₄ 约每隔 66 个晶胞一条。失配越大位错越密。<strong>【秒记】异质外延晶格失配→失配位错，D=b/δ。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于堆垛层错，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>本征型层错由抽出一层产生</li>
+    <li data-correct>非本征型层错由插入一层产生</li>
+    <li data-correct>层错几乎不产生弹性畸变</li>
+    <li data-correct>层错能越高，出现层错的几率越小</li>
+  </ul>
+  <div class="q-explain">本征=抽一层、非本征=插一层；层错只改变次近邻、几乎无弹性畸变；层错能高则层错少。<strong>【秒记】抽=本征/插=非本征；能高层错少。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列面缺陷可以"化为一系列位错来处理"的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>小角晶界</li>
+    <li data-correct>相界（失配位错）</li>
+    <li data-correct>扩展位错中的层错（边界是不全位错）</li>
+    <li data-correct>非对称倾斜晶界、扭转晶界</li>
+  </ul>
+  <div class="q-explain">本章核心思路：晶界、相界、层错等二维缺陷常化为位错排列处理；小角晶界确由位错排成。<strong>【秒记】面缺陷=一系列位错。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch7.html"><span>← 上一章</span><b>第七章 线缺陷（位错）</b></a>
+      <a class="next" href="cram.html"><span>急救 →</span><b>💊 人话速记</b></a>
+    </div>
+    <div class="foot-note">第八章 · 面缺陷 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>

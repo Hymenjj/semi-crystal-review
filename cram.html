@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人话速记 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="cram">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">💊 零基础专用</div>
+      <h1>人话速记卡：看到啥 → 选啥 → 怎么记</h1>
+      <p class="lead">看不懂没关系。半导体结构这门课名词多，但选择/填空就是"认出题目→挑对答案"。这页全是大白话配对，先混个脸熟。</p>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-title">🧠 先把误会解开</div>
+      <p>你以为要"<strong>理解每个公式</strong>"——那是最难的路。但考试大多是"<strong>认出名词 → 选对结论</strong>"，这是<strong>认脸</strong>，不是默写。比如：看到「Si 解理面」就选 <strong>{111}</strong>，看到「GaAs 解理面」就选 <strong>{110}</strong>——你不用懂为什么，先记住配对。</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">📖 怎么用这页</div>
+      <p>① 从头扫 2 遍（像刷手机，不动脑）→ ② 去各章「学生自测」点题，错了回来看这条 → ③ 重复 2-3 轮，你会发现"诶我居然记住了"。</p>
+    </div>
+
+    <h2>第一章 · 晶体的特性</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>晶体最本质特征</td><td>周期性排列 / 远程有序</td><td>晶体=排队，非晶体=一锅粥（近程有序）</td></tr>
+      <tr><td>证明晶体有格子构造的实验</td><td>劳埃 X 射线衍射(1912)</td><td>劳埃 + X射线 = 拍到斑点</td></tr>
+      <tr><td>晶体四大基本性质</td><td>自范性、均匀/各向异性、对称性、最小内能与固定熔点</td><td>"自范、各向异、对称、固定熔点"</td></tr>
+      <tr><td>晶体有没有固定熔点</td><td>有（非晶体没有，逐渐软化）</td><td>晶体结构单元一样→同时熔</td></tr>
+      <tr><td>\(\Delta X\gt1.5\)</td><td>离子键</td><td>差得多→抢走电子→离子</td></tr>
+      <tr><td>\(\Delta X=0\)</td><td>非极性共价键(金刚石/Si/Ge)</td><td>一样→平分→纯共价</td></tr>
+      <tr><td>离子键特点</td><td>无方向性、无饱和性</td><td>磁铁吸铁屑，四面八方</td></tr>
+      <tr><td>共价键特点</td><td>有方向性、有饱和性</td><td>插头插插座，插满为止</td></tr>
+      <tr><td>Si 杂化与键角</td><td>sp³，109°28′</td><td>正四面体</td></tr>
+      <tr><td>石墨是什么键型</td><td>混合键(共价+金属+分子)</td><td>层内共价+自由电子，层间范德华</td></tr>
+    </table></div>
+
+    <h2>第二章 · 晶体构造理论</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>平移群</td><td>\(T=m\vec a+n\vec b+p\vec c\)</td><td>选带 m,n,p 三个整数那个</td></tr>
+      <tr><td>顶角原子算几分之几</td><td>1/8（棱1/4、面1/2、体心1）</td><td>角8家共享、面2家、心独占</td></tr>
+      <tr><td>简单/体心/面心立方原子数</td><td>1 / 2 / 4</td><td>P=1、I=2、F=4</td></tr>
+      <tr><td>选格子三原则</td><td>对称性高→多直角→体积最小</td><td>顺序不能反</td></tr>
+      <tr><td>布拉菲格子有几种</td><td>14 种</td><td>7晶系、14格子、32点群、230空间群</td></tr>
+      <tr><td>立方晶系有哪些格子</td><td>P、I、F（无底心立方）</td><td>正交才有 P/I/F/C 四种</td></tr>
+      <tr><td>最紧密堆积空间利用率</td><td>74.05%（体心 68.02%）</td><td>记两个数</td></tr>
+      <tr><td>ABCABC 是哪种堆积</td><td>立方最紧密(面心)；ABAB=六方</td><td>三个字母=立方，两个=六方</td></tr>
+      <tr><td>两种空隙</td><td>四面体空隙、八面体空隙</td><td>4球围/6球围</td></tr>
+      <tr><td>配位多面体最常见连接</td><td>共角顶</td><td>共面最少(挤太近斥力大)</td></tr>
+    </table></div>
+
+    <h2>第三章 · 对称性</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>复合对称要素是哪三个</td><td>反轴、螺旋轴、滑移面</td><td>简单4个(旋/反映/倒反/平移)之外的</td></tr>
+      <tr><td>晶体对称轴轴次只能是</td><td>1,2,3,4,6（无5无≥7）</td><td>五边形铺不满地板</td></tr>
+      <tr><td>\(\bar1\)、\(\bar2\) 等于</td><td>\(\bar1=i\)、\(\bar2=m\)</td><td>\(\bar3=3+i\)、\(\bar6=3+m\)</td></tr>
+      <tr><td>独立宏观对称要素几种</td><td>8 种：\(1,2,3,4,6,i,m,\bar4\)</td><td>反轴只剩 \(\bar4\) 独立</td></tr>
+      <tr><td>晶体外形分几个点群</td><td>32 个点群</td><td>微观是 230 空间群</td></tr>
+      <tr><td>正四面体 \(T_d\) 缺什么</td><td>缺对称中心 \(i\)</td><td>闪锌矿(GaAs)就是 \(T_d\)</td></tr>
+      <tr><td>准晶能否有 5 次对称</td><td>能（晶体不能）</td><td>准晶=有序但无周期</td></tr>
+      <tr><td>2、m、i 组合</td><td>\(2+i=m\) 等（两生第三）</td><td>三者凑齐缺一不可</td></tr>
+    </table></div>
+
+    <h2>第四章 · 晶向和晶面</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>晶面指数怎么定</td><td>截距→倒数→通分→取分子</td><td>晶面取倒数</td></tr>
+      <tr><td>晶面平行某轴，该指数</td><td>0</td><td>平行=截距∞=倒数0</td></tr>
+      <tr><td>晶向指数怎么定</td><td>坐标化最简整数比</td><td>晶向不取倒数</td></tr>
+      <tr><td>立方 {100}/{110}/{111} 个数</td><td>6 / 12 / 8</td><td>记 6-12-8</td></tr>
+      <tr><td>立方晶系 (hkl) 与 [hkl]</td><td>互相垂直</td><td>只在立方成立！</td></tr>
+      <tr><td>立方晶面间距公式</td><td>\(d=a/\sqrt{h^2+k^2+l^2}\)</td><td>低指数面间距大</td></tr>
+      <tr><td>晶带定律</td><td>\(hu+kv+lw=0\)</td><td>面平行轴=乘加为0</td></tr>
+      <tr><td>倒易矢量长度</td><td>\(|G|=1/d\)，\(G\perp\)晶面</td><td>面变点</td></tr>
+      <tr><td>六方四指数关系</td><td>\(h+k+i=0\)</td><td>前三个加起来=0</td></tr>
+    </table></div>
+
+    <h2>第五章 · 半导体材料结构（半导体味最浓）</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>Si、Ge 什么结构</td><td>金刚石型(立方 \(O_h\))</td><td>同种原子</td></tr>
+      <tr><td>GaAs 什么结构/点群</td><td>闪锌矿型，\(T_d\)</td><td>缺对称中心</td></tr>
+      <tr><td>闪锌矿为何对称性低</td><td>缺对称中心 \(i\)</td><td>所以 (111) 和 (1̄1̄1̄) 不同</td></tr>
+      <tr><td>Si、Ge 解理面</td><td>{111}</td><td>复合(111)面间距 0.43a 最大</td></tr>
+      <tr><td>GaAs、InSb 解理面</td><td>{110}</td><td>(111)被离子静电焊牢了</td></tr>
+      <tr><td>蚀坑三角形</td><td>{111}面（方形=100，长方=110）</td><td>三角→111</td></tr>
+      <tr><td>GaAs 哪个面活泼易腐蚀</td><td>(1̄1̄1̄) As 面（Ga面稳定）</td><td>As 有电子对悬挂键</td></tr>
+      <tr><td>Si/Ge 理想生长外形</td><td>8 个{111}的正八面体</td><td>面密度大的面最终露出</td></tr>
+      <tr><td>固溶体晶格常数</td><td>韦伽定律 \(a=(1-x)a_1+xa_2\)</td><td>线性内插</td></tr>
+      <tr><td>第三代宽禁带半导体</td><td>GaN、SiC、ZnO、金刚石、AlN</td><td>\(E_g\gt2.2\) eV</td></tr>
+    </table></div>
+
+    <h2>第六章 · 点缺陷</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>弗兰克缺陷</td><td>\(M_M\rightleftharpoons M_i+V_M\)（空位+间隙成对）</td><td>弗兰克=成对</td></tr>
+      <tr><td>肖特基缺陷</td><td>只产生空位（原子去表面）</td><td>肖特基=只空位</td></tr>
+      <tr><td>缺陷浓度规律</td><td>能量大浓度小、温度高浓度大</td><td>\(n=Ne^{-u/kT}\)</td></tr>
+      <tr><td>淬火冰结的空位</td><td>过饱和空位</td><td>来不及跑掉</td></tr>
+      <tr><td>起施主作用的缺陷</td><td>\(V_X\)、\(M_i\)、\(X_M\)</td><td>非金属空位/金属间隙/非金属占金属位</td></tr>
+      <tr><td>起受主作用的缺陷</td><td>\(V_M\)、\(X_i\)、\(M_X\)</td><td>上面的反过来</td></tr>
+      <tr><td>金属过量(负偏离)→</td><td>N 型（非金属过量→P型）</td><td>金属多=给电子=N</td></tr>
+      <tr><td>哪种晶体易化学比偏离</td><td>离子键成分强的</td><td>无方向饱和限制</td></tr>
+      <tr><td>反结构缺陷</td><td>\(M_X\)、\(X_M\)（占对方位置）</td><td>化合物特有</td></tr>
+    </table></div>
+
+    <h2>第七章 · 线缺陷（位错）</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>刃型位错 b 与位错线</td><td>垂直（有多余半面⊥）</td><td>刃=垂直</td></tr>
+      <tr><td>螺型位错 b 与位错线</td><td>平行</td><td>螺=平行</td></tr>
+      <tr><td>位错能否止于晶体内部</td><td>不能（闭环或到表面）</td><td>要么成圈要么到边</td></tr>
+      <tr><td>滑移 vs 攀移</td><td>滑移=面内(快)；攀移=吸空位跨面(慢)</td><td>攀移靠空位扩散</td></tr>
+      <tr><td>刃型/螺型应力场</td><td>刃=正+切应力；螺=只切应力体积不变</td><td>螺位错不胀缩</td></tr>
+      <tr><td>应变能与 b</td><td>\(W\propto b^2\)，小 b 稳定</td><td>大 b 会分解</td></tr>
+      <tr><td>杂质聚在位错周围叫</td><td>科垂尔气团（→钉扎，变硬脆）</td><td>螺位错不吸杂质</td></tr>
+      <tr><td>Si/Ge 特征柏氏矢量/滑移面</td><td>\(\frac{a}{2}\langle110\rangle\) / {111}</td><td>最密方向、最弱面</td></tr>
+      <tr><td>刃位错悬挂键作用</td><td>n型受主、p型施主（螺型无）</td><td>刃位错最活泼</td></tr>
+    </table></div>
+
+    <h2>第八章 · 面缺陷</h2>
+    <div class="tbl-wrap"><table class="qm">
+      <tr><th>看到题目问…</th><th>就选 / 答</th><th>怎么记（人话）</th></tr>
+      <tr><td>本征型层错</td><td>抽出一层（非本征=插入一层）</td><td>抽=本征、插=非本征</td></tr>
+      <tr><td>层错能高→</td><td>层错少（Al 几乎无）</td><td>能高难出错</td></tr>
+      <tr><td>层错的边界是</td><td>不全位错</td><td>周界=不全位错</td></tr>
+      <tr><td>肖克莱位错</td><td>\(\frac{a}{6}\langle112\rangle\)，可滑不可攀</td><td>能滑不能攀</td></tr>
+      <tr><td>弗兰克位错</td><td>\(\frac{a}{3}\langle111\rangle\)，只刃型，可攀不可滑</td><td>能攀不能滑</td></tr>
+      <tr><td>全位错 vs 不全位错</td><td>全=1个原子间距，不全&lt;1个</td><td>畸变 层错&lt;不全&lt;全</td></tr>
+      <tr><td>扩展位错</td><td>两不全位错+中间层错</td><td>全位错分解、能量降2/3</td></tr>
+      <tr><td>小角晶界公式</td><td>\(D=b/\theta\)</td><td>角越大位错越密</td></tr>
+      <tr><td>异质外延界面位错</td><td>失配位错，\(D=b/\delta\)</td><td>失配越大越密</td></tr>
+    </table></div>
+
+    <div class="callout key">
+      <div class="callout-title">🎯 实在不会时的"保命三招"</div>
+      <ol>
+        <li><strong>缺陷题先想"给电子还是收电子"：</strong>金属(沾金属味的:金属间隙\(M_i\)、非金属空位\(V_X\)、金属过量)→<strong>施主/N型</strong>；反过来→受主/P型。</li>
+        <li><strong>结构题记死几个配对：</strong>Si/Ge=金刚石、GaAs=闪锌矿(无对称中心)；Si解理{111}、GaAs解理{110}；蚀坑三角=111。</li>
+        <li><strong>计算题先认公式：</strong>看到"晶面间距"→\(a/\sqrt{h^2+k^2+l^2}\)；"晶带"→\(hu+kv+lw=0\)；"位错能"→\(\propto b^2\)；"小角晶界/失配"→\(D=b/\theta\) 或 \(b/\delta\)。</li>
+      </ol>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-title">💙 给你打个气</div>
+      <p>这门课图多名词多，但真正反复考的就这几十条配对。把这页读熟、再去刷自测对答案，你会越来越有底。<strong>认脸这事，看三遍就脸熟了。</strong>后天稳住，加油！🍀</p>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch8.html"><span>← 返回</span><b>第八章 面缺陷</b></a>
+      <a class="next" href="solve.html"><span>也看看 →</span><b>🆘 计算题套路</b></a>
+    </div>
+    <div class="foot-note">人话速记 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第四章 晶向和晶面 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+</head>
+<body data-page="ch4">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">第四章</div>
+      <h1>晶体的晶向和晶面</h1>
+      <p class="lead">本章是<strong>计算题主战场</strong>：原子坐标、晶面指数、晶向指数、倒易点阵、晶面间距、晶带定律。步骤固定，练熟就能拿分。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 本章要点</div>
+      <p>原子坐标；<strong>晶面指数（密勒指数）</strong>的确定（截距→倒数→通分→取分子）；晶面族 \(\{hkl\}\)；<strong>晶向指数</strong> \([uvw]\) 与晶向族 \(\langle uvw\rangle\)；六方惯用的<strong>密勒-布拉菲指数</strong>；倒易点阵；<strong>立方晶系晶面间距</strong> \(d=a/\sqrt{h^2+k^2+l^2}\)；晶向夹角；<strong>晶带定律</strong> \(hu+kv+lw=0\)。</p>
+    </div>
+
+    <div class="tabs">
+      <button class="active" data-tab="learn">📖 知识点讲解</button>
+      <button data-tab="examples">✍️ 例题解析</button>
+      <button data-tab="quiz">🧪 学生自测</button>
+    </div>
+
+    <div class="tab-panel active" id="learn">
+
+      <div class="callout tip">
+        <div class="callout-title">🧭 一句话脉络</div>
+        <p>用晶胞的三条棱 \(a,b,c\) 当坐标轴，就能给晶体里每个原子标<b>坐标</b>、给每组平行平面标<b>晶面指数 (hkl)</b>、给每个方向标<b>晶向指数 [uvw]</b>。再配上几个固定公式（晶面间距、夹角、晶带定律）就能算题。</p>
+      </div>
+
+      <h2>4.1 原子坐标</h2>
+      <p>取晶胞参数 \(a,b,c\) 方向为坐标轴（右手系），以各自长度为单位 1，原点取在晶胞顶点。晶胞内原子坐标取 \(0\le x\lt1,\ 0\le y\lt1,\ 0\le z\lt1\)。有 \(a/b/c\) 平移关系的原子坐标相同。</p>
+      <div class="tbl-wrap"><table class="qm">
+        <tr><th>结构</th><th>原子坐标</th></tr>
+        <tr><td>体心立方</td><td>\((0,0,0)\)、\((\tfrac12,\tfrac12,\tfrac12)\)</td></tr>
+        <tr><td>面心立方</td><td>\((0,0,0)\)、\((\tfrac12,\tfrac12,0)\)、\((\tfrac12,0,\tfrac12)\)、\((0,\tfrac12,\tfrac12)\)</td></tr>
+        <tr><td>金刚石</td><td>面心立方那 4 个，再加 \((\tfrac14,\tfrac14,\tfrac14)\)、\((\tfrac34,\tfrac34,\tfrac14)\)、\((\tfrac14,\tfrac34,\tfrac34)\)、\((\tfrac34,\tfrac14,\tfrac34)\)</td></tr>
+      </table></div>
+
+      <h2>4.2 晶面指数（密勒指数）</h2>
+      <div class="callout key">
+        <div class="callout-title">🔑 确定晶面指数的三步（口诀：截距→倒数→通分→取分子）</div>
+        <ol style="margin:6px 0">
+          <li>求晶面在 \(X,Y,Z\) 轴上的<strong>截距</strong> \(r,s,t\)（以点阵常数为单位）；</li>
+          <li>取倒数 \(\tfrac1r,\tfrac1s,\tfrac1t\) 并<strong>通分</strong>；</li>
+          <li>通分后三个分数的<strong>分子</strong>就是晶面指数 \((h\,k\,l)\)。</li>
+        </ol>
+        <p>规则：晶面与某轴<strong>平行</strong> → 截距 \(\infty\) → 该指数为 <strong>0</strong>；与轴负方向相交 → 指数加<strong>负号</strong>（写成上面带横杠）。\((hkl)\) 表示一组平行晶面。</p>
+      </div>
+
+      <div data-viz="miller"></div>
+
+      <div class="callout">
+        <div class="callout-title">晶面族 \(\{hkl\}\)（立方晶系，必记）</div>
+        <p>考虑对称性后等同的一组晶面记作 \(\{hkl\}\)。立方晶系中：</p>
+        <div class="formula-box">\[ \{100\}\!:6\ \text{个}\quad \{110\}\!:12\ \text{个}\quad \{111\}\!:8\ \text{个}\quad(\text{共 }26\ \text{个常用晶面}) \]</div>
+      </div>
+
+      <h2>4.3 晶向指数</h2>
+      <div class="callout key">
+        <div class="callout-title">🔑 确定晶向指数 \([uvw]\) 的三步</div>
+        <ol style="margin:6px 0">
+          <li>过原点作一条<strong>平行于该晶向</strong>的直线；</li>
+          <li>在直线上任取一点，求其<strong>原子坐标</strong>；</li>
+          <li>化为<strong>最简整数比</strong>，写成 \([u\,v\,w]\)。</li>
+        </ol>
+        <p>晶向族记 \(\langle uvw\rangle\)。立方晶系 \(\langle100\rangle\) 含 6 个、\(\langle110\rangle\) 含 12 个、\(\langle111\rangle\) 含 8 个晶向。</p>
+      </div>
+      <div class="callout warn">
+        <div class="callout-title">⚠️ 重要结论（只在特定晶系成立）</div>
+        <p>在<strong>立方晶系</strong>中，指数相同的晶面 \((hkl)\) 与晶向 \([hkl]\) <strong>恰好互相垂直</strong>。<strong>其他晶系不一定成立！</strong></p>
+      </div>
+
+      <h3>六方惯用晶胞：密勒-布拉菲指数</h3>
+      <p>六方晶系常用 4 个晶轴 \(a_1,a_2,a_3,c\)，晶面记 \((h\,k\,i\,l)\)，4 个指数中只有 3 个独立，满足：</p>
+      <div class="formula-box">\[ h+k+i=0 \quad(\text{晶面}),\qquad u+v+t=0\quad(\text{晶向 }[uvtw]) \]</div>
+
+      <h2>4.4 倒易点阵</h2>
+      <p>把正格子晶面 \((hkl)\) 转换成倒空间里的一个<strong>点</strong>，使晶体周期性、衍射几何更易处理。倒格基矢 \(a^*,b^*,c^*\) 定义：</p>
+      <div class="formula-box">\[ \vec a^*\!\cdot\!\vec a=\vec b^*\!\cdot\!\vec b=\vec c^*\!\cdot\!\vec c=1,\qquad \vec a^*\!\cdot\!\vec b=\vec a^*\!\cdot\!\vec c=\dots=0 \]</div>
+      <div class="formula-box">\[ \vec a^*=\frac{\vec b\times\vec c}{V_0},\quad \vec b^*=\frac{\vec c\times\vec a}{V_0},\quad \vec c^*=\frac{\vec a\times\vec b}{V_0},\qquad V_0=(\vec a\times\vec b)\!\cdot\!\vec c \]</div>
+      <p><strong>倒易矢量</strong> \(\vec G_{hkl}=h\vec a^*+k\vec b^*+l\vec c^*\)，它<strong>垂直于 \((hkl)\) 晶面</strong>，长度 \(|\vec G_{hkl}|=1/d_{hkl}\)。正格子与倒格子的<strong>晶轴夹角互为补角</strong>。</p>
+
+      <h2>4.5 晶面间距、夹角与晶带</h2>
+      <div class="callout key">
+        <div class="callout-title">⭐ 立方晶系晶面间距（最常用公式）</div>
+        <div class="formula-box">\[ d_{hkl}=\frac{a}{\sqrt{h^2+k^2+l^2}}\qquad(\text{只适用立方晶系}) \]</div>
+        <p>规律：<strong>晶面指数越低，晶面间距越大</strong>；同方向 \(d_{n00}=D/n\)（如 \(d_{200}=\tfrac12 d_{100}\)）。</p>
+      </div>
+      <div class="callout key">
+        <div class="callout-title">⭐ 立方晶系两晶向夹角</div>
+        <div class="formula-box">\[ \cos\varphi=\frac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{h_1^2+k_1^2+l_1^2}\,\sqrt{h_2^2+k_2^2+l_2^2}} \]</div>
+        <p>立方晶系中同指数晶向与晶面垂直，所以晶面夹角也可用此式。<strong>其他晶系算法较复杂。</strong></p>
+      </div>
+      <div class="callout key">
+        <div class="callout-title">⭐ 晶带定律（Weiss 晶带定律）</div>
+        <p>若晶面 \((hkl)\) 属于以 \([uvw]\) 为晶带轴的晶带（即该晶面平行于此晶向），则：</p>
+        <div class="formula-box">\[ hu+kv+lw=0 \]</div>
+        <p>由两晶面求公共晶带轴、或由两晶带轴求公共晶面，都用<strong>叉乘</strong>：</p>
+        <div class="formula-box">\[ u=k_1l_2-k_2l_1,\quad v=l_1h_2-l_2h_1,\quad w=h_1k_2-h_2k_1 \]</div>
+      </div>
+
+      <h2>4.6 极射赤面投影（了解）</h2>
+      <p>把立体晶体的晶面取向投影到平面上。球面投影：晶面法线交参考球于"极点"。极射赤面投影：从极点 \(P\) 投到赤道面（基圆）。某极点与 \(P'\) 角距离 \(\gamma\) 时，投影点到基圆心距离 \(S=r\tan(\gamma/2)\)。<strong>\(\langle110\rangle\) 取向 2 重、\(\langle111\rangle\) 取向 3 重、\(\langle100\rangle\) 取向 4 重对称花样</strong>（与第五章光学定向呼应）。</p>
+
+      <div class="callout">
+        <div class="callout-title">📋 本章速查</div>
+        <p>晶面指数=截距取倒数通分取分子；平行轴→0、负方向→负号｜立方 \(\{100\}{=}6,\{110\}{=}12,\{111\}{=}8\)｜立方同指数 \((hkl)\perp[hkl]\)｜六方 \(h{+}k{+}i{=}0\)｜倒格 \(\vec a^*{\cdot}\vec a{=}1\)、\(G{=}1/d\)｜立方 \(d=a/\sqrt{h^2{+}k^2{+}l^2}\)｜晶带定律 \(hu{+}kv{+}lw{=}0\)。</p>
+      </div>
+    </div>
+
+    <!-- ================= 例题 ================= -->
+    <div class="tab-panel" id="examples">
+      <p class="lead" style="margin-bottom:18px">计算题靠"认类型 + 套公式"，先盖住自己算。👇</p>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 1</span><span class="ex-title">由截距写晶面指数</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>某晶面在 \(X,Y,Z\) 三轴上的截距分别为 \(2,3,1\)（以点阵常数为单位），求其晶面指数。又：一晶面平行于 \(Z\) 轴、在 \(X,Y\) 截距均为 1，指数是多少？</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>取倒数</h5><p>截距 \(2,3,1\) → 倒数 \(\tfrac12,\tfrac13,1\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>通分取分子</h5><p>通分（公分母 6）：\(\tfrac36,\tfrac26,\tfrac66\) → 分子 \(3,2,6\)。晶面指数 \((3\,2\,6)\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>第二问：平行 Z 轴</h5><p>平行 \(Z\) → 在 \(Z\) 上截距 \(\infty\) → 该指数为 0；\(X,Y\) 截距 1 → 倒数 1。故指数 \((1\,1\,0)\)。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>\((3\,2\,6)\)；\((1\,1\,0)\)。口诀：<b>截距取倒数、通分取分子；平行哪根轴，哪位就是 0</b>。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 2</span><span class="ex-title">立方晶系晶面间距</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>立方晶系晶格常数 \(a\)。求 \(d_{100}\)、\(d_{110}\)、\(d_{111}\)，并比较大小。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>套公式</h5><p>\(d_{hkl}=\dfrac{a}{\sqrt{h^2+k^2+l^2}}\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>逐个代入</h5><p>\(d_{100}=\dfrac{a}{\sqrt1}=a\)；\(d_{110}=\dfrac{a}{\sqrt2}\approx0.707a\)；\(d_{111}=\dfrac{a}{\sqrt3}\approx0.577a\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>比较</h5><p>\(d_{100}\gt d_{110}\gt d_{111}\)。即<strong>指数越低，面间距越大</strong>。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>\(d_{100}=a,\ d_{110}=a/\sqrt2,\ d_{111}=a/\sqrt3\)；低指数晶面间距大（这条结论在第五章解理、生长里会反复用）。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 3</span><span class="ex-title">立方晶系两晶向夹角</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>立方晶系中求晶向 \([100]\) 与 \([111]\) 的夹角。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>套夹角公式</h5><p>\(\cos\varphi=\dfrac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{h_1^2+k_1^2+l_1^2}\sqrt{h_2^2+k_2^2+l_2^2}}\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>代入</h5><p>\(\cos\varphi=\dfrac{1\cdot1+0+0}{\sqrt1\cdot\sqrt3}=\dfrac{1}{\sqrt3}\approx0.577\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>求角</h5><p>\(\varphi=\arccos(0.577)\approx54.7°\)。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>夹角约 \(54.7°\)（即 \(\arccos\tfrac{1}{\sqrt3}\)）。立方晶系中 \([100]\) 与 \([111]\) 的夹角是常见结果。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 4</span><span class="ex-title">晶带定律：求公共晶带轴 / 公共晶面</span><span class="tag calc">计算</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>(1) 晶面 \((100)\) 与 \((110)\) 同属一个晶带，求晶带轴 \([uvw]\)。(2) 一晶面同时属于晶带轴 \([001]\) 和 \([010]\)，求该晶面 \((hkl)\)。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>(1) 两晶面叉乘求晶带轴</h5><p>\((h_1k_1l_1)=(100),(h_2k_2l_2)=(110)\)：<br>\(u=k_1l_2-k_2l_1=0\cdot0-1\cdot0=0\)；\(v=l_1h_2-l_2h_1=0-0=0\)；\(w=h_1k_2-h_2k_1=1\cdot1-1\cdot0=1\)。</p><p>晶带轴 \([001]\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>验证（晶带定律）</h5><p>\((100)\)：\(hu+kv+lw=1\cdot0+0+0=0\) ✓；\((110)\)：\(1\cdot0+1\cdot0+0\cdot1=0\) ✓。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>(2) 两晶带轴叉乘求晶面</h5><p>同样用叉乘公式，\([001]\) 与 \([010]\) → \(h=1,k=0,l=0\)，得晶面 \((100)\)。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>(1) 晶带轴 \([001]\)；(2) 晶面 \((100)\)。核心就一条：<b>属于同一晶带 ⟺ \(hu+kv+lw=0\)</b>，求公共项用叉乘。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-head"><span class="ex-no">例 5</span><span class="ex-title">体心、面心立方的原子坐标</span><span class="tag proof">概念</span></div>
+        <div class="example-body">
+          <div class="problem-stmt"><span class="lbl">题：</span>写出体心立方、面心立方晶胞中各原子的坐标。</div>
+          <button class="solution-toggle">查看完整解答 ▼</button>
+          <div class="solution">
+            <div class="step"><div class="step-n">1</div><div class="step-c"><h5>体心立方</h5><p>顶角原子（平移等价，记 1 个）\((0,0,0)\)，体心 \((\tfrac12,\tfrac12,\tfrac12)\)。</p></div></div>
+            <div class="step"><div class="step-n">2</div><div class="step-c"><h5>面心立方</h5><p>\((0,0,0)\)、\((\tfrac12,\tfrac12,0)\)、\((\tfrac12,0,\tfrac12)\)、\((0,\tfrac12,\tfrac12)\)。</p></div></div>
+            <div class="step"><div class="step-n">3</div><div class="step-c"><h5>金刚石（拓展）</h5><p>= 面心立方那 4 个 + \((\tfrac14,\tfrac14,\tfrac14)\) 等 4 个，共 8 个（两套面心立方沿体对角线错开 1/4）。</p></div></div>
+            <div class="answer-final"><span class="lbl">答：</span>见上。原子坐标都取在 \(0\le x,y,z\lt1\) 范围内。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 自测 ================= -->
+    <div class="tab-panel" id="quiz">
+      <p class="lead" style="margin-bottom:8px">点选项即时判分给解析；多选题选完点「提交答案」。</p>
+      <div class="quiz" data-chapter="ch4">
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">确定晶面指数（密勒指数）的正确步骤是</div>
+  <ul class="q-options">
+    <li>截距 → 直接取整</li>
+    <li data-correct>求截距 → 取倒数 → 通分 → 取分子</li>
+    <li>取倒数 → 求截距 → 平方</li>
+    <li>求坐标 → 化最简整数比</li>
+  </ul>
+  <div class="q-explain">晶面指数：截距取倒数、通分、取分子。注意"化最简整数比"是晶向指数的做法。<strong>【秒记】晶面：截距→倒数→通分→分子。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">当晶面与某晶轴平行时，该晶面在对应方向的指数为</div>
+  <ul class="q-options">
+    <li>1</li>
+    <li data-correct>0</li>
+    <li>∞</li>
+    <li>−1</li>
+  </ul>
+  <div class="q-explain">平行于某轴→截距为∞→倒数为0→指数为0。与轴负方向相交则指数加负号。<strong>【秒记】平行哪根轴，哪位指数=0。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">立方晶系中，晶面族 \(\{111\}\) 包含的等同晶面数为</div>
+  <ul class="q-options">
+    <li>6</li>
+    <li data-correct>8</li>
+    <li>12</li>
+    <li>4</li>
+  </ul>
+  <div class="q-explain">立方晶系：\(\{100\}\) 含 6 个、\(\{110\}\) 含 12 个、\(\{111\}\) 含 8 个，共 26 个常用晶面。<strong>【秒记】100→6，110→12，111→8。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">确定晶向指数 \([uvw]\) 的方法是</div>
+  <ul class="q-options">
+    <li>截距取倒数</li>
+    <li data-correct>过原点作平行线，取线上一点的原子坐标，化最简整数比</li>
+    <li>取晶面法线</li>
+    <li>直接读晶胞参数</li>
+  </ul>
+  <div class="q-explain">晶向指数=过原点平行线上某点原子坐标的最简整数比；晶面指数才是取倒数。两者别混。<strong>【秒记】晶向：坐标化最简整数比；晶面：截距取倒数。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">在立方晶系中，晶面 \((hkl)\) 与晶向 \([hkl]\) 的关系是</div>
+  <ul class="q-options">
+    <li>平行</li>
+    <li data-correct>互相垂直</li>
+    <li>成 45°</li>
+    <li>无固定关系</li>
+  </ul>
+  <div class="q-explain">立方晶系中指数相同的晶面与晶向恰好垂直；但这一关系在其他晶系不一定成立。<strong>【秒记】立方：同指数 (hkl)⊥[hkl]。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">立方晶系的晶面间距公式为</div>
+  <ul class="q-options">
+    <li data-correct>\(d_{hkl}=\dfrac{a}{\sqrt{h^2+k^2+l^2}}\)</li>
+    <li>\(d_{hkl}=a\,(h^2+k^2+l^2)\)</li>
+    <li>\(d_{hkl}=\dfrac{a}{h+k+l}\)</li>
+    <li>\(d_{hkl}=\sqrt{h^2+k^2+l^2}/a\)</li>
+  </ul>
+  <div class="q-explain">立方晶系 \(d=a/\sqrt{h^2+k^2+l^2}\)。由此 \(d_{100}\gt d_{110}\gt d_{111}\)，低指数面间距大。<strong>【秒记】立方间距=a÷根号(h²+k²+l²)。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">关于晶面间距与晶面指数，正确的是</div>
+  <ul class="q-options">
+    <li>指数越高，面间距越大</li>
+    <li data-correct>晶面指数越低，晶面间距越大</li>
+    <li>面间距与指数无关</li>
+    <li>所有晶面间距相等</li>
+  </ul>
+  <div class="q-explain">由 \(d=a/\sqrt{h^2+k^2+l^2}\) 知指数越低、\(d\) 越大；同方向 \(d_{n00}=D/n\)。这条规律是解理面、生长面分析的基础。<strong>【秒记】低指数=大面间距。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">晶带定律（晶面 \((hkl)\) 属于晶带轴 \([uvw]\) 的条件）是</div>
+  <ul class="q-options">
+    <li>\(hu+kv+lw=1\)</li>
+    <li data-correct>\(hu+kv+lw=0\)</li>
+    <li>\(h+k+l=u+v+w\)</li>
+    <li>\(hu=kv=lw\)</li>
+  </ul>
+  <div class="q-explain">晶面平行于晶带轴 ⟺ 其法线（倒易矢量）垂直于晶带轴 ⟺ \(hu+kv+lw=0\)。<strong>【秒记】晶带定律：hu+kv+lw=0。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">倒易矢量 \(\vec G_{hkl}=h\vec a^*+k\vec b^*+l\vec c^*\) 的长度等于</div>
+  <ul class="q-options">
+    <li>\(d_{hkl}\)</li>
+    <li data-correct>\(1/d_{hkl}\)</li>
+    <li>\(a/d_{hkl}\)</li>
+    <li>\(h^2+k^2+l^2\)</li>
+  </ul>
+  <div class="q-explain">倒易矢量垂直于 \((hkl)\) 晶面，长度为面间距的倒数 \(|\vec G_{hkl}|=1/d_{hkl}\)。这是倒易点阵的核心性质。<strong>【秒记】|G|=1/d，G⊥晶面。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">六方晶系密勒-布拉菲指数 \((hkil)\) 中，四个指数满足</div>
+  <ul class="q-options">
+    <li data-correct>\(h+k+i=0\)</li>
+    <li>\(h+k+i+l=0\)</li>
+    <li>\(h+k=i\)</li>
+    <li>\(hkil\) 全独立</li>
+  </ul>
+  <div class="q-explain">六方惯用四轴指数 \((hkil)\) 中只有 3 个独立，满足 \(h+k+i=0\)；晶向 \([uvtw]\) 满足 \(u+v+t=0\)。<strong>【秒记】六方：h+k+i=0。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="single">
+  <div class="q-stem">立方晶系中 \(d_{200}\) 与 \(d_{100}\) 的关系是</div>
+  <ul class="q-options">
+    <li>\(d_{200}=2d_{100}\)</li>
+    <li data-correct>\(d_{200}=\tfrac12 d_{100}\)</li>
+    <li>\(d_{200}=d_{100}\)</li>
+    <li>\(d_{200}=\sqrt2\,d_{100}\)</li>
+  </ul>
+  <div class="q-explain">\(d_{n00}=D/n\)，所以 \(d_{200}=d_{100}/2\)。也可用公式：\(d_{200}=a/\sqrt{4}=a/2\)，而 \(d_{100}=a\)。<strong>【秒记】d_{n00}=D/n。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">关于晶面指数与晶向指数，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>\((hkl)\) 表示一组平行晶面</li>
+    <li data-correct>\(\{hkl\}\) 表示对称等同的晶面族</li>
+    <li data-correct>\([uvw]\) 表示晶向，\(\langle uvw\rangle\) 表示晶向族</li>
+    <li>晶面指数要化为最简整数比，不取倒数</li>
+  </ul>
+  <div class="q-explain">圆括号=单组平行晶面，花括号=晶面族；方括号=晶向，尖括号=晶向族。晶面指数要取倒数，最后一项错。<strong>【秒记】()面 {}面族 []向 ⟨⟩向族。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">下列关于倒易点阵的说法，正确的有（多选）</div>
+  <ul class="q-options">
+    <li data-correct>\(\vec a^*\cdot\vec a=1\)，\(\vec a^*\cdot\vec b=0\)</li>
+    <li data-correct>\(\vec G_{hkl}\) 垂直于 \((hkl)\) 晶面</li>
+    <li data-correct>\(|\vec G_{hkl}|=1/d_{hkl}\)</li>
+    <li data-correct>把正格子晶面转化为倒空间中的点</li>
+  </ul>
+  <div class="q-explain">倒格基矢由 \(\vec a^*\cdot\vec a=1\)、\(\vec a^*\cdot\vec b=0\) 定义；倒易矢量垂直于晶面、长度为面间距倒数；其意义是把晶面变成点。<strong>【秒记】倒易：a*·a=1、G⊥面、|G|=1/d。</strong></div>
+</div>
+
+<div class="quiz-item" data-type="multiple">
+  <div class="q-stem">立方晶系中下列哪些量可以用 \(\cos\varphi=\dfrac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{\cdots}\sqrt{\cdots}}\) 计算（多选）</div>
+  <ul class="q-options">
+    <li data-correct>两晶向间夹角</li>
+    <li data-correct>两晶面间夹角（因同指数晶面晶向垂直）</li>
+    <li>晶面间距</li>
+    <li>晶胞体积</li>
+  </ul>
+  <div class="q-explain">该公式算两晶向夹角；立方晶系同指数晶面与晶向垂直，故也能算晶面夹角。面间距、体积要用别的公式。<strong>【秒记】夹角公式管晶向/晶面夹角（仅立方等高对称晶系）。</strong></div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="ch3.html"><span>← 上一章</span><b>第三章 晶体的对称性</b></a>
+      <a class="next" href="ch5.html"><span>下一章 →</span><b>第五章 半导体材料结构</b></a>
+    </div>
+    <div class="foot-note">第四章 · 晶体的晶向和晶面 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+<script defer src="assets/js/viz.js"></script>
+</body>
+</html>
