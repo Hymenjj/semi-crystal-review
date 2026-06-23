@@ -363,23 +363,35 @@
 
   // ---------- 刃型位错（2D）----------
   function vizEdge(host) {
-    const { cv, resize } = makeCanvas(host, 300);
+    const { cv, resize } = makeCanvas(host, 330);
     let pos = 4;
-    control(host, "滑移：位错位置", 1, 8, 1, 4, v => `第 ${v} 列`, v => { pos = v; draw(); });
-    caption(host, "<b style='color:var(--danger)'>刃型位错</b>：上半部多插了<b>半个原子面</b>（红色），它的下端缘就是位错线（⊥）。切应力下位错<b>逐列移动(滑移)</b>，移到边缘就完成一个原子间距的滑移——比整面同时滑动省力得多。柏氏矢量 b ⊥ 位错线。");
+    control(host, "切应力下位错位置", 1, 8, 1, 4, v => `第 ${v} 列`, v => { pos = v; draw(); });
+    caption(host, "<b style='color:var(--danger)'>刃型位错</b>：上半部多插<b>半个原子面</b>（红），其下端缘就是<b>位错线 ⊥</b>。在<b style='color:var(--accent)'>切应力 τ</b> 作用下位错<b>逐列滑移</b>，移到边缘即完成一个柏氏矢量 <b>b</b> 的滑移（b ⊥ 位错线）。半原子面一侧晶格受<b>压应力</b>、另一侧受<b>张应力</b>——这就是刃型位错的<b>正应力场</b>。");
     function bend(i, pos, gx, j, midRow) { const d = i - pos, wgt = (midRow - j) / midRow; return -Math.sign(d) * Math.min(Math.abs(d), 2) * gx * 0.06 * wgt * (Math.abs(d) <= 3 ? 1 : 0); }
+    function arrowH(ctx, x0, y, x1, c) {
+      ctx.strokeStyle = c; ctx.lineWidth = 2.3; ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+      const d = Math.sign(x1 - x0), s = 7; ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x1 - d * s, y - 4); ctx.lineTo(x1 - d * s, y + 4); ctx.closePath(); ctx.fill();
+    }
     function draw() {
       const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
-      const cols = 9, rows = 6, padX = 36, padY = 30, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.16, midRow = Math.floor(rows / 2);
+      const cols = 9, rows = 6, padX = 46, padY = 50, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.16, midRow = Math.floor(rows / 2);
+      const tx = padX + pos * gx, slipY = padY + (midRow - 0.5) * gy;
+      ctx.strokeStyle = col.grid; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(padX - 16, slipY); ctx.lineTo(w - padX + 16, slipY); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = col.faint; ctx.font = "12px sans-serif"; ctx.textAlign = "right"; ctx.fillText("滑移面", w - padX + 14, slipY - 5);
+      ctx.fillStyle = col.soft; ctx.textAlign = "left"; ctx.fillText("压应力", 6, padY + gy * 0.6); ctx.fillText("张应力", 6, padY + gy * 4.5);
       for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
         let x = padX + i * gx; const y = padY + j * gy, above = j < midRow;
         if (above) x = padX + i * gx + bend(i, pos, gx, j, midRow);
         atom(ctx, x, y, r, (above && i === pos) ? col.danger : col.primary, col.ink);
       }
-      const tx = padX + pos * gx, ty = padY + midRow * gy;
-      ctx.strokeStyle = col.danger; ctx.lineWidth = 2.5;
-      ctx.beginPath(); ctx.moveTo(tx, ty - gy * 0.5); ctx.lineTo(tx, ty + gy * 0.2); ctx.moveTo(tx - gx * 0.28, ty + gy * 0.2); ctx.lineTo(tx + gx * 0.28, ty + gy * 0.2); ctx.stroke();
-      ctx.fillStyle = col.danger; ctx.font = "bold 13px sans-serif"; ctx.textAlign = "left"; ctx.fillText("位错线⊥", tx + gx * 0.32, ty);
+      ctx.strokeStyle = col.danger; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(tx, slipY - gy * 0.7); ctx.lineTo(tx, slipY); ctx.moveTo(tx - gx * 0.28, slipY); ctx.lineTo(tx + gx * 0.28, slipY); ctx.stroke();
+      ctx.fillStyle = col.danger; ctx.font = "bold 12.5px sans-serif"; ctx.textAlign = "left"; ctx.fillText("位错线 ⊥", tx + gx * 0.34, slipY - 5);
+      const by = slipY + 17; arrowH(ctx, tx - gx / 2, by, tx + gx / 2, col.ink);
+      ctx.fillStyle = col.ink; ctx.font = "italic bold 13px sans-serif"; ctx.textAlign = "center"; ctx.fillText("b", tx, by + 14);
+      arrowH(ctx, padX - 10, padY - 26, padX + gx * 1.7, col.accent);
+      arrowH(ctx, w - padX + 10, h - 16, w - padX - gx * 1.7, col.accent);
+      ctx.fillStyle = col.accent; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "left"; ctx.fillText("切应力 τ", padX + gx * 1.8, padY - 22);
+      ctx.textAlign = "right"; ctx.fillText("切应力 τ", w - padX - gx * 1.8, h - 12);
     }
     draw(); window.addEventListener("resize", draw); host._redraw = draw;
   }
@@ -723,27 +735,29 @@
     caption(host, "半导体掺杂：取代原子的价电子比 Si（4 价）多 1 个就多 1 个自由电子（施主→n 型），少 1 个就多 1 个空穴（受主→p 型）。靠掺杂精确控制导电类型和载流子浓度，是所有半导体器件的基础。");
   }
 
-  // ===== 第七章 螺型位错（3D 螺旋面）=====
+  // ===== 第七章 螺型位错（3D 螺旋面，多层）=====
   function vizScrew(host) {
-    const N = 4, b = 1.4, sc = 0.42;  // 平面内格点 -N..N；b=绕一圈升高量；sc=横向间距
+    const N = 3, b = 1.0, sc = 0.46, nL = 3, dy = b;   // nL 层晶面叠成块，整摞被螺旋穿过
     function build(col) {
       const atoms = [], bonds = [], idx = {}; let n = 0;
-      const key = (i, j) => i + "_" + j;
-      for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
-        const th = Math.atan2(j + 0.001, i + 0.001);      // 绕位错线的方位角（微偏避开奇点）
-        idx[key(i, j)] = n++;
-        atoms.push({ x: i * sc, y: b * th / (2 * Math.PI), z: j * sc, r: 0.085, color: col.primary });
+      const key = (L, i, j) => L + "_" + i + "_" + j;
+      for (let L = 0; L < nL; L++) for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+        const u = b * Math.atan2(j + 0.001, i + 0.001) / (2 * Math.PI);   // 螺旋升高量
+        idx[key(L, i, j)] = n++;
+        atoms.push({ x: i * sc, y: L * dy + u - (nL - 1) * dy / 2, z: j * sc, r: 0.072, color: col.primary });
       }
-      for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
-        const a = idx[key(i, j)];
-        if (i < N) bonds.push([a, idx[key(i + 1, j)]]);
-        if (j < N && !(i < 0 && j === -1)) bonds.push([a, idx[key(i, j + 1)]]); // 跨过不连续线(螺旋台阶)不连键
+      for (let L = 0; L < nL; L++) for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+        const a = idx[key(L, i, j)];
+        if (i < N) bonds.push([a, idx[key(L, i + 1, j)]]);
+        if (j < N && !(i < 0 && j === -1)) bonds.push([a, idx[key(L, i, j + 1)]]);   // 跨螺旋台阶不连键
+        if (L < nL - 1) bonds.push([a, idx[key(L + 1, i, j)]]);                       // 竖向原子列
       }
-      return { atoms, bonds, edges: [[{ x: 0, y: -b * 0.6, z: 0 }, { x: 0, y: b * 0.6, z: 0 }]], unit: N * sc * 1.5 };
+      const yl = (nL - 1) * dy / 2 + b;
+      return { atoms, bonds, edges: [[{ x: 0, y: -yl, z: 0 }, { x: 0, y: yl, z: 0 }]], unit: N * sc * 1.7 };
     }
-    interactive3D(host, build, { height: 360, ax: -0.85, ay: 0.5 });
-    legend(host, [{ c: "primary", t: "原子面（螺旋上升）" }]);
-    caption(host, "🖱️ <b>拖动旋转</b>。<b>螺型位错</b>：原本平行的原子面被连接成<b>一个螺旋面</b>——绕位错线（中央竖线）转一圈，面就升高一个<b>柏氏矢量 b</b>（图中能看到一道螺旋台阶）。<b>b ∥ 位错线</b>（刃型是 b⊥线）；它<b>没有多余半原子面</b>，可在任意含位错线的面上滑移、运动较自由。");
+    interactive3D(host, build, { height: 360, ax: -0.7, ay: 0.5 });
+    legend(host, [{ c: "primary", t: "原子（多层晶面，螺旋上升）" }]);
+    caption(host, "🖱️ <b>拖动旋转</b>。<b>螺型位错</b>：原本平行的<b>多层原子面</b>被连接成<b>一个连续螺旋面</b>——绕<b>位错线</b>（中央竖线）转一圈，整摞面就升高一个<b>柏氏矢量 b</b>（图中有一道螺旋台阶）。<b>b ∥ 位错线</b>（刃型是 b⊥线）；它<b>没有多余半原子面</b>，可在任意含位错线的面上滑移、运动较自由；<b>应力场只有切应力、无正应力</b>（晶体体积不变）。");
   }
 
   // ===== 第七章 柏氏回路（弗兰克法：实际晶体闭合 / 完整晶体差一个 b）=====

@@ -50,6 +50,14 @@ window.MathJax = {
         <div class="callout-title">💡 为什么要引入位错？（理论 vs 实测）</div>
         <p>1926 年刚性模型假设滑移面两侧原子<strong>整体同步平移</strong>，估算理论屈服强度 \(\tau_m\approx Gb/2\pi a\)。但实测值比它<strong>小 3–4 个数量级</strong>！1934 年 Taylor 等提出：滑移只在<strong>位错线附近</strong>逐步进行，位错像"地毯下的褶皱"一样移动，所需应力远小于整面同时滑动——这就解释了实测强度为何这么低。</p>
       </div>
+      <div class="callout">
+        <div class="callout-title">📐 理论切应力（屈服强度）的估算</div>
+        <p>刚性模型下，切应力随滑移面两侧的相对位移 \(x\) 周期变化，近似取正弦：</p>
+        <div class="formula-box">\[ \tau=\tau_m\sin\frac{2\pi x}{b} \]</div>
+        <p>\(x\) 很小时 \(\sin\frac{2\pi x}{b}\approx\frac{2\pi x}{b}\)；又由虎克定律 \(\tau=G\,\frac{x}{a}\)（\(G\) 切变模量，\(a\) 两层原子面间距），两式比较得<strong>理论最大切应力</strong>：</p>
+        <div class="formula-box">\[ \tau_m=\frac{Gb}{2\pi a}\,,\qquad a=b\ \Rightarrow\ \tau_m=\frac{G}{2\pi} \]</div>
+        <p>取 \(G\sim10^{10}\text{–}10^{11}\,\text{dyn/cm}^2\)，则理论值 \(\tau_m\sim10^{9}\text{–}10^{10}\)；而实测屈服强度仅 \(\sim10^{6}\)，<strong>相差 3–4 个数量级</strong>——必须引入位错才能解释。</p>
+      </div>
       <div class="callout warn">
         <div class="callout-title">⚠️ 位错的重要特征</div>
         <p>位错线必然在晶体中构成<strong>闭合环线</strong>，或<strong>终止于晶体表面</strong>，<strong>绝不能终止于晶体内部</strong>。</p>
@@ -100,6 +108,13 @@ window.MathJax = {
         </ul>
       </div>
       <p><strong>空位团崩塌：</strong>过饱和空位凝聚成片状空位团，崩塌后形成<strong>棱柱位错环</strong>（一种刃型位错环，只能攀移）。<strong>增殖：</strong>Frank-Read 源——一端或两端固定的位错线在应力下不断"吹泡"生成新位错环（位错源使屈服强度降低）。</p>
+      <div class="callout">
+        <div class="callout-title">📐 位错密度的估算（两种来源）</div>
+        <ul style="margin:6px 0">
+          <li><strong>弯曲应力</strong>（曲率半径 \(r\)、柏氏矢量大小 \(b\)）：<div class="formula-box">\[ \rho=\frac{1}{r\,b} \]</div>例：Si（\(\vec b=\frac{a}{2}[110]\)，\(a=5.43\,\text{Å}\)）弯曲半径 \(r=1\,\text{m}\) 时 \(\rho\approx2.6\times10^{5}\,/\text{cm}^2\)。</li>
+          <li><strong>径向温度梯度</strong>（热膨胀系数 \(\alpha\)、温度梯度 \(\frac{dT}{dr}\)）：<div class="formula-box">\[ \rho=\frac{\alpha}{b}\left|\frac{dT}{dr}\right| \]</div></li>
+        </ul>
+      </div>
 
       <h2>7.4 位错的应力场与应变能</h2>
       <div class="callout key">
@@ -109,10 +124,26 @@ window.MathJax = {
           <li><strong>螺型位错：</strong><strong>只有切应力、没有正应力</strong>，因此没有拉伸/压缩、<strong>晶体体积不变</strong>；应力沿轴对称、随 \(r\) 增大而减弱。</li>
         </ul>
       </div>
+      <div class="callout">
+        <div class="callout-title">📐 7.4.1 刃型位错的应力场（连续介质模型）</div>
+        <p>记 \(D=\frac{Gb}{2\pi(1-\nu)}\)（\(G\) 切变模量，\(\nu\) 泊松比，\(b\) 柏氏矢量）。直角坐标下 \(P(x,y)\) 点的应力：</p>
+        <div class="formula-box">\[ \sigma_{xx}=-D\,\frac{y(3x^2+y^2)}{(x^2+y^2)^2}\,,\qquad \sigma_{yy}=D\,\frac{y(x^2-y^2)}{(x^2+y^2)^2} \]</div>
+        <div class="formula-box">\[ \tau_{xy}=\tau_{yx}=D\,\frac{x(x^2-y^2)}{(x^2+y^2)^2} \]</div>
+        <p>极坐标下（\(x=r\cos\theta,\ y=r\sin\theta\)）：</p>
+        <div class="formula-box">\[ \sigma_{rr}=\sigma_{\theta\theta}=-D\,\frac{\sin\theta}{r}\,,\qquad \tau_{r\theta}=D\,\frac{\cos\theta}{r} \]</div>
+        <p>分析：\(y\gt0\)（半原子面一侧）\(\sigma_{xx}\lt0\) 为<strong>压应力</strong>、\(y\lt0\) 为<strong>张应力</strong>；各分量都 \(\propto\frac{1}{r}\)，离位错越远越弱，\(\theta=90°\) 时正应力极大。</p>
+      </div>
+      <div class="callout">
+        <div class="callout-title">📐 7.4.2 螺型位错的应力场</div>
+        <p>螺型位错<strong>只有切应力、没有正应力</strong>（故体积不变）：</p>
+        <div class="formula-box">\[ \tau_{\theta z}=\frac{Gb}{2\pi r}\,,\qquad \sigma_{rr}=\sigma_{\theta\theta}=\sigma_{zz}=0 \]</div>
+        <p>应力沿 \(z\) 轴（位错线）对称分布、随 \(r\) 增大而减弱。</p>
+      </div>
       <div class="callout key">
         <div class="callout-title">⭐ 应变能 \(W\propto b^2\)（决定位错稳定性）</div>
-        <p>单位长度位错的应变能正比于柏氏矢量的平方：</p>
-        <div class="formula-box">\[ W\propto b^2 \]</div>
+        <p>把形成位错时外力所做的功算出来，得<strong>单位长度位错的应变能</strong>（\(r_0\) 为位错中心半径、\(r_1\) 为晶块尺寸 \(\approx10^{-4}\,\text{cm}\)）：</p>
+        <div class="formula-box">\[ W_{\text{刃}}=\frac{Gb^2}{4\pi(1-\nu)}\ln\frac{r_1}{r_0}\,,\qquad W_{\text{螺}}=\frac{Gb^2}{4\pi}\ln\frac{r_1}{r_0} \]</div>
+        <p>两者都 \(\propto b^2\)：\[ W\propto b^2 \]</p>
         <p>推论：<strong>柏氏矢量越小，应变能越低，越稳定</strong>。一个强度 \(2b\) 的位错（\(\propto4b^2\)）不如两个强度 \(b\) 的位错（\(\propto2b^2\)）稳定，故大 \(\vec b\) 的位错倾向分解为小 \(\vec b\) 的位错。这也解释了为什么<strong>柏氏矢量通常沿原子线密度最大的方向、且大小为一个原子间距</strong>。（注：连续介质模型在位错中心 \(r\to0\) 不适用。）</p>
       </div>
 
@@ -121,10 +152,23 @@ window.MathJax = {
         <div class="callout-title">位错与杂质：科垂尔气团</div>
         <p>正刃型位错上方受压、下方受张。<strong>半径大的替位杂质</strong>倾向跑到位错<strong>下方张应力区</strong>（缓解畸变、降低能量）；<strong>半径小的</strong>倾向跑到<strong>上方压应力区</strong>。大量杂质聚集在位错附近、按玻尔兹曼分布，称<strong>科垂尔（Cottrell）气团</strong>。间隙杂质形成的类似气团叫<strong>斯诺克气团</strong>。气团使位错运动困难，称<strong>钉扎效应</strong>，材料变硬变脆。<strong>螺型位错无正应力</strong>，与杂质几乎无弹性交互作用。</p>
       </div>
+      <div class="callout">
+        <div class="callout-title">📐 科垂尔交互作用能与气团浓度</div>
+        <p>用连续介质近似，刃型位错应力场与替位杂质（极坐标 \((R,\alpha)\)）的交互作用能：</p>
+        <div class="formula-box">\[ U=\frac{4(1+\nu)}{3(1-\nu)}\cdot\frac{Gb\,\varepsilon\,r^3\sin\alpha}{R}\,,\qquad \varepsilon=\frac{r'-r}{r} \]</div>
+        <p>（\(r'\) 杂质原子半径、\(r\) 基体原子半径，\(\varepsilon\) 为尺寸失配；\(U\lt0\) 处相对稳定）。平衡时位错附近杂质浓度按玻尔兹曼分布——这就是<strong>科垂尔气团</strong>：</p>
+        <div class="formula-box">\[ C=C_0\,\exp\!\left(-\frac{U}{kT}\right) \]</div>
+      </div>
       <p><strong>位错与点缺陷：</strong>位错可作点缺陷的"<strong>黑洞</strong>"（吸收空位/间隙使其消失或引起攀移），也可作点缺陷的"<strong>源泉</strong>"（发射空位/间隙）。<strong>位错交割</strong>产生<strong>割阶</strong>。</p>
       <div class="callout">
-        <div class="callout-title">位错间弹性作用</div>
-        <p>切应力对单位长度位错的作用力 \(F=\tau b\)。刃型位错受力方向与 \(\tau\) 一致，螺型位错受力方向与 \(\tau\) 垂直。两平行刃型位错：同号相互排斥、倾向沿 Y 轴方向排成一列（这是<strong>小角晶界、多边形化、位错排</strong>的来源）；异号相吸。两平行螺型位错：同号相斥、异号相吸（接近时复合湮灭）。</p>
+        <div class="callout-title">📐 位错间的弹性作用力</div>
+        <p>切应力 \(\tau\) 对单位长度位错的作用力（与位错线垂直）：</p>
+        <div class="formula-box">\[ F=\tau b \]</div>
+        <p>刃型位错受力方向与 \(\tau\) <strong>一致</strong>，螺型位错受力方向与 \(\tau\) <strong>垂直</strong>。两条平行<strong>刃型</strong>位错间的滑移力（\(x=r\cos\theta\)）：</p>
+        <div class="formula-box">\[ F_x=\frac{Gb_1b_2}{2\pi(1-\nu)}\cdot\frac{x(x^2-y^2)}{(x^2+y^2)^2}=\frac{Gb_1b_2}{2\pi(1-\nu)}\cdot\frac{\cos\theta\cos2\theta}{r} \]</div>
+        <p>两条平行<strong>螺型</strong>位错间的力（沿径向）：</p>
+        <div class="formula-box">\[ F=\frac{Gb_1b_2}{2\pi r} \]</div>
+        <p>\(F_x\gt0\) 为斥力（同号、彼此远离），\(F_x\lt0\) 为引力（异号、彼此靠近）。同号刃位错沿 \(Y\) 轴方向排成一列时力学稳定——这就是<strong>小角晶界、多边形化、位错排</strong>的来源。</p>
       </div>
 
       <h2>7.6 锗、硅单晶中的位错</h2>
