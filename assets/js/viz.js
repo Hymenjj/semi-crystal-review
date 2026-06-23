@@ -584,7 +584,359 @@
     window.addEventListener("resize", () => { if (!raf) draw(); }); host._redraw = draw;
   }
 
-  const REG = { cubic: vizCubic, diamond: vizDiamond, wurtzite: vizWurtzite, nacl: vizNaCl, cscl: vizCsCl, rutile: vizRutile, perovskite: vizPerovskite, graphite: vizGraphite, closepack: vizClosepack, bravais: vizBravais, reduce: vizReduce, density: vizDensity, miller: vizMiller, edge: vizEdge, slip: vizSlip };
+  // ===== 第三章 对称性：旋转轴 =====
+  function vizRotaxis(host) {
+    const { cv, resize } = makeCanvas(host, 300);
+    const opts = [1, 2, 3, 4, 6]; let n = 4, ang = 0, raf = null, vis = true;
+    function flag(ctx, cx, cy, R, a, col, ink) {
+      const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+      ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(-16, 0); ctx.lineTo(16, 0); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(5, -11); ctx.stroke();
+      atom(ctx, -16, 0, 6, col, ink); ctx.restore();
+    }
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const cx = w / 2, cy = h / 2 - 6, R = Math.min(w, h) * 0.3;
+      ctx.fillStyle = col.primary; ctx.beginPath(); ctx.arc(cx, cy, 5, 0, 7); ctx.fill();
+      for (let k = 0; k < n; k++) flag(ctx, cx, cy, R, ang + k * 2 * Math.PI / n, col.accent, col.ink);
+      ctx.fillStyle = col.soft; ctx.font = "bold 14px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText(n + " 次旋转轴：每转 " + Math.round(360 / n) + "° 与自身重合", cx, h - 10);
+    }
+    function tick() { if (vis) ang += 0.008; draw(); raf = vis ? requestAnimationFrame(tick) : null; }
+    btnRow(host, opts.map(x => x + " 次轴"), i => { n = opts[i]; ang = 0; draw(); });
+    caption(host, "<b>晶体里只允许 1、2、3、4、6 次旋转轴</b>——绕轴旋转后还要能与周期性平移点阵重合，这就限死了可能的轴次。<b>没有 5 次、7 次及更高次轴</b>（下一个图给出原因）。看它自转即可。");
+    draw();
+    if (typeof IntersectionObserver !== "undefined") { const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis && !raf) raf = requestAnimationFrame(tick); else if (!vis && raf) { cancelAnimationFrame(raf); raf = null; } }); io.observe(cv); } else tick();
+    window.addEventListener("resize", () => { if (!raf) draw(); }); host._redraw = draw;
+  }
+
+  // ===== 第三章：为什么没有 5 次轴（正多边形铺砌）=====
+  function vizFivefold(host) {
+    const { cv, resize } = makeCanvas(host, 320);
+    let n = 5;
+    control(host, "正多边形边数", 3, 8, 1, 5, v => "正 " + v + " 边形", v => { n = v; draw(); });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;"; host.appendChild(cap);
+    caption(host, "用<b>正多边形铺地砖</b>解释 5 次轴为何不存在：绕一个公共顶点摆正多边形，只有内角能<b>整除 360°</b> 的（正三角形 60°、正方形 90°、正六边形 120°）才能严丝合缝铺满，对应 3/4/6 次轴（连同 1、2 次共 5 种）。正五边形内角 108°，摆 3 个=324°，留 36° 缺口 → <b>晶体里没有 5 次轴</b>。");
+    function ngon(ctx, ox, oy, side, theta, col, ink) {
+      const ext = 2 * Math.PI / n; let px = ox, py = oy, dir = theta; const pts = [[px, py]];
+      for (let k = 0; k < n; k++) { px += Math.cos(dir) * side; py += Math.sin(dir) * side; pts.push([px, py]); dir += ext; }
+      ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath();
+      ctx.fillStyle = col; ctx.globalAlpha = 0.3; ctx.fill(); ctx.globalAlpha = 1; ctx.strokeStyle = ink; ctx.lineWidth = 1.6; ctx.stroke();
+    }
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const ox = w / 2, oy = h * 0.62, interior = (n - 2) * 180 / n, intr = interior * Math.PI / 180;
+      const fit = Math.floor(360 / interior + 1e-9), side = Math.min(w, h) * 0.27, sum = fit * interior;
+      if (sum < 359.99) { ctx.fillStyle = col.danger; ctx.globalAlpha = 0.18; ctx.beginPath(); ctx.moveTo(ox, oy); ctx.arc(ox, oy, side * 1.05, sum * Math.PI / 180, 2 * Math.PI); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1; }
+      for (let i = 0; i < fit; i++) ngon(ctx, ox, oy, side, i * intr, col.accent, col.ink);
+      ctx.fillStyle = col.primary; ctx.beginPath(); ctx.arc(ox, oy, 4, 0, 7); ctx.fill();
+      const gap = Math.round((360 - sum) * 10) / 10;
+      cap.innerHTML = "正 <b>" + n + "</b> 边形内角 <b>" + Math.round(interior * 10) / 10 + "°</b>，绕一点摆 <b>" + fit + "</b> 个 = " + Math.round(sum * 10) / 10 + "°——"
+        + (Math.abs(sum - 360) < 0.5 ? "<b style='color:var(--accent)'>正好铺满 360° → 允许</b>。" : "<b style='color:var(--danger)'>差 " + gap + "°（红色缺口）填不满 → 这种对称晶体里不存在</b>。");
+    }
+    draw(); window.addEventListener("resize", draw); host._redraw = draw;
+  }
+
+  // ===== 第六章 点缺陷 =====
+  function vizPointdefect(host) {
+    const { cv, resize } = makeCanvas(host, 320);
+    const modes = ["完美晶体", "空位", "间隙原子", "弗仑克尔缺陷", "肖特基缺陷", "置换原子"];
+    const notes = [
+      "理想晶体：正、负离子（蓝 / 绿）严格交替排列，无缺陷。",
+      "<b>空位</b>：某结点上的原子缺失（红色虚线空格），该原子跑到了晶体表面。",
+      "<b>间隙原子</b>：多余原子挤进正常结点之间的间隙位置（橙）。",
+      "<b>弗仑克尔(Frenkel)缺陷</b>：原子离开自己的结点（留下空位）挤入邻近间隙 → <b>空位 + 间隙成对</b>出现，原子总数守恒、晶体密度不变。常见于 AgBr 等。",
+      "<b>肖特基(Schottky)缺陷</b>：一个正离子空位 + 一个负离子空位<b>成对</b>出现（维持电中性），原子迁到表面 → 晶体<b>密度略降</b>。常见于 NaCl 等。",
+      "<b>置换原子</b>：杂质原子取代了原结点上的原子（紫）。",
+    ];
+    let mode = 0;
+    btnRow(host, modes, i => { mode = i; draw(); cap.innerHTML = notes[i]; });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;"; host.appendChild(cap);
+    legend(host, [{ c: "primary", t: "正离子" }, { c: "accent", t: "负离子" }, { c: "warn", t: "间隙原子" }, { c: "danger", t: "空位" }]);
+    function vac(ctx, x, y, r, col) { ctx.strokeStyle = col.danger; ctx.lineWidth = 1.8; ctx.setLineDash([3, 3]); ctx.strokeRect(x - r, y - r, 2 * r, 2 * r); ctx.setLineDash([]); }
+    const key = (i, j) => i + "," + j;
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const cols = 7, rows = 5, padX = 42, padY = 30, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.21;
+      const skip = {}, extra = [], arrows = []; const ci = 3, cj = 2;
+      if (mode === 1) skip[key(ci, cj)] = 1;
+      if (mode === 2) extra.push([ci + 0.5, cj + 0.5, col.warn]);
+      if (mode === 3) { skip[key(ci, cj)] = 1; extra.push([ci + 0.5, cj - 0.5, col.warn]); arrows.push([ci, cj, ci + 0.5, cj - 0.5]); }
+      if (mode === 4) { skip[key(ci, cj)] = 1; skip[key(ci + 1, cj)] = 1; }
+      const subst = mode === 5 ? key(ci, cj) : null;
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+        const x = padX + i * gx, y = padY + j * gy;
+        if (skip[key(i, j)]) { vac(ctx, x, y, r, col); continue; }
+        let c = (i + j) % 2 === 0 ? col.primary : col.accent;
+        if (subst === key(i, j)) { atom(ctx, x, y, r * 1.18, "#9b59d0", col.ink); continue; }
+        atom(ctx, x, y, r, c, col.ink);
+      }
+      extra.forEach(e => atom(ctx, padX + e[0] * gx, padY + e[1] * gy, r * 0.8, e[2], col.ink));
+      arrows.forEach(a => { ctx.strokeStyle = col.warn; ctx.lineWidth = 2; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(padX + a[0] * gx, padY + a[1] * gy); ctx.lineTo(padX + a[2] * gx, padY + a[3] * gy); ctx.stroke(); ctx.setLineDash([]); });
+    }
+    draw(); cap.innerHTML = notes[0]; window.addEventListener("resize", draw); host._redraw = draw;
+  }
+
+  // ===== 第六章 掺杂：施主 / 受主 =====
+  function vizDoping(host) {
+    const { cv, resize } = makeCanvas(host, 330);
+    const modes = ["本征 Si", "施主掺杂 (P, n 型)", "受主掺杂 (B, p 型)"];
+    const notes = [
+      "<b>本征半导体</b>：纯 Si，每个 Si 用 4 个价电子与相邻 4 个 Si 各成 1 对共价键（小圆点 = 共用电子对），没有多余载流子。",
+      "<b>施主掺杂（n 型）</b>：5 价的 P 取代 Si，4 个电子成键后<b>多出 1 个电子</b>（蓝 e⁻）束缚很弱、极易挣脱成<b>自由电子</b> → 多数载流子是电子，P 称<b>施主</b>。",
+      "<b>受主掺杂（p 型）</b>：3 价的 B 取代 Si，只能成 3 个键，<b>缺 1 个电子留下空穴</b>（红圈），邻键电子来填、空穴随之移动 → 多数载流子是空穴，B 称<b>受主</b>。",
+    ];
+    let mode = 0;
+    btnRow(host, modes, i => { mode = i; draw(); cap.innerHTML = notes[i]; });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;"; host.appendChild(cap);
+    const ci = 1, cj = 1;
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const cols = 4, rows = 4, padX = 52, padY = 38, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.16;
+      function bond(i, j, i2, j2, miss) {
+        const x1 = padX + i * gx, y1 = padY + j * gy, x2 = padX + i2 * gx, y2 = padY + j2 * gy;
+        ctx.strokeStyle = col.faint; ctx.lineWidth = miss ? 1 : 2; if (miss) ctx.setLineDash([3, 3]);
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.setLineDash([]);
+        if (miss) return;
+        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+        ctx.fillStyle = col.ink; [5, -5].forEach(o => { ctx.beginPath(); ctx.arc(mx + nx * o, my + ny * o, 2, 0, 7); ctx.fill(); });
+      }
+      const missBond = (i, j, i2, j2) => mode === 2 && ((i === ci && j === cj) || (i2 === ci && j2 === cj)) && i2 === i + 1 && j === j2; // 受主：去掉掺杂原子右侧一根键
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+        if (i < cols - 1) bond(i, j, i + 1, j, missBond(i, j, i + 1, j));
+        if (j < rows - 1) bond(i, j, i, j + 1, false);
+      }
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+        const x = padX + i * gx, y = padY + j * gy, doped = i === ci && j === cj && mode > 0;
+        atom(ctx, x, y, r * 1.5, doped ? (mode === 1 ? col.primary : col.danger) : col.surface, col.ink);
+        ctx.fillStyle = doped ? "#fff" : col.soft; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(doped ? (mode === 1 ? "P" : "B") : "Si", x, y);
+      }
+      ctx.textBaseline = "alphabetic";
+      const dx = padX + ci * gx, dy = padY + cj * gy;
+      if (mode === 1) { const ex = dx + gx * 0.4, ey = dy - gy * 0.4; ctx.fillStyle = col.primary; ctx.beginPath(); ctx.arc(ex, ey, 5.5, 0, 7); ctx.fill(); ctx.strokeStyle = col.ink; ctx.lineWidth = 1; ctx.stroke(); ctx.fillStyle = col.primary; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "left"; ctx.fillText("e⁻ 自由电子", ex + 10, ey + 4); }
+      if (mode === 2) { const hx = dx + gx * 0.5, hy = dy; ctx.strokeStyle = col.danger; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(hx, hy, 6, 0, 7); ctx.stroke(); ctx.fillStyle = col.danger; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "left"; ctx.fillText("空穴 h⁺", hx + 11, hy + 4); }
+    }
+    draw(); cap.innerHTML = notes[0]; window.addEventListener("resize", draw); host._redraw = draw;
+    caption(host, "半导体掺杂：取代原子的价电子比 Si（4 价）多 1 个就多 1 个自由电子（施主→n 型），少 1 个就多 1 个空穴（受主→p 型）。靠掺杂精确控制导电类型和载流子浓度，是所有半导体器件的基础。");
+  }
+
+  // ===== 第七章 螺型位错（3D 螺旋面）=====
+  function vizScrew(host) {
+    const step = 0.95, rings = [0.55, 1.05, 1.55], m = 16, turns = 2;
+    function build(col) {
+      const atoms = [], bonds = [];
+      rings.forEach(rr => {
+        const idx0 = atoms.length, cnt = turns * m;
+        for (let s = 0; s < cnt; s++) {
+          const k = s % m, th = 2 * Math.PI * (s / m), y = step / (2 * Math.PI) * th - step * turns / 2;
+          atoms.push({ x: rr * Math.cos(2 * Math.PI * k / m), y: y, z: rr * Math.sin(2 * Math.PI * k / m), r: 0.12, color: col.primary });
+        }
+        for (let s = 0; s < cnt - 1; s++) bonds.push([idx0 + s, idx0 + s + 1]);
+      });
+      const ymax = step * turns / 2 + 0.25, ymin = -step * turns / 2 - 0.25;
+      return { atoms, bonds, edges: [[{ x: 0, y: ymin, z: 0 }, { x: 0, y: ymax, z: 0 }]], unit: 1.85 };
+    }
+    interactive3D(host, build, { height: 360, ax: -0.25, ay: 0.6 });
+    legend(host, [{ c: "primary", t: "原子（沿螺旋面排列）" }]);
+    caption(host, "🖱️ <b>拖动旋转</b>。<b>螺型位错</b>：原子面绕位错线（中央竖线）<b>螺旋上升</b>，绕一圈正好升高一个柏氏矢量 b。柏氏矢量 <b>b ∥ 位错线</b>（与刃型 b⊥线相反）；它<b>没有多余半原子面</b>，可在任意含位错线的面上滑移、运动较自由。");
+  }
+
+  // ===== 第七章 柏氏回路 =====
+  function vizBurgers(host) {
+    const { cv, resize } = makeCanvas(host, 320);
+    let mode = 1; const cols = 9, rows = 8, mid = 4, core = 4;
+    btnRow(host, ["完美晶体（回路闭合）", "含刃型位错（缺口 = b）"], i => { mode = i; draw(); });
+    function disp(i, j, gx) { if (mode === 0 || j >= mid) return 0; const d = i - core, hw = (mid - j) / mid; return -(d / (d * d + 1.0)) * 0.9 * gx * hw; }
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const padX = 42, padY = 24, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.15;
+      const PX = (i, j) => padX + i * gx + disp(i, j, gx), PY = (i, j) => padY + j * gy;
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) { if (mode === 1 && i === core && j > mid) continue; atom(ctx, PX(i, j), PY(i, j), r, col.primary, col.ink); }
+      if (mode === 1) { const tx = PX(core, mid), ty = PY(core, mid); ctx.strokeStyle = col.danger; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(tx, padY + 1); ctx.lineTo(tx, ty); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tx - gx * 0.22, ty); ctx.lineTo(tx + gx * 0.22, ty); ctx.stroke(); }
+      const L = 2, R = 6, T = 2, B = 6, seg = [];
+      for (let i = L; i <= R; i++) seg.push([PX(i, T), PY(i, T)]);
+      for (let j = T; j <= B; j++) seg.push([PX(R, j), PY(R, j)]);
+      for (let i = R; i >= L; i--) seg.push([PX(i, B), PY(i, B)]);
+      for (let j = B; j > T; j--) seg.push([PX(L, j), PY(L, j)]);
+      const S = [padX + L * gx, padY + T * gy], E = [S[0] + (mode === 1 ? gx : 0), S[1]];
+      seg.push(E);
+      ctx.strokeStyle = col.accent; ctx.lineWidth = 2.6; ctx.lineJoin = "round"; ctx.beginPath(); seg.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke();
+      atom(ctx, S[0], S[1], r * 1.25, col.accent, col.ink);
+      if (mode === 1) {
+        atom(ctx, E[0], E[1], r * 1.1, col.danger, col.ink);
+        ctx.strokeStyle = col.danger; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(E[0], E[1]); ctx.lineTo(S[0] + r * 1.25, S[1]); ctx.stroke();
+        ctx.fillStyle = col.danger; ctx.beginPath(); ctx.moveTo(S[0] + r * 1.25, S[1]); ctx.lineTo(S[0] + r * 1.25 + 8, S[1] - 5); ctx.lineTo(S[0] + r * 1.25 + 8, S[1] + 5); ctx.closePath(); ctx.fill();
+        ctx.font = "bold 15px sans-serif"; ctx.textAlign = "left"; ctx.fillText("b", E[0] + 7, E[1] - 7);
+      }
+      ctx.fillStyle = col.soft; ctx.font = "13px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText(mode === 0 ? "完美晶体：等步数回路终点 = 起点 → b = 0" : "回路套住位错：终点回不到起点，缺口 = 柏氏矢量 b", w / 2, h - 8);
+    }
+    draw(); window.addEventListener("resize", draw); host._redraw = draw;
+    caption(host, "<b>柏氏回路定义柏氏矢量 b</b>：在好晶体里绕位错走「右 n 步、下 n 步、左 n 步、上 n 步」的等步数回路。完美晶体里它<b>自动闭合</b>(b=0)；一旦回路<b>套住位错</b>，终点回不到起点，<b>缺口矢量就是 b</b>。刃型位错 <b>b ⊥ 位错线</b>，且 b 与回路大小/路径无关（守恒性）。");
+  }
+
+  // ===== 第八章 堆垛层错 =====
+  function vizStackfault(host) {
+    const SEQ = [
+      { name: "正常 fcc：…A B C A B C…（每层都不同于上下邻层）", layers: ["A", "B", "C", "A", "B", "C"], fault: [] },
+      { name: "抽出型层错：抽掉一层 → 出现 …A C… 直接相邻", layers: ["A", "B", "C", "A", "C", "A", "B"], fault: [4] },
+      { name: "孪晶界：从某层起顺序镜像 …A B C | C B A…", layers: ["A", "B", "C", "C", "B", "A"], fault: [3] },
+    ];
+    const { cv, resize } = makeCanvas(host, 340); let mode = 0;
+    btnRow(host, ["正常 ABCABC", "抽出型层错", "孪晶界"], i => { mode = i; draw(); });
+    const off = { A: 0, B: 1, C: 2 };
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const S = SEQ[mode], L = S.layers, n = L.length, padX = 74, padY = 24, rowH = (h - padY * 2) / (n - 1), nb = 5, d = Math.min(rowH * 0.62, (w - padX * 2) / (nb + 0.7)), r = d * 0.46;
+      for (let li = 0; li < n; li++) {
+        const j = n - 1 - li, y = padY + j * rowH, t = L[li], ox = off[t] * (d / 3), isF = S.fault.indexOf(li) >= 0;
+        for (let k = 0; k < nb; k++) atom(ctx, padX + ox + k * d, y, r, isF ? col.danger : (t === "A" ? col.primary : t === "B" ? col.accent : col.warn), col.ink);
+        ctx.fillStyle = isF ? col.danger : col.soft; ctx.font = "bold 14px sans-serif"; ctx.textAlign = "right"; ctx.fillText(t, padX - 16, y + 5);
+      }
+      ctx.fillStyle = col.soft; ctx.font = "12.5px sans-serif"; ctx.textAlign = "center"; ctx.fillText(SEQ[mode].name, w / 2, h - 6);
+    }
+    draw(); window.addEventListener("resize", draw); host._redraw = draw;
+    legend(host, [{ c: "primary", t: "A 层" }, { c: "accent", t: "B 层" }, { c: "warn", t: "C 层" }, { c: "danger", t: "层错处" }]);
+    caption(host, "<b>堆垛层错</b>是一种<b>面缺陷</b>：密排面（fcc 的 {111} 面）的堆垛顺序 ABCABC 在某处出错。<b>抽出型</b>＝抽掉一层（出现 …AC… 相邻）；<b>孪晶界</b>＝从某层起顺序镜像反演。层错由<b>部分位错（肖克莱）</b>界定、能量较低。每层横向错开就是密堆里 A/B/C 三种位置。");
+  }
+
+  // ===== 第八章 小角度倾斜晶界 D=b/θ =====
+  function vizTilt(host) {
+    const { cv, resize } = makeCanvas(host, 330); let theta = 10;
+    control(host, "取向差 θ", 4, 24, 1, 10, v => v + "°", v => { theta = v; draw(); });
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const bx = w / 2, th = theta * Math.PI / 180, cy = (h - 28) / 2, gx = 25, gy = 25;
+      ctx.strokeStyle = col.grid; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(bx, 14); ctx.lineTo(bx, h - 38); ctx.stroke(); ctx.setLineDash([]);
+      function grid(sign) {
+        ctx.fillStyle = col.faint;
+        for (let i = 0; i < 7; i++) for (let j = -5; j <= 5; j++) {
+          const x = sign * (i * gx + 10), y = j * gy, a = sign * th / 2, X = x * Math.cos(a) - y * Math.sin(a), Y = x * Math.sin(a) + y * Math.cos(a), px = bx + X, py = cy + Y;
+          if (px > 6 && px < w - 6 && py > 12 && py < h - 32) { ctx.beginPath(); ctx.arc(px, py, 2.6, 0, 7); ctx.fill(); }
+        }
+      }
+      grid(-1); grid(1);
+      const b = gy, D = b / th; ctx.strokeStyle = col.danger; ctx.lineWidth = 2;
+      for (let y = cy - D * 3; y <= cy + D * 3 + 1; y += D) { if (y < 18 || y > h - 42) continue; ctx.beginPath(); ctx.moveTo(bx, y - 7); ctx.lineTo(bx, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(bx - 7, y); ctx.lineTo(bx + 7, y); ctx.stroke(); }
+      ctx.fillStyle = col.soft; ctx.font = "13px sans-serif"; ctx.textAlign = "center"; ctx.fillText("θ = " + theta + "°，位错间距 D = b/θ ≈ " + D.toFixed(0) + " px（θ 越大，⊥ 越密）", w / 2, h - 8);
+    }
+    draw(); window.addEventListener("resize", draw); host._redraw = draw;
+    caption(host, "<b>小角度倾斜晶界</b>：取向差 θ 很小的两晶粒之间，晶界本质是<b>一列等间距的刃型位错（⊥）</b>。几何关系 <b>D = b/θ</b>（b 柏氏矢量，θ 取弧度）——θ 越大、位错排得越密；θ 大到约 >10–15° 后位错重叠、模型失效，就成了大角晶界。");
+  }
+
+  // ===== 第一章 晶体 vs 非晶体 =====
+  function vizAmorphous(host) {
+    const { cv, resize } = makeCanvas(host, 320); const cols = 9, rows = 7, offs = [];
+    for (let k = 0; k < cols * rows; k++) offs.push([Math.random() - 0.5, Math.random() - 0.5]);
+    let mode = 0;
+    btnRow(host, ["晶体（远程有序）", "非晶体（长程无序）"], i => { mode = i; draw(); });
+    function draw() {
+      const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
+      const padX = 34, padY = 28, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.16, amp = mode === 0 ? 0 : 0.42, pos = [];
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) { const o = offs[j * cols + i]; pos.push([padX + i * gx + o[0] * amp * gx, padY + j * gy + o[1] * amp * gy]); }
+      ctx.strokeStyle = col.faint; ctx.lineWidth = 1.4;
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+        const a = pos[j * cols + i];
+        if (i < cols - 1) { const b = pos[j * cols + i + 1]; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
+        if (j < rows - 1) { const b = pos[(j + 1) * cols + i]; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
+      }
+      pos.forEach(p => atom(ctx, p[0], p[1], r, col.primary, col.ink));
+      ctx.fillStyle = col.soft; ctx.font = "13px sans-serif"; ctx.textAlign = "center";
+      ctx.fillText(mode === 0 ? "周期性排列：长程有序（有平移对称）" : "近程有序、长程无序（如石英玻璃）", w / 2, h - 8);
+    }
+    draw(); window.addEventListener("resize", draw); host._redraw = draw;
+    caption(host, "<b>晶体 vs 非晶体</b>：晶体内部质点<b>周期性重复排列</b>，既近程有序又<b>远程（长程）有序</b> → 有固定熔点、各向异性、能自发长出规则外形（自范性）。非晶体（玻璃、松香、石蜡）<b>只有近程有序、长程无序</b>，像「冻住的液体」→ 无固定熔点、宏观各向同性。区别的根本就在<b>有没有远程有序</b>。");
+  }
+
+  // ===== 第二章 四面体 / 八面体空隙 =====
+  function vizVoids(host) {
+    let mode = 0;
+    const TET = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]], OCT = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
+    function build(col) {
+      const V = mode === 0 ? TET : OCT, s = mode === 0 ? 0.85 : 0.8, verts = V.map(p => ({ x: p[0] * s, y: p[1] * s, z: p[2] * s }));
+      const atoms = verts.map(p => ({ x: p.x, y: p.y, z: p.z, r: 0.26, color: col.primary }));
+      atoms.push({ x: 0, y: 0, z: 0, r: mode === 0 ? 0.14 : 0.2, color: col.danger });
+      const vi = atoms.length - 1, bonds = verts.map((_, i) => [vi, i]), edges = [];
+      for (let a = 0; a < verts.length; a++) for (let b = a + 1; b < verts.length; b++) {
+        const d = Math.hypot(verts[a].x - verts[b].x, verts[a].y - verts[b].y, verts[a].z - verts[b].z);
+        if (mode === 0 || d < s * 2 * 0.99) edges.push([verts[a], verts[b]]);
+      }
+      return { atoms, bonds, edges, unit: 1.25 };
+    }
+    const api = interactive3D(host, build, { height: 340, ax: -0.5, ay: 0.6 });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;";
+    btnRow(host, ["四面体空隙", "八面体空隙"], i => { mode = i; api.redraw(); cap.innerHTML = mk(); });
+    host.appendChild(cap);
+    legend(host, [{ c: "primary", t: "密堆积球（原子）" }, { c: "danger", t: "空隙中心" }]);
+    function mk() { return "🖱️ <b>拖动旋转</b>。" + (mode === 0 ? "<b>四面体空隙</b>：4 个球围成正四面体，空隙（红）被 <b>4</b> 个原子包围。" : "<b>八面体空隙</b>：6 个球围成正八面体，空隙（红）被 <b>6</b> 个原子包围，比四面体空隙<b>大</b>。"); }
+    cap.innerHTML = mk();
+    caption(host, "密堆积里球与球之间留下两种空隙：<b>n 个球 → n 个八面体空隙 + 2n 个四面体空隙</b>。许多化合物就是大离子密堆、小离子<b>填空隙</b>：NaCl=填全部八面体空隙；金刚石/闪锌矿=填一半四面体空隙；金红石=填一半八面体空隙。");
+  }
+
+  // ===== 第二章 均摊法 =====
+  function vizShare(host) {
+    const { corners, edges } = cubeEdges(0.5);
+    const em = edges.map(e => ({ x: (e[0].x + e[1].x) / 2, y: (e[0].y + e[1].y) / 2, z: (e[0].z + e[1].z) / 2 }));
+    const fc = [[.5, 0, 0], [-.5, 0, 0], [0, .5, 0], [0, -.5, 0], [0, 0, .5], [0, 0, -.5]].map(p => ({ x: p[0], y: p[1], z: p[2] }));
+    const types = [
+      { tag: "顶角", pts: corners, frac: "1/8", cells: "被 8 个晶胞共有", rr: 0.075 },
+      { tag: "棱心", pts: em, frac: "1/4", cells: "被 4 个晶胞共有", rr: 0.065 },
+      { tag: "面心", pts: fc, frac: "1/2", cells: "被 2 个晶胞共有", rr: 0.08 },
+      { tag: "体心", pts: [{ x: 0, y: 0, z: 0 }], frac: "1", cells: "晶胞独占", rr: 0.095 },
+    ];
+    let hl = -1;
+    function build(col) {
+      const cmap = [col.primary, col.accent, col.warn, col.danger], atoms = [];
+      types.forEach((t, ti) => t.pts.forEach(p => { const dim = hl >= 0 && hl !== ti; atoms.push({ x: p.x, y: p.y, z: p.z, r: t.rr, color: dim ? (css("--text-faint") || "#999") : cmap[ti] }); }));
+      return { atoms, edges, unit: 1.05 };
+    }
+    const api = interactive3D(host, build, { height: 330, ax: -0.45, ay: 0.7 });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;";
+    btnRow(host, ["全部", "顶角", "棱心", "面心", "体心"], i => { hl = i - 1; api.redraw(); cap.innerHTML = mk(); });
+    host.appendChild(cap);
+    legend(host, [{ c: "primary", t: "顶角 ×1/8" }, { c: "accent", t: "棱心 ×1/4" }, { c: "warn", t: "面心 ×1/2" }, { c: "danger", t: "体心 ×1" }]);
+    function mk() { if (hl < 0) return "🖱️ <b>拖动旋转</b>。<b>均摊法</b>：一个原子被几个晶胞共有，它对本晶胞就只贡献几分之一。点上面按钮逐个看。"; const t = types[hl]; return "🖱️ <b>" + t.tag + "原子</b>：" + t.cells + " → 每个晶胞只算 <b>" + t.frac + "</b>。"; }
+    cap.innerHTML = mk();
+    caption(host, "<b>均摊法</b>口诀：<b>角 1/8、棱 1/4、面 1/2、体心 1</b>。例：面心立方 = 8 顶角×1/8 + 6 面心×1/2 = 1 + 3 = <b>4</b> 个原子/晶胞。");
+  }
+
+  // ===== 第四章 三维晶面指数 =====
+  function vizMiller3d(host) {
+    const planes = [[1, 0, 0], [1, 1, 0], [1, 1, 1], [2, 1, 0], [1, 1, 2], [2, 2, 1]]; let pi = 2;
+    const cc = []; for (const x of [0, 1]) for (const y of [0, 1]) for (const z of [0, 1]) cc.push([x, y, z]);
+    const EL = []; for (let a = 0; a < 8; a++) for (let b = a + 1; b < 8; b++) { const d = (cc[a][0] !== cc[b][0]) + (cc[a][1] !== cc[b][1]) + (cc[a][2] !== cc[b][2]); if (d === 1) EL.push([cc[a], cc[b]]); }
+    const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    function planePoly(h, k, l) {
+      const pts = [], push = p => { if (!pts.some(q => Math.abs(q[0] - p[0]) < 1e-6 && Math.abs(q[1] - p[1]) < 1e-6 && Math.abs(q[2] - p[2]) < 1e-6)) pts.push(p); };
+      EL.forEach(e => { const A = e[0], B = e[1], fa = h * A[0] + k * A[1] + l * A[2] - 1, fb = h * B[0] + k * B[1] + l * B[2] - 1;
+        if (Math.abs(fa) < 1e-9) push(A); if (Math.abs(fb) < 1e-9) push(B);
+        if (fa * fb < -1e-12) { const t = fa / (fa - fb); push([A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1]), A[2] + t * (B[2] - A[2])]); } });
+      if (pts.length > 2) {
+        const c = [0, 1, 2].map(d => pts.reduce((s, p) => s + p[d], 0) / pts.length), n = [h, k, l], aa = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+        let u = cross(n, aa); const Lu = Math.hypot(u[0], u[1], u[2]); u = [u[0] / Lu, u[1] / Lu, u[2] / Lu]; const v = cross(n, u);
+        pts.sort((p, q) => { const dp = [p[0] - c[0], p[1] - c[1], p[2] - c[2]], dq = [q[0] - c[0], q[1] - c[1], q[2] - c[2]]; return Math.atan2(dp[0] * v[0] + dp[1] * v[1] + dp[2] * v[2], dp[0] * u[0] + dp[1] * u[1] + dp[2] * u[2]) - Math.atan2(dq[0] * v[0] + dq[1] * v[1] + dq[2] * v[2], dq[0] * u[0] + dq[1] * u[1] + dq[2] * u[2]); });
+      }
+      return pts;
+    }
+    const { edges } = cubeEdges(0.5);
+    function build(col) {
+      const [h, k, l] = planes[pi], poly = planePoly(h, k, l).map(p => ({ x: p[0] - .5, y: p[1] - .5, z: p[2] - .5 })), atoms = [];
+      [[h, 0], [k, 1], [l, 2]].forEach(([c, ax]) => { if (c !== 0) { const p = [-.5, -.5, -.5]; p[ax] = 1 / c - .5; atoms.push({ x: p[0], y: p[1], z: p[2], r: 0.055, color: col.danger }); } });
+      return { atoms, edges, polys: poly.length > 2 ? [{ pts: poly, fill: col.primary, alpha: 0.26, stroke: col.primary }] : [], unit: 1.0 };
+    }
+    const api = interactive3D(host, build, { height: 340, ax: -0.5, ay: 0.62 });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;";
+    btnRow(host, planes.map(p => "(" + p.join("") + ")"), i => { pi = i; api.redraw(); updc(); });
+    host.appendChild(cap);
+    function updc() { const [h, k, l] = planes[pi], f = c => c === 0 ? "∞" : (c === 1 ? "1" : "1/" + c); cap.innerHTML = "🖱️ <b>拖动旋转</b>。晶面 <b>(" + h + k + l + ")</b>：三轴截距 = <b>" + f(h) + ", " + f(k) + ", " + f(l) + "</b>（红点）。指数 = 截距的倒数；指数为 0 → 与该轴<b>平行</b>(截距 ∞)；指数越大→截距越小→晶面越密。"; }
+    updc();
+    caption(host, "三维晶面指数 (hkl)：取该面在三轴上的<b>截距</b>（以点阵常数为单位），取<b>倒数</b>、化成最简整数比即得 (hkl)。蓝色半透明面是它在立方晶胞里的实际位置，红点是它与三个坐标轴的交点。");
+  }
+
+  const REG = { cubic: vizCubic, diamond: vizDiamond, wurtzite: vizWurtzite, nacl: vizNaCl, cscl: vizCsCl, rutile: vizRutile, perovskite: vizPerovskite, graphite: vizGraphite, closepack: vizClosepack, bravais: vizBravais, reduce: vizReduce, density: vizDensity, voids: vizVoids, share: vizShare, rotaxis: vizRotaxis, fivefold: vizFivefold, pointdefect: vizPointdefect, doping: vizDoping, screw: vizScrew, burgers: vizBurgers, stackfault: vizStackfault, tilt: vizTilt, amorphous: vizAmorphous, miller: vizMiller, miller3d: vizMiller3d, edge: vizEdge, slip: vizSlip };
   function init() {
     document.querySelectorAll("[data-viz]").forEach(host => {
       const fn = REG[host.dataset.viz];
