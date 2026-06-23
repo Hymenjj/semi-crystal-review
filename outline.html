@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复习提纲逐条对应 · 半导体结构期末通关</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'],['$$','$$']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="assets/lib/tex-svg.js"></script>
+<style>
+  .ck{border:1px solid var(--border);border-radius:10px;margin:9px 0;background:var(--surface);overflow:hidden}
+  .ck>summary{cursor:pointer;padding:11px 14px;font-weight:600;color:var(--text);list-style:none;line-height:1.6}
+  .ck>summary::-webkit-details-marker{display:none}
+  .ck>summary::before{content:"▸";color:var(--primary);margin-right:9px;font-weight:700}
+  .ck[open]>summary::before{content:"▾"}
+  .ck[open]>summary{border-bottom:1px solid var(--border);background:var(--surface-2)}
+  .ck-a{padding:12px 15px;font-size:14px;color:var(--text-soft);line-height:1.78}
+  .ck-a a{white-space:nowrap;font-weight:600;text-decoration:none}
+  .ck-a a:hover{text-decoration:underline}
+  .ck-go{display:inline-block;margin-top:7px;font-size:13px;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;padding:3px 9px}
+  .qn{color:var(--primary);font-weight:800;margin-right:5px}
+  .hot{display:inline-block;font-size:11.5px;font-weight:700;color:#fff;background:var(--danger);border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+  .ch-intro{font-size:13.5px;color:var(--text-soft);margin:2px 0 12px}
+  .tip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .tip-row .pill{font-size:13px;background:var(--surface-2);border:1px solid var(--border);border-radius:20px;padding:4px 12px}
+</style>
+</head>
+<body data-page="outline">
+<main class="content">
+  <div class="content-inner">
+
+    <div class="page-head">
+      <div class="eyebrow">老师给的复习提纲 · 逐条对应</div>
+      <h1>📋 复习提纲逐条对应</h1>
+      <p class="lead">这是<strong>老师《结晶学期末复习纲要》</strong>的逐条还原——它圈定了<strong>确切的考试范围和题型</strong>。每一条都做成<strong>「点开自查」</strong>：先盖住答案问自己答不答得上，再点开对照，并跳到本站对应章节深学。</p>
+    </div>
+
+    <div class="callout key">
+      <div class="callout-title">🎯 考试信息（提纲原文）</div>
+      <p><strong>时间：</strong>2026 年 6 月 24 日（周三）15:30｜<strong>卷面 100 分</strong>（占总评 80%，平时 20% = 出勤＋作业＋实习）。</p>
+      <p><strong>总的要求：</strong>基本概念、基本原理、基本现象、基本结论。</p>
+      <p><strong>考试范围：</strong>课堂上的讲授内容；<strong>未讲解的章节不在考试范围内</strong>；<strong style="color:var(--danger)">书后的作业题、实习题为重点内容，占试题的一定比重</strong>。</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">📝 五种题型 → 各自怎么准备</div>
+      <ul style="margin:6px 0">
+        <li><strong>概念题、填空题：</strong>名词定义要准。→ 刷各章<strong>学生自测</strong>＋<a href="cram.html">💊 人话速记</a>，把【秒记】口诀记熟。</li>
+        <li><strong>作图题：</strong>大概率考<strong>画晶胞</strong>（NaCl/CsCl/ZnS/金刚石/CaF₂…）、<strong>标晶面晶向</strong>、<strong>画位错与柏氏回路</strong>、<strong>(100)(110)(111) 标准投影</strong>。→ 用本站可旋转 <strong>3D 结构图</strong>和<strong>位错动画</strong>对着练手画。</li>
+        <li><strong>简答题、问答题：</strong>“为什么/解释现象”类。→ 看各章讲解的<strong>结论 + 原因</strong>，下面每条自查就是按问答口径整理的。</li>
+      </ul>
+      <div class="tip-row">
+        <span class="pill">🔴 <b>重点</b>：第六章「点缺陷电离对电学性能的影响」</span>
+        <span class="pill">🔴 <b>最终目的</b>：第七章「位错对半导体性能的影响」</span>
+        <span class="pill">🔴 第八章以<b>习题/思考题</b>为主线</span>
+      </div>
+    </div>
+
+    <!-- ============ 第一章 ============ -->
+    <h2>第一章　晶体的特性</h2>
+    <p class="ch-intro">考点 4 条 ·　<a href="ch1.html">打开第一章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>什么是晶体？</summary>
+      <div class="ck-a">内部质点（原子、离子、分子）在三维空间作<strong>周期性重复排列</strong>（长程有序）的固体。表现为有<strong>自范性</strong>（自发长成规则多面体）、<strong>固定熔点</strong>、<strong>各向异性</strong>、<strong>对称性</strong>、最小内能（最稳定）。与非晶体的根本区别＝有没有<strong>远程有序</strong>。
+      <a class="ck-go" href="ch1.html">→ 第一章 · 晶体 vs 非晶体（含 3D 演示）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>晶体的基本性质？</summary>
+      <div class="ck-a"><strong>均匀性、各向异性、自范性、固定熔点、对称性、最小内能（稳定性）</strong>。这些都源于内部质点的周期性有序排列。
+      <a class="ck-go" href="ch1.html">→ 第一章 · 晶体的基本性质</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>晶体的类型和结合力？</summary>
+      <div class="ck-a">按结合键（结合力）分五类：<strong>离子晶体</strong>（离子键，如 NaCl）、<strong>原子（共价）晶体</strong>（共价键，如金刚石、Si）、<strong>金属晶体</strong>（金属键）、<strong>分子晶体</strong>（范德华力，如干冰）、<strong>氢键晶体</strong>（如冰）。键越强→熔点越高、硬度越大。
+      <a class="ck-go" href="ch1.html">→ 第一章 · 五种键型与结合力</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>石墨是混合价键型晶体——价键类型与性能的关系？</summary>
+      <div class="ck-a">石墨同时含多种键：<strong>层内</strong>每个 C 以 <strong>sp² 共价键</strong>连成六角网（强）、还有<strong>离域 π 电子</strong>；<strong>层间</strong>靠较弱的<strong>范德华力</strong>。所以：层内强键＋π 电子 → <strong>沿层面导电、强度高</strong>；层间弱 → <strong>易解理滑移（软、润滑）</strong>。这就是“<strong>混合价键型晶体</strong>，价键类型决定性能”的典型例子。
+      <a class="ck-go" href="ch1.html">→ 第一章 · 石墨（含 3D 结构）</a></div>
+    </details>
+
+    <!-- ============ 第二章 ============ -->
+    <h2>第二章　点阵理论</h2>
+    <p class="ch-intro">考点 6 条 ·　<a href="ch2.html">打开第二章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>点阵和平移群：一维、二维、三维点阵？</summary>
+      <div class="ck-a"><strong>点阵</strong>＝一组无限多、周期性排列的<strong>等同点（结点）</strong>，每个结点周围环境完全相同；连接结点的<strong>所有平移操作</strong>构成<strong>平移群</strong>。按维数分一维（直线点阵）、二维（平面点阵）、三维（空间点阵）。结点 + 结构基元 = 晶体结构。
+      <a class="ck-go" href="ch2.html">→ 第二章 2.1 点阵和平移群</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>单位平行六面体（晶胞）的选取原则？</summary>
+      <div class="ck-a">在能反映点阵周期性的前提下：① 尽量<strong>反映点阵固有的对称性</strong>；② 含<strong>直角（90°）数目尽量多</strong>；③ 在满足前两条下，<strong>体积尽量小</strong>。正因第③条，“底心立方”“面心四方”等会被化简成更小的已有格子而<strong>不独立存在</strong>。
+      <a class="ck-go" href="ch2.html">→ 第二章 2.2 / 不存在的格子如何并入更小格子</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>14 种布拉菲格子有哪些？为什么有些格子不存在？</summary>
+      <div class="ck-a">7 大晶系，各自“在不破坏本晶系对称的前提下还能加哪种心（P 简单 / I 体心 / F 面心 / C 底心）”，合计 <strong>立方3＋四方2＋正交4＋六方1＋三方1＋单斜2＋三斜1 = 14</strong> 种。<strong>有些格子不存在</strong>，是因为加了某种心后：要么<strong>降低/不符合该晶系应有的对称</strong>，要么<strong>能化简成体积更小的已有格子</strong>（如底心立方→简单四方、面心四方→体心四方），按选取原则就不另算。
+      <a class="ck-go" href="ch2.html">→ 第二章 · 14 布拉菲格子（可切换）+ 格子并入演示</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>典型晶体结构要牢固掌握：NaCl、CsCl、ZnS、Si(Ge)、CaF₂、TiO₂、Cu₂O…<span class="hot">作图题</span></summary>
+      <div class="ck-a">逐个掌握其晶胞、配位数与代表：<strong>NaCl</strong>（Cl⁻面心立方、Na⁺填全部八面体空隙，配位 6）、<strong>CsCl</strong>（两套简单立方套构，配位 8，注意≠体心立方）、<strong>ZnS</strong>（闪锌矿=立方、纤锌矿=六方，配位 4）、<strong>Si/Ge</strong>（金刚石型）、<strong>CaF₂ 萤石</strong>（Ca 面心立方、F 填满四面体空隙，Ca 配位 8 / F 配位 4）、<strong>TiO₂ 金红石</strong>（四方，Ti 配位 6）、<strong>Cu₂O 赤铜矿</strong>（O 体心立方、Cu 直线配位 2）。本站这些都有<strong>可旋转 3D 晶胞</strong>，对着练画。
+      <a class="ck-go" href="ch5.html">→ 第五章 · 各结构 3D（NaCl/ZnS/金刚石/金红石/钙钛矿/萤石/赤铜矿）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">5.</span>能熟练画出晶胞，并清楚其结构基元、布拉伐格子、属于何点群？</summary>
+      <div class="ck-a">对每个典型结构，要能说出：<strong>结构基元</strong>（重复单元里有哪些原子、占什么位置）、<strong>布拉伐格子</strong>（如 NaCl、金刚石、闪锌矿都是<strong>面心立方</strong>；CsCl 是简单立方）、<strong>所属点群</strong>（如金刚石 \(O_h\)、闪锌矿 \(T_d\)（无对称中心）、纤锌矿 \(C_{6v}\)）。配合<strong>作图题</strong>反复练手画晶胞。
+      <a class="ck-go" href="ch5.html">→ 第五章 · 结构基元 / 布拉伐格子 / 点群</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">6.</span>三种描述晶体的方法：晶胞法、密堆积法、配位多面体法？</summary>
+      <div class="ck-a"><strong>晶胞法</strong>：用平行六面体晶胞 + 原子坐标描述（最通用）。<strong>密堆积法</strong>：把大原子看作等径球作最紧密堆积（hcp ABAB / ccp ABCABC，利用率 74.05%），小原子填四面体/八面体空隙。<strong>配位多面体法</strong>：用中心原子与其配位原子构成的多面体（四面体、八面体…）及其连接方式描述。
+      <a class="ck-go" href="ch2.html">→ 第二章 2.4 密堆积 / 空隙 / 配位多面体</a></div>
+    </details>
+
+    <!-- ============ 第三章 ============ -->
+    <h2>第三章　晶体的对称性理论</h2>
+    <p class="ch-intro">考点 4 条 ·　<a href="ch3.html">打开第三章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>一些基本概念：等同图形、对称图形、对称动作、对称要素、阶次？</summary>
+      <div class="ck-a"><strong>对称（动作）操作</strong>＝使图形复原（与自身重合）的动作；<strong>对称要素</strong>＝完成该操作所凭借的几何元素（点、线、面，如对称轴、镜面、对称中心）；<strong>等同图形</strong>＝由对称操作互相联系的全同部分；<strong>阶次</strong>＝某对称要素对应的对称操作的数目（如 n 次轴阶次为 n）。
+      <a class="ck-go" href="ch3.html">→ 第三章 · 基本概念</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>对称轴、反轴的轴次，只有 \(\bar4\) 是独立的，为什么？</summary>
+      <div class="ck-a">反轴 = 旋转 + 反演的复合操作。其中 <strong>\(\bar1\)＝对称中心 i</strong>、<strong>\(\bar2\)＝镜面 m</strong>、<strong>\(\bar3\)＝3 次轴＋对称中心</strong>、<strong>\(\bar6\)＝3 次轴＋镜面（3/m）</strong>——它们都能用<strong>其它已有对称要素的组合</strong >来代替；唯独 <strong>\(\bar4\) 不能</strong>被任何其它对称要素的组合代替，所以反轴中<strong>只有 \(\bar4\) 是独立的</strong>。
+      <a class="ck-go" href="ch3.html">→ 第三章 · 反轴</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>宏观对称要素只有 32 种（32 点群），为什么？组合原则？</summary>
+      <div class="ck-a">独立的宏观对称要素只有 \(1,2,3,4,6,\bar1(i),m,\bar3,\bar4,\bar6\) 这几种（受<strong>晶体学限制</strong>：只允许 1/2/3/4/6 次轴，没有 5 次及更高次轴）。把它们按<strong>组合定理</strong>（轴与轴、轴与面的夹角受限的组合规则）相互组合，独立的组合方式恰好是 <strong>32 种宏观对称类型 = 32 点群</strong>。
+      <a class="ck-go" href="ch3.html">→ 第三章 · 晶体学限制 / 32 点群</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>微观对称性有 230 种（空间群），为什么？组合原则？</summary>
+      <div class="ck-a">在 32 点群（宏观对称）的基础上，结合 <strong>14 种布拉菲格子</strong>（平移），并引入只在微观才有的、<strong>带平移分量的对称要素——滑移面、螺旋轴</strong>，把这些再按组合规则组合，得到 <strong>230 种空间群</strong>。即：宏观 32 ＋ 平移（14 格子）＋ 滑移面/螺旋轴 → 微观 230。
+      <a class="ck-go" href="ch3.html">→ 第三章 · 空间群（230）</a></div>
+    </details>
+
+    <!-- ============ 第四章 ============ -->
+    <h2>第四章　晶向、晶面等概念</h2>
+    <p class="ch-intro">考点 5 条（<strong>计算 + 作图主战场</strong>）·　<a href="ch4.html">打开第四章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>晶面指数、晶向指数的规定，切莫混淆？</summary>
+      <div class="ck-a"><strong>晶面指数 (hkl)</strong>：求三轴<strong>截距 → 取倒数 → 通分 → 取分子</strong>；圆括号 () 表一组平行晶面，花括号 {} 表晶面族。<strong>晶向指数 [uvw]</strong>：过原点平行线上某点<strong>坐标 → 化最简整数比</strong>；方括号 [] 表一晶向，尖括号 ⟨⟩ 表晶向族。<strong>别混：晶面取倒数、晶向不取倒数。</strong>
+      <a class="ck-go" href="ch4.html">→ 第四章 4.2/4.3（含 2D/3D 演示）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>四方、六方晶系中，三个与四个密勒指数的关系和互换？</summary>
+      <div class="ck-a">六方晶系常用四轴 \(a_1,a_2,a_3,c\)，晶面记 <strong>(hkil)</strong>，四个指数只有 3 个独立，满足 <strong>\(h+k+i=0\)</strong>（即 \(i=-(h+k)\)）；晶向记 <strong>[uvtw]</strong>，满足 <strong>\(u+v+t=0\)</strong>。三指数 ⇄ 四指数即按此关系补出/去掉第三个分量。
+      <a class="ck-go" href="ch4.html">→ 第四章 · 密勒-布拉菲指数</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>在四方、六方晶系中，根据密勒指数正确标出晶面和晶向？<span class="hot">作图题</span></summary>
+      <div class="ck-a">练习：给定 (hkl)/[uvw]，在晶胞图上<strong>按截距倒数画出晶面</strong>、<strong>按坐标画出晶向箭头</strong>；六方注意用四轴并满足 \(h+k+i=0\)。本站有可旋转的 <strong>3D 晶面指数</strong>演示，看晶面如何切过晶胞。
+      <a class="ck-go" href="ch4.html">→ 第四章 · 3D 晶面指数（看晶面切晶胞）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>晶面夹角、晶向夹角、晶面间距等公式（立方晶系）？</summary>
+      <div class="ck-a"><strong>晶面间距</strong>：\(d_{hkl}=\dfrac{a}{\sqrt{h^2+k^2+l^2}}\)（指数越低、间距越大）。<strong>两晶向/晶面夹角</strong>：\(\cos\varphi=\dfrac{h_1h_2+k_1k_2+l_1l_2}{\sqrt{h_1^2+k_1^2+l_1^2}\,\sqrt{h_2^2+k_2^2+l_2^2}}\)（立方同指数 \((hkl)\perp[hkl]\)，故晶面夹角同式）。<strong>晶带定律</strong>：\(hu+kv+lw=0\)。这些只对<strong>立方晶系</strong>这样简单。
+      <a class="ck-go" href="ch4.html">→ 第四章 4.5（含 4 道例题）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">5.</span>填图：(111)、(110)、(100) 三个方向立方晶系的标准投影？<span class="hot">作图题</span></summary>
+      <div class="ck-a">即<strong>极射赤面投影（标准投影）</strong>：把晶面取向投到赤道面上。立方晶系沿不同方向看到的对称花样：<strong>⟨100⟩ 取向 4 重、⟨110⟩ 取向 2 重、⟨111⟩ 取向 3 重</strong>对称（与第五章光学定向、反射对称呼应）。
+      <a class="ck-go" href="ch4.html">→ 第四章 4.6 极射赤面投影</a></div>
+    </details>
+
+    <!-- ============ 第五章 ============ -->
+    <h2>第五章　典型半导体/电子材料的结构与性质</h2>
+    <p class="ch-intro">考点 4 条 ·　<a href="ch5.html">打开第五章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>Si、Ge、GaAs 结构上的重要参数及与性能的关系？</summary>
+      <div class="ck-a"><strong>Si、Ge＝金刚石型</strong>（同种原子、有对称中心 \(O_h\)）；<strong>GaAs＝闪锌矿型</strong>（两种原子、<strong>无对称中心</strong> \(T_d\)）；配位数都是 4。要会看<strong>结构参数表</strong>：各晶面的<strong>面密度、价键密度、面间距</strong>（如金刚石结构 {111} 面间距最大 ≈0.43a、价键密度最低）——这些参数直接决定下面的解理/生长/腐蚀行为。
+      <a class="ck-go" href="ch5.html">→ 第五章 5.1/5.2（含面密度切片 3D）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>掌握解理特性、生长特性、腐蚀特性，并解释相关现象？</summary>
+      <div class="ck-a"><strong>解理</strong>：沿<strong>面间距大、价键密度小</strong>的面最易裂开——Si、Ge 解理面 <strong>{111}</strong>；GaAs、InSb 解理面 <strong>{110}</strong>。<strong>生长</strong>：理想外形由生长慢的低指数面包围，金刚石型趋向 8 个 {111} 面组成的<strong>正八面体</strong>。<strong>腐蚀</strong>：择优腐蚀出现<strong>蚀坑</strong>（{111} 三角形、{100} 方形、{110} 长方形），可用于定向、显错。GaAs 极性面 (111)Ga 稳定、\((\bar1\bar1\bar1)\)As 活泼。
+      <a class="ck-go" href="ch5.html">→ 第五章 5.2 解理/腐蚀/生长</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>典型的固溶体及其结构？</summary>
+      <div class="ck-a"><strong>固溶体</strong>＝固态下一种组分溶解了其它组分形成的<strong>单一均匀结晶相</strong>。两类：<strong>替代（置换）式</strong>（溶质替代结点原子，分无序/有序/连续/有限等）、<strong>间隙（填隙）式</strong>（小原子 H/O/N/C/B 占空隙）。<strong>韦伽（Vegard）定律</strong>：替代式 \(a=(1-x)a_1+x a_2\)，晶格常数随成分线性变化。
+      <a class="ck-go" href="ch5.html">→ 第五章 5.4 固溶体</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>什么是液晶？什么是纳米晶？</summary>
+      <div class="ck-a"><strong>液晶</strong>：某些物质在<strong>熔点</strong>与<strong>清亮点</strong>之间存在的中间态——既像液体能流动、又像晶体有<strong>各向异性</strong>。三类：近晶型（Smectic）、向列型（Nematic，用于显示器）、胆甾型（Cholesteric）。<strong>纳米晶</strong>：晶粒尺寸 <strong>1–100 nm</strong>，表面原子比例大，呈现<strong>量子尺寸效应、小尺寸效应、表面/界面效应、宏观量子隧道效应</strong>。
+      <a class="ck-go" href="ch5.html">→ 第五章 5.5/5.6 液晶与纳米晶</a></div>
+    </details>
+
+    <!-- ============ 第六章 ============ -->
+    <h2>第六章　点缺陷</h2>
+    <p class="ch-intro">考点 3 条 ·　<a href="ch6.html">打开第六章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>单质、化合物的点缺陷类型？浓度的估算？</summary>
+      <div class="ck-a"><strong>类型</strong>：空位、间隙原子、置换原子；成对出现的 <strong>弗仑克尔缺陷</strong>（空位＋间隙，密度不变）、<strong>肖特基缺陷</strong>（正负离子空位成对、原子迁到表面，<strong>密度略降</strong>）。<strong>浓度估算</strong>：热平衡空位浓度 \(n=N e^{-u/kT}\)（由 \(\Delta F=n u_1-T\Delta S\)、\(S=k\ln W\) 推出）；弗仑克尔缺陷 \(n=\sqrt{N N^{*}}\,e^{-E_F/2kT}\)。
+      <a class="ck-go" href="ch6.html">→ 第六章 · 点缺陷类型 + 浓度公式</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>缺陷对晶体结构的影响？</summary>
+      <div class="ck-a">点缺陷使周围点阵发生<strong>畸变</strong>（局部胀缩、产生内应力）；<strong>肖特基</strong>缺陷使晶体<strong>密度下降</strong>，<strong>弗仑克尔</strong>缺陷原子数守恒、密度基本不变；化合物中还涉及<strong>化学计量比偏离</strong>（非化学计量化合物）。
+      <a class="ck-go" href="ch6.html">→ 第六章 · 缺陷对结构的影响</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>点缺陷的电离对材料电学性能的影响？<span class="hot">重点</span></summary>
+      <div class="ck-a">这是本章<strong>重点</strong>：杂质（点缺陷）<strong>电离</strong>提供载流子，决定半导体的<strong>导电类型和载流子浓度</strong>。<strong>施主</strong>（5 价 P 取代 Si，多 1 个电子→ <strong>n 型</strong>，多子是电子）；<strong>受主</strong>（3 价 B 取代 Si，缺 1 个电子留空穴→ <strong>p 型</strong>，多子是空穴）。靠掺杂精确控制导电性，是一切半导体器件的基础。
+      <a class="ck-go" href="ch6.html">→ 第六章 · 施主/受主掺杂（含动画）</a></div>
+    </details>
+
+    <!-- ============ 第七章 ============ -->
+    <h2>第七章　位错（线缺陷）</h2>
+    <p class="ch-intro">考点最多的一章 ·　最终目的＝<strong>位错对半导体性能的影响</strong> ·　<a href="ch7.html">打开第七章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>什么是刃（棱）型位错？螺型位错？混合型位错？<span class="hot">作图题</span></summary>
+      <div class="ck-a"><strong>刃型</strong>：晶体内多插入<strong>半个原子面</strong>，其边缘＝位错线，<strong>b ⊥ 位错线</strong>；半面侧受压、另侧受张（有正应力）。<strong>螺型</strong>：原子面被错开成连续<strong>螺旋面</strong>，绕位错线转一圈升高一个 b，<strong>b ∥ 位错线</strong>，无多余半原子面、无正应力。<strong>混合型</strong>：刃型 + 螺型的组合，b 与位错线成任意角。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.1（刃型/滑移/螺型 3D）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>什么是柏氏矢量？定义？求法？如何提出的？<span class="hot">作图题</span></summary>
+      <div class="ck-a"><strong>柏氏矢量 b</strong>＝表征位错<strong>畸变大小和方向</strong>的矢量。<strong>求法（弗兰克回路法）</strong>：① 在<strong>含位错的实际晶体</strong>里绕位错逐原子走一闭合回路；② 在<strong>完整参考晶体</strong>里按<strong>同样步数</strong>再走一遍，终点回不到起点；③ <strong>从终点指向起点的矢量＝b</strong>。b 与回路大小、路径无关（<strong>守恒性</strong>）。刃型 b⊥线、螺型 b∥线。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.2 柏氏回路（动画）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">3.</span>位错的产生及其密度的估算？</summary>
+      <div class="ck-a"><strong>产生</strong>：机械应力（挤压/拉伸/切割/研磨）与热应力（温度梯度）超过屈服强度时产生。<strong>密度 ρ</strong>＝单位体积中位错线总长（或单位面积穿过的位错数），用蚀坑法等测量。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.3 位错的产生</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">4.</span>弯曲晶体 / 径向温度梯度造成的位错密度估算；位错增殖：L 型、U 型平面源？<span class="hot">动画</span></summary>
+      <div class="ck-a"><strong>弯曲晶体</strong>（曲率半径 r）：\(\rho=\dfrac{1}{r\,b}\)（如 Si 弯曲半径 1 m 时 \(\rho\approx2.6\times10^{5}/\text{cm}^2\)）。<strong>径向温度梯度</strong>：\(\rho=\dfrac{\alpha}{b}\left|\dfrac{dT}{dr}\right|\)。<strong>增殖（Frank–Read 源）</strong>：<strong>L 型平面源</strong>＝一端固定的位错线绕固定端卷成螺旋放环；<strong>U 型平面源</strong>＝两端固定的位错段弓出、过半圆失稳、箍断放出一圈圈同心位错环。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.3 密度公式 + L/U 型平面源动画</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">5.</span>位错的应力场和应变能；结论：应变能 ∝ 柏氏矢量的平方？应力场各参数意义？</summary>
+      <div class="ck-a"><strong>应变能</strong>：\(W_{刃}=\dfrac{Gb^2}{4\pi(1-\nu)}\ln\dfrac{r_1}{r_0}\)、\(W_{螺}=\dfrac{Gb^2}{4\pi}\ln\dfrac{r_1}{r_0}\)——都 <strong>∝ \(b^2\)</strong>（所以 b 小的位错更稳定，位错倾向取最小 b）。<strong>应力场</strong>：刃型 \(\sigma\sim\dfrac{D\cdot(\dots)}{r}\)，\(D=\dfrac{Gb}{2\pi(1-\nu)}\)（含正应力与切应力）；螺型只有切应力 \(\tau_{\theta z}=\dfrac{Gb}{2\pi r}\)、无正应力。<strong>参数</strong>：G 切变模量、b 柏氏矢量、ν 泊松比、r 到位错线距离。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.4 应力场与应变能</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">6.</span>位错与其它缺陷、位错与位错的相互作用？（交割、割阶；最稳定排列）</summary>
+      <div class="ck-a"><strong>与点缺陷</strong>：刃型位错下方张应力区吸引大原子/杂质形成<strong>科垂尔气团</strong>（钉扎位错）：\(C=C_0 e^{-U/kT}\)。<strong>位错相遇</strong>：发生<strong>交割</strong>，在位错线上留下<strong>割阶（jog）/扭折（kink）</strong>。<strong>位错间力</strong>：\(F=\tau b\)；<strong>结论</strong>：同号刃型位错相互作用时，排在 <strong>X=0、沿 Y 轴一列</strong>（一根在另一根正上/下方）时最稳定——这正是<strong>小角晶界（位错墙）</strong>的来由。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.5 相互作用 / 科垂尔气团</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">7.</span>解释现象：小角晶界、金属的多边形化、位错排？</summary>
+      <div class="ck-a"><strong>小角晶界</strong>＝取向差很小的两晶粒间，由<strong>一列等间距刃型位错</strong>构成，几何关系 <strong>\(D=b/\theta\)</strong>（θ 越大、位错排得越密）。<strong>多边形化</strong>＝弯曲晶体退火时，杂乱位错通过滑移＋攀移重新排成一道道<strong>位错墙（位错排）</strong>，把晶粒分成多个小角度的亚晶——本质就是同号刃型位错沿 Y 排成列最稳定。
+      <a class="ck-go" href="ch8.html">→ 第八章 · 小角晶界 \(D=b/\theta\)（动画）</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">8.</span>位错对半导体材料性能的影响？<span class="hot">本章最终目的</span></summary>
+      <div class="ck-a">位错是<strong>电活性</strong>的缺陷：① 引入<strong>深能级</strong>，成为载流子<strong>复合中心</strong>，降低少子寿命；② 位错线吸引杂质（气团），形成<strong>杂质沉淀、漏电通道</strong>，使 pn 结反向漏电增大、击穿变软；③ 影响迁移率、均匀性与器件成品率。所以制备高质量半导体追求<strong>低位错密度乃至无位错单晶</strong>——这就是研究位错的最终目的。
+      <a class="ck-go" href="ch7.html">→ 第七章 7.6 位错对半导体性能的影响</a></div>
+    </details>
+
+    <!-- ============ 第八章 ============ -->
+    <h2>第八章　面缺陷</h2>
+    <p class="ch-intro">以本章<strong>习题、思考题</strong>为主线，掌握基本概念 ·　<a href="ch8.html">打开第八章 →</a></p>
+
+    <details class="ck"><summary><span class="qn">1.</span>堆垛层错？不全（部分）位错？扩展位错？</summary>
+      <div class="ck-a"><strong>堆垛层错</strong>＝密排面（fcc 的 {111}）堆垛顺序 ABCABC 在某处出错（抽出型/插入型；孪晶界＝从某层起镜像）的<strong>面缺陷</strong>，能量较低。<strong>不全（部分）位错</strong>＝柏氏矢量<strong>不等于</strong>点阵平移矢量的位错（如肖克莱、弗兰克部分位错），它<strong>界定</strong>层错区。<strong>扩展位错</strong>＝一个全位错<strong>分解</strong>成两个不全位错，中间夹一条<strong>层错带</strong>（因总能量降低而自发分解）。
+      <a class="ck-go" href="ch8.html">→ 第八章 · 堆垛层错（含演示）/ 扩展位错</a></div>
+    </details>
+    <details class="ck"><summary><span class="qn">2.</span>小角晶界、孪晶界、相界等界面概念？</summary>
+      <div class="ck-a"><strong>小角晶界</strong>：取向差小，由位错列构成，\(D=b/\theta\)（倾斜晶界＝刃型位错墙、扭转晶界＝螺型位错网）；θ 大到约 &gt;10–15° 后位错重叠失效→成<strong>大角晶界</strong>。<strong>孪晶界</strong>：两部分晶体成镜像对称的界面（共格、能量低）。<strong>相界</strong>：不同相之间的界面（共格/半共格/非共格）。
+      <a class="ck-go" href="ch8.html">→ 第八章 · 小角晶界 / 孪晶 / 相界</a></div>
+    </details>
+
+    <div class="callout tip" style="margin-top:26px">
+      <div class="callout-title">✅ 用法建议</div>
+      <p>把这页当<strong>考前自测清单</strong>：从头到尾，每条先盖住答案问自己「能不能讲出来 + 会不会画」，卡住的点开看、再跳到对应章节补。<strong>作图题</strong>（画晶胞、标晶面晶向、画位错与柏氏回路）务必动手画几遍；<strong>重点</strong>（第六章电离、第七章位错对性能）多准备问答。最后过一遍 <a href="sprint.html">★ 冲刺速查</a>。加油！💪</p>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="index.html"><span>← 返回</span><b>学习首页</b></a>
+      <a class="next" href="ch1.html"><span>开始复习 →</span><b>第一章 晶体的特性</b></a>
+    </div>
+    <div class="foot-note">复习提纲逐条对应 · 依据老师《结晶学期末复习纲要》整理 · 半导体结构期末通关</div>
+
+  </div>
+</main>
+<script defer src="assets/js/app.js"></script>
+</body>
+</html>

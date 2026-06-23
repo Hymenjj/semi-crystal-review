@@ -8,6 +8,7 @@
   // ---- 章节清单 ----
   const CHAPTERS = [
     { id: "index", file: "index.html", num: "首", short: "首页",   label: "学习首页",          nav: true },
+    { id: "outline",file: "outline.html",num: "📋", short: "考纲",  label: "复习提纲逐条对应",   nav: true },
     { id: "ch1",   file: "ch1.html",   num: "1",  short: "第一章", label: "晶体的特性",        nav: true },
     { id: "ch2",   file: "ch2.html",   num: "2",  short: "第二章", label: "晶体构造理论",      nav: true },
     { id: "ch3",   file: "ch3.html",   num: "3",  short: "第三章", label: "晶体的对称性",      nav: true },
@@ -86,7 +87,7 @@
       }
       a.innerHTML = `<span class="nav-num">${c.num}</span><span class="nav-label">${c.short} · ${c.label}</span>${badge}`;
       nav.appendChild(a);
-      if (c.id === "index") nav.appendChild(el("div", "nav-section-label", "分章复习"));
+      if (c.id === "outline") nav.appendChild(el("div", "nav-section-label", "分章复习"));
       if (c.id === "ch8") nav.appendChild(el("div", "nav-section-label", "急救三件套"));
     });
     sb.appendChild(nav);

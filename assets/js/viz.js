@@ -2,9 +2,9 @@
    半导体结构 · 交互可视化（纯 Canvas，无依赖）
    3D 可旋转晶体结构：cubic 立方晶胞 / diamond 金刚石&闪锌矿 / wurtzite 纤锌矿
      / nacl 氯化钠 / cscl 氯化铯 / rutile 金红石 / perovskite 钙钛矿
-     / graphite 石墨 / closepack 密堆积
+     / fluorite 萤石 CaF₂ / cuprite 赤铜矿 Cu₂O / graphite 石墨 / closepack 密堆积
    晶体学：bravais 14 种布拉菲格子 / reduce 不存在的格子如何并入更小格子 / density 面密度切片
-   2D / 动画：miller 晶面指数 / edge 刃型位错 / slip 位错滑移动画
+   2D / 动画：miller 晶面指数 / edge 刃型位错 / slip 位错滑移动画 / franksource L/U型平面源(位错增殖)
 =================================================================== */
 (function () {
   "use strict";
@@ -961,7 +961,100 @@
     caption(host, "三维晶面指数 (hkl)：取该面在三轴上的<b>截距</b>（以点阵常数为单位），取<b>倒数</b>、化成最简整数比即得 (hkl)。蓝色半透明面是它在立方晶胞里的实际位置，红点是它与三个坐标轴的交点。");
   }
 
-  const REG = { cubic: vizCubic, diamond: vizDiamond, wurtzite: vizWurtzite, nacl: vizNaCl, cscl: vizCsCl, rutile: vizRutile, perovskite: vizPerovskite, graphite: vizGraphite, closepack: vizClosepack, bravais: vizBravais, reduce: vizReduce, density: vizDensity, voids: vizVoids, share: vizShare, rotaxis: vizRotaxis, fivefold: vizFivefold, pointdefect: vizPointdefect, doping: vizDoping, screw: vizScrew, burgers: vizBurgers, stackfault: vizStackfault, tilt: vizTilt, amorphous: vizAmorphous, miller: vizMiller, miller3d: vizMiller3d, edge: vizEdge, slip: vizSlip };
+  // ===== 第二/五章 萤石 CaF₂（反萤石 Li₂O 同型）=====
+  function vizFluorite(host) {
+    const ca = [[0, 0, 0], [.5, .5, 0], [.5, 0, .5], [0, .5, .5]].map(f => ({ f, c: "primary", r: .13 }));
+    const f8 = [[.25, .25, .25], [.75, .25, .25], [.25, .75, .25], [.25, .25, .75], [.75, .75, .25], [.75, .25, .75], [.25, .75, .75], [.75, .75, .75]].map(f => ({ f, c: "accent", r: .085 }));
+    boxStruct(host, {
+      atoms: expand(ca.concat(f8)), unit: 1.05,
+      legend: [{ c: "primary", t: "Ca²⁺（面心立方）" }, { c: "accent", t: "F⁻（全部四面体空隙）" }],
+      caption: "<b>萤石 CaF₂ (AB₂)</b>：Ca²⁺ 作<b>面心立方</b>，F⁻ 填满<b>全部 8 个四面体空隙</b>（也可看成 F⁻ 自成简单立方、Ca²⁺ 占其中一半小立方体的中心）。配位数：<b>Ca²⁺ = 8</b>（立方体）、<b>F⁻ = 4</b>（四面体），Ca∶F = 4∶8 = <b>1∶2</b>。阴阳离子位置对调即<b>反萤石</b>（如 Li₂O）。",
+    });
+  }
+
+  // ===== 第二/五章 赤铜矿 Cu₂O（Cu 直线配位 2，两套网络互穿）=====
+  function vizCuprite(host) {
+    const o = expand([{ f: [0, 0, 0], c: "accent", r: .12 }, { f: [.5, .5, .5], c: "accent", r: .12 }]);
+    const cu = [[.25, .25, .25], [.75, .75, .25], [.75, .25, .75], [.25, .75, .75]].map(p => ({ x: p[0] - .5, y: p[1] - .5, z: p[2] - .5, c: "primary", r: .09 }));
+    const bonds = [];
+    cu.forEach((c, ci) => o.forEach((q, oi) => { if (Math.hypot(c.x - q.x, c.y - q.y, c.z - q.z) < 0.5) bonds.push([o.length + ci, oi]); }));
+    boxStruct(host, {
+      atoms: o.concat(cu), bonds, unit: 1.05,
+      legend: [{ c: "accent", t: "O²⁻（体心立方）" }, { c: "primary", t: "Cu⁺（直线配位 2）" }],
+      caption: "<b>赤铜矿 Cu₂O (A₂B)</b>：O²⁻ 作<b>体心立方</b>、Cu⁺ 占四面体位（4 套，与金刚石碳原子位置相同），两套网络<b>相互贯穿</b>。特征：<b>Cu⁺ 配位数 = 2</b>（直线 O–Cu–O，见键）、<b>O²⁻ 配位数 = 4</b>（四面体）。Cu∶O = 4∶2 = <b>2∶1</b>。",
+    });
+  }
+
+  // ===== 第七章 位错增殖：Frank–Read 源（L 型 / U 型平面源）=====
+  function vizFranksource(host) {
+    const { cv, resize } = makeCanvas(host, 360); cv.style.touchAction = "none";
+    let mode = 0, t = 0, playing = true, raf = null, vis = true;
+    const ctrls = document.createElement("div"); ctrls.style.cssText = "display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center;";
+    const pb = document.createElement("button"); pb.className = "btn primary"; pb.textContent = "⏸ 暂停";
+    pb.onclick = () => { playing = !playing; pb.textContent = playing ? "⏸ 暂停" : "▶ 播放"; pb.className = "btn" + (playing ? " primary" : ""); if (playing) go(); };
+    ctrls.appendChild(pb); host.appendChild(ctrls);
+    btnRow(host, ["L 型（一端固定）", "U 型（两端固定）"], i => { mode = i; t = 0; draw(); cap.innerHTML = note(); });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;"; host.appendChild(cap);
+    function arr(ctx, x1, y1, x2, y2, c) {
+      ctx.strokeStyle = c; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      const a = Math.atan2(y2 - y1, x2 - x1), s = 6; ctx.fillStyle = c;
+      ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - s * Math.cos(a - .5), y2 - s * Math.sin(a - .5)); ctx.lineTo(x2 - s * Math.cos(a + .5), y2 - s * Math.sin(a + .5)); ctx.closePath(); ctx.fill();
+    }
+    function curve(ctx, pts, c, wd, al) {
+      ctx.globalAlpha = al == null ? 1 : al; ctx.strokeStyle = c; ctx.lineWidth = wd; ctx.lineJoin = "round"; ctx.lineCap = "round";
+      ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke(); ctx.globalAlpha = 1;
+    }
+    function pin(ctx, x, y, col, lab) {
+      ctx.fillStyle = col.ink; ctx.fillRect(x - 4.5, y - 4.5, 9, 9);
+      ctx.fillStyle = col.soft; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "center"; ctx.fillText(lab, x, y + 19);
+    }
+    function shear(ctx, col, x, yTop, yBot, halfw) {
+      arr(ctx, x - halfw, yTop, x + halfw, yTop, col.accent);
+      arr(ctx, x + halfw, yBot, x - halfw, yBot, col.accent);
+      ctx.fillStyle = col.accent; ctx.font = "bold 12px sans-serif"; ctx.textAlign = "right"; ctx.fillText("切应力 τ", x + halfw, yTop - 6);
+    }
+    function drawL(ctx, w, h, col) {
+      const cx = w * 0.5, cy = h * 0.46;
+      shear(ctx, col, cx, 20, h - 22, Math.min(w * 0.34, 150));
+      const T = 260, ph = (t % T) / T, A = (0.2 + ph * 3.3) * 2 * Math.PI;
+      const maxR = Math.min(w, h) * 0.40, k = maxR / A, N = Math.max(48, Math.floor(A / 0.1)), pts = [];
+      for (let s = 0; s <= N; s++) { const a = A * s / N, r = k * a; pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); }
+      curve(ctx, pts, col.accent, 3, 1);
+      const e = pts[pts.length - 1]; atom(ctx, e[0], e[1], 5, col.danger, col.ink);
+      pin(ctx, cx, cy, col, "D（固定端）");
+    }
+    function drawU(ctx, w, h, col) {
+      const cx = w * 0.5, cy = h * 0.22, d = Math.min(w * 0.15, 58);
+      shear(ctx, col, cx, cy - 14, h - 20, Math.min(w * 0.32, 140));
+      const T = 230, ph = (t % T) / T, cycles = Math.floor(t / T);
+      for (let g = 1; g <= Math.min(cycles, 2); g++) {
+        const rr = d * (1.1 + g * 0.7), lp = [];
+        for (let s = 0; s <= 60; s++) { const a = s / 60 * 2 * Math.PI; lp.push([cx + rr * Math.sin(a), cy + d * 1.2 + rr * (1 - Math.cos(a)) * 0.9]); }
+        curve(ctx, lp, col.faint, 1.5, 0.4);
+      }
+      const phi = (8 + ph * 142) * Math.PI / 180, R = d / Math.sin(phi), ctrY = cy - R * Math.cos(phi), pts = [], N = 90;
+      for (let s = 0; s <= N; s++) { const gma = -phi + 2 * phi * s / N; pts.push([cx + R * Math.sin(gma), ctrY + R * Math.cos(gma)]); }
+      curve(ctx, pts, col.accent, 3, 1);
+      pin(ctx, cx - d, cy, col, "D′"); pin(ctx, cx + d, cy, col, "D");
+    }
+    function draw() { const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h); if (mode === 0) drawL(ctx, w, h, col); else drawU(ctx, w, h, col); }
+    function note() {
+      return mode === 0
+        ? "<b>L 型平面源</b>：位错线<b>一端被钉扎</b>（D），另一端在切应力下绕 D 不停扫转、卷成<b>螺旋（蜷线状）</b>——每扫一圈放出一圈新位错，位错不断增殖。"
+        : "<b>U 型平面源（Frank–Read 源）</b>：<b>两端钉扎</b>（D、D′）的位错段在切应力下<b>弓出</b>，鼓过<b>半圆</b>后失稳、自发膨胀，两端绕过钉扎点在背后<b>相遇箍断</b>，放出一个<b>闭合位错环</b>，中间段复原继续放环（淡线＝已放出的同心环）。";
+    }
+    function tick() { if (playing && vis) t += 1; draw(); raf = (playing && vis) ? requestAnimationFrame(tick) : null; }
+    function go() { if (!raf && playing && vis) raf = requestAnimationFrame(tick); else if (!raf) draw(); }
+    draw(); cap.innerHTML = note();
+    if (typeof IntersectionObserver !== "undefined") {
+      const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) go(); else if (raf) { cancelAnimationFrame(raf); raf = null; } });
+      io.observe(cv);
+    } else go();
+    window.addEventListener("resize", () => { if (!raf) draw(); }); host._redraw = draw;
+    caption(host, "<b>位错的增殖：Frank–Read 源</b>。塑性变形中位错密度为何剧增？靠位错源不停「吹泡」放环。<b>L 型</b>＝一端固定、卷成螺旋；<b>U 型</b>＝两端固定、弓出过半圆失稳→箍断、放出一圈圈<b>同心位错环</b>。一端或两端被钉扎的位错线就是位错源。");
+  }
+
+  const REG = { cubic: vizCubic, diamond: vizDiamond, wurtzite: vizWurtzite, nacl: vizNaCl, cscl: vizCsCl, rutile: vizRutile, perovskite: vizPerovskite, fluorite: vizFluorite, cuprite: vizCuprite, graphite: vizGraphite, closepack: vizClosepack, bravais: vizBravais, reduce: vizReduce, density: vizDensity, voids: vizVoids, share: vizShare, rotaxis: vizRotaxis, fivefold: vizFivefold, pointdefect: vizPointdefect, doping: vizDoping, screw: vizScrew, burgers: vizBurgers, franksource: vizFranksource, stackfault: vizStackfault, tilt: vizTilt, amorphous: vizAmorphous, miller: vizMiller, miller3d: vizMiller3d, edge: vizEdge, slip: vizSlip };
   function init() {
     document.querySelectorAll("[data-viz]").forEach(host => {
       const fn = REG[host.dataset.viz];
