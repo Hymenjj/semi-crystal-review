@@ -725,57 +725,68 @@
 
   // ===== 第七章 螺型位错（3D 螺旋面）=====
   function vizScrew(host) {
-    const step = 0.95, rings = [0.55, 1.05, 1.55], m = 16, turns = 2;
+    const N = 4, b = 1.4, sc = 0.42;  // 平面内格点 -N..N；b=绕一圈升高量；sc=横向间距
     function build(col) {
-      const atoms = [], bonds = [];
-      rings.forEach(rr => {
-        const idx0 = atoms.length, cnt = turns * m;
-        for (let s = 0; s < cnt; s++) {
-          const k = s % m, th = 2 * Math.PI * (s / m), y = step / (2 * Math.PI) * th - step * turns / 2;
-          atoms.push({ x: rr * Math.cos(2 * Math.PI * k / m), y: y, z: rr * Math.sin(2 * Math.PI * k / m), r: 0.12, color: col.primary });
-        }
-        for (let s = 0; s < cnt - 1; s++) bonds.push([idx0 + s, idx0 + s + 1]);
-      });
-      const ymax = step * turns / 2 + 0.25, ymin = -step * turns / 2 - 0.25;
-      return { atoms, bonds, edges: [[{ x: 0, y: ymin, z: 0 }, { x: 0, y: ymax, z: 0 }]], unit: 1.85 };
+      const atoms = [], bonds = [], idx = {}; let n = 0;
+      const key = (i, j) => i + "_" + j;
+      for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+        const th = Math.atan2(j + 0.001, i + 0.001);      // 绕位错线的方位角（微偏避开奇点）
+        idx[key(i, j)] = n++;
+        atoms.push({ x: i * sc, y: b * th / (2 * Math.PI), z: j * sc, r: 0.085, color: col.primary });
+      }
+      for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+        const a = idx[key(i, j)];
+        if (i < N) bonds.push([a, idx[key(i + 1, j)]]);
+        if (j < N && !(i < 0 && j === -1)) bonds.push([a, idx[key(i, j + 1)]]); // 跨过不连续线(螺旋台阶)不连键
+      }
+      return { atoms, bonds, edges: [[{ x: 0, y: -b * 0.6, z: 0 }, { x: 0, y: b * 0.6, z: 0 }]], unit: N * sc * 1.5 };
     }
-    interactive3D(host, build, { height: 360, ax: -0.25, ay: 0.6 });
-    legend(host, [{ c: "primary", t: "原子（沿螺旋面排列）" }]);
-    caption(host, "🖱️ <b>拖动旋转</b>。<b>螺型位错</b>：原子面绕位错线（中央竖线）<b>螺旋上升</b>，绕一圈正好升高一个柏氏矢量 b。柏氏矢量 <b>b ∥ 位错线</b>（与刃型 b⊥线相反）；它<b>没有多余半原子面</b>，可在任意含位错线的面上滑移、运动较自由。");
+    interactive3D(host, build, { height: 360, ax: -0.85, ay: 0.5 });
+    legend(host, [{ c: "primary", t: "原子面（螺旋上升）" }]);
+    caption(host, "🖱️ <b>拖动旋转</b>。<b>螺型位错</b>：原本平行的原子面被连接成<b>一个螺旋面</b>——绕位错线（中央竖线）转一圈，面就升高一个<b>柏氏矢量 b</b>（图中能看到一道螺旋台阶）。<b>b ∥ 位错线</b>（刃型是 b⊥线）；它<b>没有多余半原子面</b>，可在任意含位错线的面上滑移、运动较自由。");
   }
 
-  // ===== 第七章 柏氏回路 =====
+  // ===== 第七章 柏氏回路（弗兰克法：实际晶体闭合 / 完整晶体差一个 b）=====
   function vizBurgers(host) {
-    const { cv, resize } = makeCanvas(host, 320);
-    let mode = 1; const cols = 9, rows = 8, mid = 4, core = 4;
-    btnRow(host, ["完美晶体（回路闭合）", "含刃型位错（缺口 = b）"], i => { mode = i; draw(); });
-    function disp(i, j, gx) { if (mode === 0 || j >= mid) return 0; const d = i - core, hw = (mid - j) / mid; return -(d / (d * d + 1.0)) * 0.9 * gx * hw; }
+    const { cv, resize } = makeCanvas(host, 360);
+    let mode = 0; const cols = 11, rows = 10, midI = 5, midJ = 4;
+    const L = 2, R = 7, T = 2, B = 6;  // 回路：下/上各 4 步，左/右底各 5 步
+    btnRow(host, ["(a) 实际晶体（含位错 · 回路闭合）", "(b) 完整参考晶体（同样走法 · 缺口=b）"], i => { mode = i; draw(); cap.innerHTML = mk(); });
+    const cap = document.createElement("p"); cap.style.cssText = "font-size:13.5px;color:var(--text-soft);margin:10px 0 0;"; host.appendChild(cap);
+    function arrow(ctx, x1, y1, x2, y2, c) {
+      ctx.strokeStyle = c; ctx.lineWidth = 2.3; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      const a = Math.atan2(y2 - y1, x2 - x1), s = 6;
+      ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - s * Math.cos(a - 0.5), y2 - s * Math.sin(a - 0.5)); ctx.lineTo(x2 - s * Math.cos(a + 0.5), y2 - s * Math.sin(a + 0.5)); ctx.closePath(); ctx.fill();
+    }
     function draw() {
       const { ctx, w, h } = resize(); const col = C(); ctx.clearRect(0, 0, w, h);
-      const padX = 42, padY = 24, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.15;
-      const PX = (i, j) => padX + i * gx + disp(i, j, gx), PY = (i, j) => padY + j * gy;
-      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) { if (mode === 1 && i === core && j > mid) continue; atom(ctx, PX(i, j), PY(i, j), r, col.primary, col.ink); }
-      if (mode === 1) { const tx = PX(core, mid), ty = PY(core, mid); ctx.strokeStyle = col.danger; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(tx, padY + 1); ctx.lineTo(tx, ty); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tx - gx * 0.22, ty); ctx.lineTo(tx + gx * 0.22, ty); ctx.stroke(); }
-      const L = 2, R = 6, T = 2, B = 6, seg = [];
-      for (let i = L; i <= R; i++) seg.push([PX(i, T), PY(i, T)]);
-      for (let j = T; j <= B; j++) seg.push([PX(R, j), PY(R, j)]);
-      for (let i = R; i >= L; i--) seg.push([PX(i, B), PY(i, B)]);
-      for (let j = B; j > T; j--) seg.push([PX(L, j), PY(L, j)]);
-      const S = [padX + L * gx, padY + T * gy], E = [S[0] + (mode === 1 ? gx : 0), S[1]];
-      seg.push(E);
-      ctx.strokeStyle = col.accent; ctx.lineWidth = 2.6; ctx.lineJoin = "round"; ctx.beginPath(); seg.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke();
-      atom(ctx, S[0], S[1], r * 1.25, col.accent, col.ink);
+      const padX = 48, padY = 22, gx = (w - padX * 2) / (cols - 1), gy = (h - padY * 2) / (rows - 1), r = Math.min(gx, gy) * 0.14;
+      const PX = i => padX + i * gx, PY = j => padY + j * gy;
+      for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) atom(ctx, PX(i), PY(j), r, col.primary, col.ink);
+      if (mode === 0) { const tx = PX(midI), ty = PY(midJ); ctx.strokeStyle = col.soft; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(tx, PY(midJ - 2)); ctx.lineTo(tx, ty); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tx - 9, ty); ctx.lineTo(tx + 9, ty); ctx.stroke(); }
+      const ac = col.accent;
+      for (let j = T; j < B; j++) arrow(ctx, PX(L), PY(j), PX(L), PY(j + 1), ac);      // 下（左边）
+      for (let i = L; i < R; i++) arrow(ctx, PX(i), PY(B), PX(i + 1), PY(B), ac);      // 右（底边）
+      for (let j = B; j > T; j--) arrow(ctx, PX(R), PY(j), PX(R), PY(j - 1), ac);      // 上（右边）
+      const topEnd = mode === 0 ? L : L - 1;                                           // (a) 回到起点；(b) 多落一格到 ×
+      for (let i = R; i > topEnd; i--) arrow(ctx, PX(i), PY(T), PX(i - 1), PY(T), ac); // 左（顶边）
+      ctx.lineWidth = 2; ctx.strokeStyle = col.ink; ctx.fillStyle = col.surface;       // 起点 ○
+      ctx.beginPath(); ctx.arc(PX(L), PY(T), r * 1.35, 0, 7); ctx.fill(); ctx.stroke();
       if (mode === 1) {
-        atom(ctx, E[0], E[1], r * 1.1, col.danger, col.ink);
-        ctx.strokeStyle = col.danger; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(E[0], E[1]); ctx.lineTo(S[0] + r * 1.25, S[1]); ctx.stroke();
-        ctx.fillStyle = col.danger; ctx.beginPath(); ctx.moveTo(S[0] + r * 1.25, S[1]); ctx.lineTo(S[0] + r * 1.25 + 8, S[1] - 5); ctx.lineTo(S[0] + r * 1.25 + 8, S[1] + 5); ctx.closePath(); ctx.fill();
-        ctx.font = "bold 15px sans-serif"; ctx.textAlign = "left"; ctx.fillText("b", E[0] + 7, E[1] - 7);
+        const ex = PX(L - 1), ey = PY(T);
+        ctx.strokeStyle = col.danger; ctx.lineWidth = 2.4;                             // 终点 ×
+        ctx.beginPath(); ctx.moveTo(ex - 6, ey - 6); ctx.lineTo(ex + 6, ey + 6); ctx.moveTo(ex + 6, ey - 6); ctx.lineTo(ex - 6, ey + 6); ctx.stroke();
+        arrow(ctx, ex, ey - 17, PX(L), ey - 17, col.danger);                           // b：× → ○
+        ctx.fillStyle = col.danger; ctx.font = "bold 15px sans-serif"; ctx.textAlign = "center"; ctx.fillText("b", (ex + PX(L)) / 2, ey - 22);
       }
-      ctx.fillStyle = col.soft; ctx.font = "13px sans-serif"; ctx.textAlign = "center";
-      ctx.fillText(mode === 0 ? "完美晶体：等步数回路终点 = 起点 → b = 0" : "回路套住位错：终点回不到起点，缺口 = 柏氏矢量 b", w / 2, h - 8);
     }
-    draw(); window.addEventListener("resize", draw); host._redraw = draw;
-    caption(host, "<b>柏氏回路定义柏氏矢量 b</b>：在好晶体里绕位错走「右 n 步、下 n 步、左 n 步、上 n 步」的等步数回路。完美晶体里它<b>自动闭合</b>(b=0)；一旦回路<b>套住位错</b>，终点回不到起点，<b>缺口矢量就是 b</b>。刃型位错 <b>b ⊥ 位错线</b>，且 b 与回路大小/路径无关（守恒性）。");
+    function mk() {
+      return mode === 0
+        ? "🅐 <b>实际晶体（含位错 ⊥）</b>：从 ○ 出发逐原子走「下 4 → 右 5 → 上 4 → 左 5」，<b>回到出发点 ○，回路闭合</b>。"
+        : "🅑 <b>完整参考晶体</b>：按<b>同样的走法</b>，却停在 <b style='color:var(--danger)'>×</b> 处、回不到 ○。从 × 指向 ○ 的矢量就是<b>柏氏矢量 b</b>。";
+    }
+    draw(); cap.innerHTML = mk(); window.addEventListener("resize", draw); host._redraw = draw;
+    caption(host, "<b>柏氏回路（弗兰克法）求 b</b>：① 在<b>实际含位错晶体</b>里绕位错逐原子走一圈、回到原点（图 a 闭合）；② 到<b>完整参考晶体</b>里按<b>同样的步数</b>再走一遍，终点回不到起点（图 b）；③ <b>从终点到起点的矢量 = 柏氏矢量 b</b>。刃型位错 <b>b ⊥ 位错线</b>；b 与回路大小、路径无关（守恒性）。");
   }
 
   // ===== 第八章 堆垛层错 =====
